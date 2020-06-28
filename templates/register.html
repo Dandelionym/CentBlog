@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>登录</title>
+	<link rel="stylesheet" href="/static/centBlog/plugins/bs/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/static/centBlog/plugins/fa/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/static/centBlog/css/color.css">
+	<style>
+		#avatar_img{
+			margin: 20px;
+			border-radius: 999px;
+			overflow: hidden;
+		}
+	</style>
+</head>
+<body>
+<div class="container">
+	<div class="row">
+		<div class="col-md-4 col-lg-offset-4 table-bordered" style="padding: 20px; transition: .5s; margin-top: 100px; height: auto">
+			<h1 class="h1 text-center">欢迎注册</h1>
+			<form id="form">
+				{% csrf_token %}
+
+				{% for field in form %}
+					<div class="form-group">
+						<label for="{{ field.auto_id }}">{{ field.label }}</label>
+						{{ field }}
+						<span class="pull-right" style="color: red"></span>
+					</div>
+				{% endfor %}
+
+				<div class="form-group">
+					<label for="avatar">选择头像
+						<img id="avatar_img" src="/static/centBlog/images/default_head_img.jpg" alt="默认头像" width=60 height="60">
+					</label>
+					<input id="avatar" type="file" class="hidden">
+				</div>
+
+				<div class="form-group">
+					<input type="button" id="register" value="注册" class="btn btn-default pull-right">
+					<input type="button" id="login" value="登录" class="btn btn-default pull-left">
+				</div>
+			</form>
+			<div id="assert_valid" class="alert alert-danger alert-dismissible text-center" role="alert" style="margin-top: 80px; display: none">
+
+			</div>
+		</div>
+
+	</div>
+</div>
+
+
+<script type="text/javascript" src="/static/centBlog/plugins/jquery-3.4.1.js"></script>
+<script type="text/javascript" src="/static/centBlog/plugins/bs/js/bootstrap.min.js"></script>
+<script>
+	$('#avatar').change(function () {
+		let file_obj = $(this)[0].files[0]
+		let reader = new FileReader()
+		reader.readAsDataURL(file_obj)
+		reader.onload = function(){
+			$('#avatar_img').attr('src', reader.result)
+		}
+    })
+
+	$('#register').click(function () {
+		let formData = new FormData()
+		formData.append('user', $('#id_user').val())
+		formData.append('pswd', $('#id_pswd').val())
+		formData.append('reps', $('#id_reps').val())
+		formData.append('email', $('#id_email').val())
+		formData.append('phone', $('#id_phone').val())
+		formData.append('avatar', $('#avatar')[0].files[0])
+		formData.append('csrfmiddlewaretoken', $("[name = 'csrfmiddlewaretoken']").val())
+
+	    $.ajax({
+		    url: '',
+		    type: 'POST',
+		    contentType: false,
+		    processData: false,
+		    data: formData,
+		    success: function (args) {
+				if(args.status){
+					location.href = '/login/'
+				}else{
+				    let blank_span = $('span')
+				    blank_span.html('')
+					$('.form-group').removeClass('has-error')
+				    $.each(args.msg, function (field, error_list) {
+				        if(field === '__all__'){
+				            $('#id_reps').next().html(error_list[0]).parent().addClass('has-error')
+				        }
+				        let obj = $('#id_' + field)
+						obj.next().html(error_list[0])
+					    obj.parent().addClass('has-error')
+                    })
+				}
+            }
+	    })
+    })
+</script>
+</body>
+</html>

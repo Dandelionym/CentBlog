@@ -1,0 +1,15 @@
+.red {
+    color: #ffa3d1 !important;
+}
+
+.green {
+    color: rgba(11, 229, 11, 0.6) !important;
+}
+
+.blue {
+    color: skyblue !important;
+}
+
+.iserror {
+    color: red !important;
+}
