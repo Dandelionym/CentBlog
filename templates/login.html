@@ -6,45 +6,136 @@
 	<link rel="stylesheet" href="/static/centBlog/plugins/bs/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/static/centBlog/plugins/fa/css/font-awesome.min.css">
 	<link rel="stylesheet" href="/static/centBlog/css/color.css">
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		.jstf_sp{
+			display: flex;
+			justify-content: space-between;
+		}
+		.jstf_sa{
+			display: flex;
+			justify-content: space-around;
+		}
+		.mg_20{
+			margin: 20px;
+		}
+		.mg_10{
+			margin: 10px;
+		}
 
+		.background {
+			position: fixed;
+			bottom: 0;
+			left: 0;
+			top: 0;
+			right: 0;
+			background: -webkit-linear-gradient(right, #0073d7, #43c1ff);
+            background: -o-linear-gradient(right, #0073d7, #43c1ff);
+            background: -moz-linear-gradient(right, #0073d7, #43c1ff);
+            background: linear-gradient(right, #0073d7, #43c1ff);
+		}
+		#valid {
+			background-size: 100% 70px;
+		}
+
+		.board {
+			position: fixed;
+			top:10%;
+			width: 400px;
+			padding: 20px;
+			transition: .5s;
+			margin-top: 100px;
+			background: white;
+			border-radius: 7px;
+			overflow: hidden;
+			box-shadow:2px 2px 10px #7c7c7c;
+		}
+		.cor_box {
+			position: fixed; right: 20%; top: 20%; z-index: 999
+		}
+
+		@media only screen and (max-width: 1090px) {
+            .cor_box {
+				display: none;
+			}
+			.cor_box > img{
+				width: 120px;
+				height: auto;
+			}
+			.background {
+				position: fixed;
+				bottom: 0;
+				left: 0;
+				top: 0;
+				right: 0;
+				background-image: url('/static/centBlog/images/sky.jpg');
+                background-size: cover;
+			}
+			.board {
+				position: fixed;
+				padding: 40px 80px;
+				top:9%;
+				left: 25%;
+				right: 25%;
+
+				box-shadow:2px 2px 10px #7c7c7c;
+				transition: .5s;
+				margin-top: 100px;
+				background: white;
+				border-radius: 7px;
+				overflow: hidden;
+			}
+        }
+	</style>
 </head>
 <body>
-<div class="container">
+<div class="background">
+</div>
+<div class="container" >
 	<div class="row">
-		<div class="col-md-4 col-lg-offset-3 table-bordered" style="padding: 20px; transition: .5s; margin-top: 100px; height: 380px">
-			<h1 class="h1 text-center"><i id="status" class="fa fa-user-circle-o blue" style="transition: 1.5s; font-size: 48px"></i></h1>
-			<form id="form">
-				{% csrf_token %}
-				<div class="form-group">
-					<label for="user">用户名</label>
-					<input type="text" id="user" class="form-control">
+		<div>
+			<div class="board">
+				<div class="jstf_sa" style="width: 100%;">
+					<img src="/static/centBlog/logo-c.png" alt="logo" width="60" height="60">
 				</div>
-				<div class="form-group">
-					<label for="pswd">密码</label>
-					<input type="password" id="pswd" class="form-control">
-				</div>
-				<div class="form-group">
-					<label for="valid">验证码</label>
-					<div class="row">
-						<div class="col-md-6">
-							<input type="text" id="valid" class="form-control">
-						</div>
-						<div class="col-md-6">
-							<img id="valid_code_img" src="/get_valid_img/" alt="验证码" width=auto height="35" >
+				<form id="form">
+					{% csrf_token %}
+					<div class="form-group">
+						<label for="user">用户名</label>
+						<input type="text" id="user" class="form-control">
+					</div>
+					<div class="form-group">
+						<label for="pswd">密码</label>
+						<input type="password" id="pswd" class="form-control">
+					</div>
+					<div class="form-group">
+						<label for="valid">验证码</label>
+						<div class="row">
+							<div class="col-sm-6">
+								<input type="text" id="valid" class="form-control">
+							</div>
+							<div class="col-sm-6 jstf_sa">
+								<img id="valid_code_img" src="/get_valid_img/" alt="验证码" width=auto height="35">
+							</div>
 						</div>
 					</div>
-				</div>
 
-				<div class="form-group">
-					<input type="button" id="login" value="登录" class="btn btn-default pull-right">
-					<input type="button" id="register" value="注册" class="btn btn-default pull-left">
-				</div>
-			</form>
-			<div id="assert_valid" class="alert alert-danger alert-dismissible text-center" role="alert" style="margin-top: 80px; display: none">
+					<div class="form-group">
+						<input type="button" id="login" value="快速登录" class="btn btn-default pull-right">
+						<input type="button" id="register" value="立即注册" class="btn btn-default pull-left">
+					</div>
+				</form>
+				<div id="assert_valid" class="alert alert-danger alert-dismissible text-center" role="alert" style="margin-top: 80px; display: none">
 
+				</div>
 			</div>
 		</div>
-
+		<div class="cor_box">
+			<img src="/static/centBlog/images/cordova_bot.png" alt="img">
+		</div>
 	</div>
 </div>
 
@@ -85,6 +176,22 @@
 			    }
             }
 	    })
+    })
+
+	// to register
+	$('#register').click(function () {
+		location.href = '/register/'
+    })
+
+	$(function () {
+		setInterval(function () {
+		    setTimeout(function () {
+				$('.cor_box').animate({top:'+=50px'},1000);
+	        }, 1000)
+		    setTimeout(function () {
+				$('.cor_box').animate({top:'-=50px'},1000);
+	        }, 1000)
+		})
     })
 </script>
 </body>

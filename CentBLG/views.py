@@ -2,6 +2,7 @@ from django.shortcuts import render, HttpResponse
 from django.http import JsonResponse
 from CentBLG.formhelper import UserForm
 from CentBLG.models import UserInfo
+from django.contrib import auth
 
 def login(request):
 	ret = {'status': False, 'msg': None, 'user': None}
@@ -9,14 +10,18 @@ def login(request):
 		user = request.POST.get('user')
 		password = request.POST.get('password')
 		valid_code = request.POST.get('valid_code')
-		
+		print(user)
 		if valid_code.upper() == request.session.get('valid_code').upper():
-			ret['status'] = True
-			if user == 'Admin' and password == 'smile':
+			user = auth.authenticate(username=user, password=password)
+			if user:
+				ret['status'] = True
+				auth.login(request, user)        # request.user == current logined object.
+				ret['user'] = user.username
+				print(ret)
 				return JsonResponse(ret)
 			else:
 				ret['status'] = False
-				ret['msg'] = '密码错误!'
+				ret['msg'] = '用户名或密码错误!'
 				return JsonResponse(ret)
 		else:
 			ret['status'] = False
@@ -77,7 +82,7 @@ def get_valid_img(request):
 	
 	img = Image.new("RGBA", (width, height), color=(255, 255, 255))
 	draw = ImageDraw.Draw(img)
-	BHB_font = ImageFont.truetype('static/centBlog/fonts/Arial Black.ttf', size=35)
+	BHB_font = ImageFont.truetype('static/centBlog/fonts/Arial Black.ttf', size=30)
 	
 	official_code = ""
 	
