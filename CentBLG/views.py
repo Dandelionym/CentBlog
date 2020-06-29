@@ -61,8 +61,10 @@ def index(request):
 
 
 
-
 def get_valid_img(request):
+	"""
+	工具箱 ： 用于返回验证码，同时将验证码存储在session中，用于后期的校验
+	"""
 	from PIL import Image, ImageDraw, ImageFont
 	from io import BytesIO
 	import random
