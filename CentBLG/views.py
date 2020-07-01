@@ -17,7 +17,6 @@ def login(request):
 				ret['status'] = True
 				auth.login(request, user)        # request.user == current logined object.
 				ret['user'] = user.username
-				print(ret)
 				return JsonResponse(ret)
 			else:
 				ret['status'] = False
