@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<h3 class="text-center">{{ article_obj }}</h3>
+	{% csrf_token %}
+	<div class="cont">
+		{{ article_obj.content|safe }}
+	</div>
+	<div id="div_digg">
+		<div style="margin: 0 auto; width: 249px; height: auto; display: flex; justify-content: space-between">
+			<button class="action btn btn-primary"><i class="fa fa-thumbs-o-up"></i> 推荐 <span>{{ article_obj.up_count }}</span></button>
+			<button class="action btn btn-danger"><i class="fa fa-thumbs-o-down"></i> 反对 <span>{{ article_obj.down_count }}</span></button>
+		</div>
+		<h5>您已经推荐过</h5>
+	</div>
+	<script src="/static/centBlog/plugins/jquery-3.4.1.js"></script>
+	<script>
+		$('.action').click(function () {
+			let is_up = $(this).hasClass('btn-primary');
+
+            $.ajax({
+				url: '/digg/',
+				type: 'POST',
+				data: {
+					is_up: is_up,
+					article_id: "{{ article_obj.pk }}",
+					csrfmiddlewaretoken: $("[name='csrfmiddlewaretoken']").val(),
+				},
+				success: function (args) {
+					alert(args)
+				}
+			})
+        })
+	</script>
+
+
+{% endblock %}

@@ -58,6 +58,11 @@ class Article(models.Model):
 	title = models.CharField(max_length=50, verbose_name='文章标题')
 	desc = models.CharField(max_length=255, verbose_name='文章描述')
 	create_time = models.DateTimeField(verbose_name='创建时间', auto_now_add=True)
+	content = models.TextField()
+	
+	comment_count = models.IntegerField(default=0)
+	up_count = models.IntegerField(default=0)
+	down_count = models.IntegerField(default=0)
 	
 	user = models.ForeignKey(verbose_name='作者', to='UserInfo', to_field='nid', on_delete=models.CASCADE)
 	category = models.ForeignKey(to='Category', to_field='nid', null=True, on_delete=models.CASCADE)
@@ -66,7 +71,6 @@ class Article(models.Model):
 		through='Article2Tag',
 		through_fields=('article', 'tag'),
 	)
-	content = models.TextField()
 	
 	def __str__(self):
 		return self.title

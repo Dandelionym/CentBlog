@@ -1,0 +1,35 @@
+<div class="panel panel-primary">
+				<div class="panel-heading">我的标签</div>
+				<div class="panel-body">
+					{% for tag in tag_list %}
+						<div style="display: flex; justify-content: space-between">
+							<span><a href="/{{ username }}/tag/{{ tag.0 }}">{{ tag.0 }}</a></span>
+							<span>{{ tag.1 }}</span>
+						</div>
+					{% endfor %}
+				</div>
+			</div>
+
+<div class="panel panel-primary">
+	<div class="panel-heading">文章分类</div>
+	<div class="panel-body">
+		{% for cate in cate_list %}
+			<div style="display: flex; justify-content: space-between">
+				<span><a href="/{{ username }}/category/{{ cate.title }}">{{ cate.title }}</a></span>
+				<span>{{ cate.c }}</span>
+			</div>
+		{% endfor %}
+	</div>
+</div>
+
+<div class="panel panel-primary">
+	<div class="panel-heading">文章归档</div>
+	<div class="panel-body">
+		{% for date in date_list %}
+			<div style="display: flex; justify-content: space-between">
+				<span><a href="/{{ username }}/archive/{{ date.0|date:"Y-m" }}">{{ date.0|date:"Y-m" }}</a></span>
+				<span>{{ date.1 }}</span>
+			</div>
+		{% endfor %}
+	</div>
+</div>
