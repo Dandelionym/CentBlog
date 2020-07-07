@@ -6,6 +6,7 @@
 	<link rel="stylesheet" href="/static/centBlog/plugins/bs/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/static/centBlog/plugins/fa/css/font-awesome.min.css">
 	<link rel="stylesheet" href="/static/centBlog/css/color.css">
+	<link rel="stylesheet" href="/static/centBlog/css/base_article.css">
 	<script src="/static/centBlog/plugins/jquery-3.4.1.js"></script>
 	<script src="/static/centBlog/plugins/bs/js/bootstrap.min.js"></script>
 	<style>
@@ -13,6 +14,24 @@
 			margin: 0;
 			padding: 0;
 		}
+
+		code {
+			display: block;
+			border: none;
+			box-shadow: 0 0 6px 2px rgba(28, 31, 47, 0.1);
+			padding: 2em;
+			white-space: pre-wrap;
+			overflow-x: auto;
+		}
+
+		body {
+			line-height: 1.6;
+			font-weight: 100;
+			color: #222;
+			font-size: 1.5rem;
+			font-family: 'Sailec Light', sans-serif !important;
+		}
+
 		.bordered {
 			border: #dddddd 1px solid;
 			border-radius: 0 !important;
@@ -26,6 +45,9 @@
 		.atricle_bottom_bar .glyphicon {
 			vertical-align: -1px;
 			margin-right: 2px;
+		}
+		#div_digg{
+			margin-top: 50px;
 		}
 	</style>
 </head>

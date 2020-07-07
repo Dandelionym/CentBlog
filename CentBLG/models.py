@@ -8,9 +8,13 @@ class UserInfo(AbstractUser):
 	"""
 	nid = models.AutoField(primary_key=True)
 	telephone = models.CharField(max_length=11, null=True, unique=True)
-	avater = models.FileField(upload_to='avatars/', default='/avaters/default.png')
+	avatar = models.FileField(upload_to='avatars/', default='/avatars/default_head_img.png')
+	create_time = models.DateTimeField(verbose_name='createTime', auto_now_add=True)
 	
-	create_time = models.DateTimeField(verbose_name='创建时间', auto_now_add=True)
+	level = models.IntegerField(null=True, default=1)
+	ps_credit = models.IntegerField(null=True, default=0)
+	ps_motto = models.TextField(max_length=150, null=True, default=None)
+	is_vip = models.BooleanField(null=True, default=False)
 	
 	blog = models.OneToOneField(to='Blog', to_field='nid', null=True, on_delete=models.CASCADE)
 	def __str__(self):
@@ -22,9 +26,9 @@ class Blog(models.Model):
 	Blogs Information (Sites table)
 	"""
 	nid = models.AutoField(primary_key=True)
-	title = models.CharField(verbose_name='个人博客标题', max_length=64)
-	site_name = models.CharField(verbose_name='站点名称', max_length=64)
-	theme = models.CharField(verbose_name='博客主题', max_length=32)
+	title = models.CharField(verbose_name='BlogTitle', max_length=64)
+	site_name = models.CharField(verbose_name='BlogTitleName', max_length=64)
+	theme = models.CharField(verbose_name='BlogTheme', max_length=32)
 	
 	def __str__(self):
 		return self.title
@@ -35,8 +39,8 @@ class Category(models.Model):
 	Master's personal articles table
 	"""
 	nid = models.AutoField(primary_key=True)
-	title = models.CharField(verbose_name='分类标题', max_length=32)
-	blog = models.ForeignKey(verbose_name='所属博客', to='Blog', to_field='nid', on_delete=models.CASCADE)
+	title = models.CharField(verbose_name='categoryTitle', max_length=32)
+	blog = models.ForeignKey(verbose_name='BelongsToBlog', to='Blog', to_field='nid', on_delete=models.CASCADE)
 	def __str__(self):
 		return self.title
 
@@ -46,8 +50,8 @@ class Tag(models.Model):
 	Tag table
 	"""
 	nid = models.AutoField(primary_key=True)
-	title = models.CharField(verbose_name='标签名称', max_length=32)
-	blog = models.ForeignKey(verbose_name='所属博客', to='Blog', to_field='nid', on_delete=models.CASCADE)
+	title = models.CharField(verbose_name='TagName', max_length=32)
+	blog = models.ForeignKey(verbose_name='BelongsToBlog', to='Blog', to_field='nid', on_delete=models.CASCADE)
 	
 	def __str__(self):
 		return self.title
@@ -55,16 +59,16 @@ class Tag(models.Model):
 
 class Article(models.Model):
 	nid = models.AutoField(primary_key=True)
-	title = models.CharField(max_length=50, verbose_name='文章标题')
-	desc = models.CharField(max_length=255, verbose_name='文章描述')
-	create_time = models.DateTimeField(verbose_name='创建时间', auto_now_add=True)
+	title = models.CharField(max_length=50, verbose_name='ArticleTopic')
+	desc = models.CharField(max_length=255, verbose_name='ArticleDescription')
+	create_time = models.DateTimeField(verbose_name='releaseTime', auto_now_add=True)
 	content = models.TextField()
 	
 	comment_count = models.IntegerField(default=0)
 	up_count = models.IntegerField(default=0)
 	down_count = models.IntegerField(default=0)
 	
-	user = models.ForeignKey(verbose_name='作者', to='UserInfo', to_field='nid', on_delete=models.CASCADE)
+	user = models.ForeignKey(verbose_name='Author', to='UserInfo', to_field='nid', on_delete=models.CASCADE)
 	category = models.ForeignKey(to='Category', to_field='nid', null=True, on_delete=models.CASCADE)
 	tags = models.ManyToManyField(
 		to='Tag',
@@ -78,8 +82,8 @@ class Article(models.Model):
 
 class Article2Tag(models.Model):
 	nid = models.AutoField(primary_key=True)
-	article = models.ForeignKey(verbose_name='文章', to='Article', to_field='nid', on_delete=models.CASCADE)
-	tag = models.ForeignKey(verbose_name='标签', to='Tag', to_field='nid', on_delete=models.CASCADE)
+	article = models.ForeignKey(verbose_name='Article', to='Article', to_field='nid', on_delete=models.CASCADE)
+	tag = models.ForeignKey(verbose_name='Tag', to='Tag', to_field='nid', on_delete=models.CASCADE)
 	
 	class Meta:
 		unique_together = [
@@ -107,10 +111,10 @@ class ArticleUpDown(models.Model):
 
 class Comment(models.Model):
 	nid = models.AutoField(primary_key=True)
-	user = models.ForeignKey(verbose_name='评论者', to='UserInfo', to_field='nid', on_delete=models.CASCADE)
-	article = models.ForeignKey(verbose_name='评论文章', to='Article', to_field='nid', on_delete=models.CASCADE)
-	create_time = models.DateTimeField(verbose_name='发表时间', auto_now_add=True)
-	content = models.CharField(verbose_name='评论内容', max_length=255)
+	user = models.ForeignKey(verbose_name='Commenter', to='UserInfo', to_field='nid', on_delete=models.CASCADE)
+	article = models.ForeignKey(verbose_name='CommentArticle', to='Article', to_field='nid', on_delete=models.CASCADE)
+	create_time = models.DateTimeField(verbose_name='releaseTime', auto_now_add=True)
+	content = models.CharField(verbose_name='CommentContent', max_length=255)
 	parent_comment = models.ForeignKey("Comment", null=True, on_delete=models.CASCADE)
 	
 	def __str__(self):

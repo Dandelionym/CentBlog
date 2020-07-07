@@ -1,22 +1,116 @@
 {% extends 'base.html' %}
 
 {% block content %}
-	<h3 class="text-center">{{ article_obj }}</h3>
+	<h2 class="text-center">{{ article_obj }}</h2>
+	<br/>
+	<div class="text-right">{{ article_obj.create_time|date:'Y 年 m 月 d 日' }}&emsp;&emsp;</div>
+
+	<br/>
 	{% csrf_token %}
 	<div class="cont">
 		{{ article_obj.content|safe }}
 	</div>
 	<div id="div_digg">
 		<div style="margin: 0 auto; width: 249px; height: auto; display: flex; justify-content: space-between">
-			<button class="action btn btn-primary"><i class="fa fa-thumbs-o-up"></i> 推荐 <span>{{ article_obj.up_count }}</span></button>
-			<button class="action btn btn-danger"><i class="fa fa-thumbs-o-down"></i> 反对 <span>{{ article_obj.down_count }}</span></button>
+			{% if is_posted == 1 %}
+				{% if is_support %}
+					<button class="action btn btn-success disabled"><i class="fa fa-thumbs-o-up"></i> 已推荐 <span>{{ article_obj.up_count }}</span></button>
+					<button class="action btn btn-default disabled"><i class="fa fa-thumbs-o-down"></i> 反对 <span>{{ article_obj.down_count }}</span></button>
+				{% else %}
+					<button class="action btn btn-default disabled"><i class="fa fa-thumbs-o-up"></i> 推荐 <span>{{ article_obj.up_count }}</span></button>
+					<button class="action btn btn-danger disabled"><i class="fa fa-thumbs-o-down"></i> 已反对 <span>{{ article_obj.down_count }}</span></button>
+				{% endif %}
+			{% else %}
+				<button class="action btn btn-success">
+					<i class="fa fa-thumbs-o-up" style="font-size: 28px"></i>
+					<br/>
+					<span> 推荐 <span>{{ article_obj.up_count }}</span></span>
+				</button>
+				<button class="action btn btn-warning">
+					<i class="fa fa-thumbs-o-down big" style="font-size: 28px"></i>
+					<br/>
+					<span> 反对 <span>{{ article_obj.down_count }}</span></span>
+				</button>
+			{% endif %}
 		</div>
-		<h5>您已经推荐过</h5>
+		<div style="height: 80px; width: 100%; padding: 20px">
+			<h4 id="msg" class="text-center" style="display: none; float: top;position: relative;color: rgba(248,128,128,0.32)"></h4>
+		</div>
 	</div>
+	<hr style="border-top: 1px solid #d9dce1;"/>
+	<div id="user_avatar" style="display: none">
+		<img  class="item_img" src="/media/{{ request.user.avater }}" width="50" height="50" alt="">
+	</div>
+	<div id="main">
+		{% for comment in comment_list %}
+			{% if comment.parent_comment_id %}
+				<script>
+					$('#{{ comment.parent_comment_id }}').append(
+						`<div class="well clearfix" id='{{ comment.nid }}' style="background:white;border: #dadada .4px solid;">
+							<span class="pull-left" style="color: #c4c7cc">{{ comment.user.username }}&nbsp; {{ comment.create_time|date:'Y-m-d  H:i:s' }} :</span>
+							<span class="pull-right" style="color: #c4c7cc">
+								<a class="reply_btn" role="button" username="{{ comment.user.username }}" comment_pk="{{ comment.pk }}">回复</a>
+							</span>
+							<br/>
+							<span>{{ comment.content }}</span>
+						</div>`
+					)
+				</script>
+			{% else %}
+				<div class="comment_item" id="{{ comment.nid }}">
+				<div class="media-left">
+					<img class="item_img" src="/media/{{ comment.user.avater }}" width="50" height="50">
+				</div>
+				<div class="media-right comment_content">
+					<div class="pull-right comment_detils">
+						{% if forloop.counter == 1 %}
+							<a role="button"><img src="/static/centBlog/images/1.png" width="35" height="35" alt="">&emsp;{{ comment.user.username }}</a>
+						{% elif forloop.counter == 2 %}
+							<a role="button"><img src="/static/centBlog/images/2.png" width="35" height="35" alt="">&emsp;{{ comment.user.username }}</a>
+						{% elif forloop.counter == 3 %}
+							<a role="button"><img src="/static/centBlog/images/3.png" width="35" height="35" alt="">&emsp;{{ comment.user.username }}</a>
+						{% else %}
+							<a role="button">&emsp;{{ comment.user.username }}</a>
+						{% endif %}
+						<span>{{ comment.create_time|date:'Y-m-d  H:i:s' }}&emsp;<a class="reply_btn" role="button" username="{{ comment.user.username }}" comment_pk="{{ comment.pk }}">回复</a></span>
+					</div>
+					<div>{{ comment.content}}</div>
+				</div>
+			</div>
+			{% endif %}
+		{%  endfor %}
+	</div>
+	<span>发表评论&emsp;&emsp;<span id="reply_who" style="color: #acaaaa"></span></span>
+	<div class="input-group" style="margin-top: 10px; width: 100%">
+		<textarea name="" id="comment_area" rows="6"></textarea>
+    </div>
+	<div class="clearfix">
+		<span id="show_time"></span>
+		<button id="submit_comment" class="btn btn-default pull-right"> 提 交 </button>
+	</div>
+
+
+
 	<script src="/static/centBlog/plugins/jquery-3.4.1.js"></script>
 	<script>
-		$('.action').click(function () {
-			let is_up = $(this).hasClass('btn-primary');
+		var pid = ""
+		document.getElementById("show_time").innerHTML = (new Date()).toLocaleString();
+        function getDate() {document.getElementById("show_time").innerHTML = (new Date()).toLocaleString();}
+        setInterval("getDate()", 1000);
+
+
+		$('#div_digg .action').click(function () {
+			let box = $('#msg')
+		    if($('.action').hasClass('disabled')){
+			    box.text('您已经评价过了')
+				box.fadeIn(1000)
+				box.fadeOut(2000)
+				return
+			}
+			let is_up = $(this).hasClass('btn-success');
+			let num = $(this)[0].children[2].children[0].innerHTML
+			let num_obj = $($(this)[0].children[2].children[0])
+			let obj = $(this)
 
             $.ajax({
 				url: '/digg/',
@@ -27,9 +121,90 @@
 					csrfmiddlewaretoken: $("[name='csrfmiddlewaretoken']").val(),
 				},
 				success: function (args) {
-					alert(args)
+				    if(args.status){
+						num = parseInt(num) + 1
+						num_obj.text(num)
+						obj.addClass('disabled')
+						obj.next().addClass('disabled')
+				    } else {
+				        let box = $('#msg')
+						box.text(args.msg)
+						box.fadeIn(1000)
+						box.fadeOut(1000)
+				    }
 				}
 			})
+        })
+
+
+        $('#submit_comment').click(function () {
+			let comment_text = $('#comment_area').val()
+
+            $.ajax({
+				url: '/comment/',
+				type: 'POST',
+	            dataType: 'JSON',
+				data: {
+				    pid: pid,
+					main_comment: comment_text,
+					article_id: "{{ article_obj.pk }}",
+					csrfmiddlewaretoken: $("[name='csrfmiddlewaretoken']").val(),
+				},
+				success: function (args) {
+				    console.log(args)
+				    if(args.status){
+				        if(!pid){
+							$('#comment_area').val("")
+					        let main = $('#main')
+						    let obj = main.children().length
+						    let m = (obj===0)?(`<a><img src="/static/centBlog/images/1.png" width="35" height="35" alt="">&emsp;{{ request.user.username }}</a>`):
+								        ((obj===1)?(`<a><img src="/static/centBlog/images/2.png" width="35" height="35" alt="">&emsp;{{ request.user.username }}</a>`):
+									        ((obj===2)?(`<a><img src="/static/centBlog/images/3.png" width="35" height="35" alt="">&emsp;{{ request.user.username }}</a>`):
+										        (`<a><img src="/static/centBlog/images/new.png" width="30" alt="">&emsp;{{ request.user.username }}</a>`)
+									        )
+								        )
+						    let s_time = args.cre_time
+						    let content = args.content
+						    let icon = $('#user_avatar').clone().css('display', 'normal')[0].innerHTML
+						    let item = `<div class="comment_item">
+									<div class="media-left">
+									${icon}
+									</div>
+									<div class="media-right comment_content">
+									<div class="pull-right comment_detils">
+									${m}
+									<span>${s_time}</span>
+									</div>
+									<div>${content}</div>
+									</div>
+									</div>`
+							main.append(item)
+				        } else {
+				            let s_time = args.cre_time
+						    let content = args.content
+				            $('#'+pid).append(
+							`<div class="well clearfix margin_0">
+								<span class="pull-left" style="color: #c4c7cc">{{ request.user.username }}&nbsp; ${s_time} :</span>
+								<br/>
+								<span>${content}</span>
+							</div>`
+							)
+				        }
+					    pid = ""
+				    } else {
+						alert("出现了一点意外，请稍等一下再试试")
+				    }
+				}
+			})
+        })
+
+
+		$('.reply_btn').click(function () {
+		    let container_comment = $('#comment_area')
+			container_comment.focus()
+			let info = '@'+$(this).attr('username')+'  '
+			$('#reply_who').text(info)
+			pid = $(this).attr('comment_pk');
         })
 	</script>
 

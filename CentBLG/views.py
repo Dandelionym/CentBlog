@@ -2,10 +2,20 @@ from django.db.models import Count
 from django.shortcuts import render, HttpResponse, redirect
 from django.http import JsonResponse
 from django.db.models.functions import TruncMonth
+from django.db.models import F
+from django.db import transaction
+from django.core.mail import send_mail
+import threading
+
+from BlogCN import settings
+from CentBLG import codehelper
 from CentBLG.formhelper import UserForm
 from CentBLG.models import UserInfo
 from django.contrib import auth
 from CentBLG import models
+from CentBLG.sqlhelpers import SqlHelper
+
+import json
 
 def login(request):
 	""" 用户登录
@@ -93,51 +103,10 @@ def get_valid_img(request):
 	"""
 	工具箱 ： 用于返回验证码，同时将验证码存储在session中，用于后期的校验
 	"""
-	from PIL import Image, ImageDraw, ImageFont
-	from io import BytesIO
-	import random
-	
-	width = 200
-	height = 45
-	
-	def get_random_color():
-		return random.randint(100, 200), random.randint(100, 200), random.randint(100, 200)
-	
-	img = Image.new("RGBA", (width, height), color=(255, 255, 255))
-	draw = ImageDraw.Draw(img)
-	BHB_font = ImageFont.truetype('static/centBlog/fonts/Arial Black.ttf', size=30)
-	
-	official_code = ""
-	
-	for i in range(4):
-		random_num = str(random.randint(0, 9))
-		random_lower_alpha = chr(random.randint(95, 122))
-		random_upper_alpha = chr(random.randint(65, 90))
-		random_char = random.choice([random_num, random_upper_alpha, random_lower_alpha])
-		draw.text((5 + i * 53, 5), random_char, get_random_color(), font=BHB_font)
-		official_code += str(random_char)
-	
-	request.session["valid_code"] = official_code
-	print(request.session["valid_code"])
-	
-	
-	for i in range(25):
-		x1 = random.randint(0, width)
-		x2 = random.randint(0, width)
-		y1 = random.randint(0, height)
-		y2 = random.randint(0, height)
-		draw.line((x1, y1, x2, y2), fill=get_random_color())
-	
-	for i in range(25):
-		draw.point([random.randint(0, width), random.randint(0, height)], fill=get_random_color())
-		x = random.randint(0, width)
-		y = random.randint(0, height)
-		draw.arc((x, y, x + 4, y + 4), 0, 90, fill=get_random_color())
-	
-	f = BytesIO()
-	img.save(f, "png")
-	data = f.getvalue()
-	
+	def session_put(official_code):
+		request.session["valid_code"] = official_code
+		
+	data = codehelper.official_code_img_gen(session_put)
 	return HttpResponse(data)
 
 
@@ -150,6 +119,7 @@ def get_classfication_style(username):
 
 	return {'blog': blog, 'cate_list':cate_list, 'tag_list':tag_list, 'date_list':date_list}
 
+
 def home_site(request, username, **kwargs):
 	""" 个人站点视图函数
 	:param username:
@@ -159,10 +129,8 @@ def home_site(request, username, **kwargs):
 	user = UserInfo.objects.filter(username=username).first()
 	if not user:
 		return render(request, 'error.html')
-	
 	# 根据Username查询当前对应的博客站点
 	blog = user.blog
-	
 	# 当前博客对应的所有文章，也可以: article_list = user.article_set.all()
 	if not kwargs:
 		article_list = models.Article.objects.filter(user=user)
@@ -205,26 +173,85 @@ def home_site(request, username, **kwargs):
 def article_detail(request, username, article_id):
 	user = UserInfo.objects.filter(username=username).first()
 	blog = user.blog
-	
 	article_obj = models.Article.objects.filter(pk=article_id).first()
+	comment_list = models.Comment.objects.filter(article_id=article_id)
+	
+	
+	models.Tag.objects.filter(blog=blog).values("pk").annotate(c=Count("article")).values_list("title", "c")
+	
+	try:
+		# print(models.ArticleUpDown.objects.filter(user_id=request.user.pk, article_id=article_id).first().is_up)
+		is_posted = 1 if models.ArticleUpDown.objects.filter(user_id=request.user.pk, article_id=article_id).first() else 0
+		is_support = 1 if models.ArticleUpDown.objects.filter(user_id=request.user.pk, article_id=article_id).first().is_up else 0
+	except Exception as E:
+		pass
 	
 	return render(request, 'article_detail.html', locals())
 
 
 
 def digg(request):
-	import json
 	
-	print(request.POST)
+	ret = {'status': None, 'msg': None}
 	article_id = request.POST.get('article_id')
 	is_up = json.loads(request.POST.get('is_up'))
 	user_id = request.user.pk
-	
-	ard = models.ArticleUpDown.objects.create(user_id=user_id, article_id=article_id, is_up=is_up)
-	
-	print(ard)
-	
-	
-	return HttpResponse('ok')
+	obj = models.ArticleUpDown.objects.filter(user_id=user_id, article_id=article_id).first()
+	if obj:
+		ret['status'] = False
+		ret['msg'] = '每个用户只能评价一次'
+		return JsonResponse(ret)
+	else:
+		ard = models.ArticleUpDown.objects.create(user_id=user_id, article_id=article_id, is_up=is_up)
+		if is_up:
+			ret['status'] = True
+			ret['msg'] = '谢谢你的支持'
+			models.Article.objects.filter(pk=article_id).update(up_count=F("up_count")+1)
+		else:
+			ret['status'] = True
+			ret['msg'] = '再看看其他文章吧'
+			models.Article.objects.filter(pk=article_id).update(down_count=F("down_count")+1)
+		return JsonResponse(ret)
 
 
+def comment(request):
+	ret = {'status': None, 'msg': None}
+	
+	main_comment = request.POST.get('main_comment')
+	article_id = request.POST.get('article_id')
+	pid = request.POST.get('pid')
+	user_id = request.user.pk
+	
+	# 引入事务操作
+	with transaction.atomic():
+		comment_obj = models.Comment.objects.create(user_id=user_id, content=main_comment, article_id=article_id, parent_comment_id=pid)
+		models.Article.objects.filter(pk=article_id).update(comment_count=F("comment_count")+1)
+	
+	ret['status'] = True
+	ret['cre_time'] = comment_obj.create_time.strftime("%Y-%m-%d %X")
+	ret['content'] = main_comment
+	
+	article_obj = models.Article.objects.filter(pk=article_id).first()
+	
+	sql_obj = SqlHelper()
+	email = sql_obj.get_one('select email from CentDB.CentBLG_userinfo where nid=%s', [article_obj.user_id, ])
+	sql_obj.close()
+	print(email)
+	
+	# 发送邮件
+	# send_mail(
+	# 	subject="「Cent」您的文章《%s》新增了一条评论内容" % article_obj.title,
+	# 	message=main_comment,
+	# 	from_email=settings.DEFAULT_FROM_EMAIL,
+	# 	recipient_list=['dandelionatcha@163.com']
+	# )
+	
+	threading.Thread(target=send_mail, args=(
+		"【Cent】您的文章《%s》新增了一条评论内容" % article_obj.title,
+		main_comment,
+		settings.DEFAULT_FROM_EMAIL,
+		[email['email'], ]
+	)).start()
+	
+
+	return JsonResponse(ret)

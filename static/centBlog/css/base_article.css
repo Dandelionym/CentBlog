@@ -1,0 +1,66 @@
+.comment_item {
+    width: 100%;
+    height: auto;
+    padding: 5px;
+    margin: 10px 0;
+}
+
+.item_img {
+    border-radius: 9999px;
+    overflow: hidden;
+}
+
+.comment_content {
+    padding: 0 10px 10px;
+    width: 100%;
+}
+
+.comment_detils {
+    color: #c4c7cc;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.comment_detils a {
+    text-decoration: none
+}
+
+#comment_area {
+    width: 100%;
+    border-radius: 7px;
+    border: #d9dce1 1px solid;
+    resize: none;
+    padding: 15px
+}
+
+#show_time {
+    line-height: 34px;
+    padding: 8px;
+    color: #d9dce1;
+    vertical-align: -4px
+}
+
+.margin_0 {
+    margin-bottom: 0 !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

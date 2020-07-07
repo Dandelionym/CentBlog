@@ -27,19 +27,18 @@ urlpatterns = [
     path('index/', views.index, name='index'),
     path('register/', views.register, name='register'),
     path('digg/', views.digg),
+    path('comment/', views.comment),
+    path('get_valid_img/', views.get_valid_img),
     
     # Personal sites
     re_path('^(?P<username>\w+)/(?P<condition>tag|archive|category)/(?P<param>.*)/$', views.home_site),
     re_path('^(?P<username>\w+)/$', views.home_site),
     
     # Articles
-re_path('^(?P<username>\w+)/articles/(?P<article_id>\d+)$', views.article_detail),
+    re_path('^(?P<username>\w+)/articles/(?P<article_id>\d+)$', views.article_detail),
     
     
-    
-    # Function
-    path('get_valid_img/', views.get_valid_img),
-    
+
     # Media
     re_path(r'media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT})
 ]

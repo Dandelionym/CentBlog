@@ -8,7 +8,7 @@ class SqlHelper(object):
         self.connect()
 
     def connect(self):
-        self.conn = pymysql.connect(host='127.0.0.1', port=3306, user='root', passwd='**********',use_unicode=True, db=db, charset='utf8')
+        self.conn = pymysql.connect(host='127.0.0.1', port=3306, user='root', passwd='smile0217',use_unicode=True, db=db, charset='utf8')
         self.cursor = self.conn.cursor(cursor=pymysql.cursors.DictCursor)
 
     def get_list(self, sql, args):
