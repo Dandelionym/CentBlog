@@ -25,7 +25,7 @@ SECRET_KEY = '&n3uwpmi$k@&fs*zb()c)(a7ohenp!+(2$e*6b2i_k%14@3@8('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', ]
+ALLOWED_HOSTS = ['127.0.0.1', '192.168.1.5']
 
 
 # Application definition
@@ -77,11 +77,12 @@ WSGI_APPLICATION = 'BlogCN.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'CentDB',
+        'NAME': 'CentDB2',
         'USER': 'root',
         'PASSWORD': 'smile0217',
         'HOST': '127.0.0.1',
         'POST': 3306,
+        'OPTIONS': {"init_command": "SET foreign_key_checks = 0;"},
     }
 }
 
@@ -129,7 +130,6 @@ EMAIL_HOST_PASSWORD = 'FJKZAKLIRKBXLPKB'
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 EMAIL_USE_SSL = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
@@ -139,3 +139,19 @@ STATICFILES_DIRS = [
 ]
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+
+"""==========================参数设置========================="""
+
+CREDIT_ADDED_OF_LOOKUP_ARTICLES = 5                 # 阅读他人的文章增加积分量
+CREDIT_ADDED_OF_LOGINED = 50                        # 当天登录添加积分量
+CREDIT_ADDED_OF_RELEASE_ARTICLE = 20                # 发表文章添加积分量
+CREDIT_ADDED_OF_MAKE_COMMENT = 20                   # 发表文章添加积分量
+
+
+LEVEL_UP_CREDIT = 500                               # 升级所需积分
+
+MAX_COMMENTS_ONE_DAY = 5
+
+

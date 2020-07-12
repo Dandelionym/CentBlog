@@ -1,6 +1,6 @@
 import pymysql
 
-db = 'CentDB'
+db = 'CentDB2'
 
 
 class SqlHelper(object):

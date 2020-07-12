@@ -5,7 +5,9 @@ from django.db.models.functions import TruncMonth
 from django.db.models import F
 from django.db import transaction
 from django.core.mail import send_mail
+
 import threading
+import json
 
 from BlogCN import settings
 from CentBLG import codehelper
@@ -13,27 +15,27 @@ from CentBLG.formhelper import UserForm
 from CentBLG.models import UserInfo
 from django.contrib import auth
 from CentBLG import models
+from CentBLG import credithelpers
 from CentBLG.sqlhelpers import SqlHelper
 
-import json
 
 def login(request):
-	""" 用户登录
-	:param request:
-	:return:
-	"""
+	""" 用户登录 """
 	ret = {'status': False, 'msg': None, 'user': None}
 	if request.method == 'POST':
 		user = request.POST.get('user')
 		password = request.POST.get('password')
 		valid_code = request.POST.get('valid_code')
-		print(request.session.get('valid_code'))
 		if valid_code.upper() == request.session.get('valid_code').upper():
 			user = auth.authenticate(username=user, password=password)
 			if user:
 				ret['status'] = True
 				auth.login(request, user)        # request.user == current logined object.
 				ret['user'] = user.username
+				
+				if credithelpers.login_time_check(request.user.pk):
+					models.UserInfo.objects.filter(pk=request.user.pk).update(ps_credit=F("ps_credit") + settings.CREDIT_ADDED_OF_LOGINED)
+				
 				return JsonResponse(ret)
 			else:
 				ret['status'] = False
@@ -48,10 +50,7 @@ def login(request):
 
 
 def register(request):
-	""" 用户注册
-	:param request:
-	:return:
-	"""
+	""" 用户注册	"""
 	if request.is_ajax():
 		form = UserForm(request.POST)
 		ret = {'status': False, 'msg': None}
@@ -63,7 +62,7 @@ def register(request):
 			email = form.cleaned_data.get('email')
 			avatar_obj = request.FILES.get('avatar')
 			if avatar_obj:
-				UserInfo.objects.create_user(username=user, password=pswd, email=email, avater=avatar_obj)
+				UserInfo.objects.create_user(username=user, password=pswd, email=email, avatar=avatar_obj)
 			else:
 				UserInfo.objects.create_user(username=user, password=pswd, email=email)
 			return JsonResponse(ret)
@@ -77,55 +76,29 @@ def register(request):
 
 
 def index(request):
-	""" 用户主页
-	:param request:
-	:return:
-	"""
+	""" 用户主页 """
+	user = request.user
 	article_list = models.Article.objects.all()
-	
-	
-	
-	
-	return render(request, 'index.html', {'article_list': article_list})
+	return render(request, 'index.html', locals())
+
 
 
 def logout(request):
-	""" 注销功能：等同于执行 request.session.flush()
-	:param request:
-	:return:
-	"""
+	""" 注销功能：等同于执行 request.session.flush() """
 	auth.logout(request)
 	return redirect('/login/')
 	
 	
-	
 def get_valid_img(request):
-	"""
-	工具箱 ： 用于返回验证码，同时将验证码存储在session中，用于后期的校验
-	"""
+	"""  工具箱 ： 用于返回验证码，同时将验证码存储在session中，用于后期的校验  """
 	def session_put(official_code):
 		request.session["valid_code"] = official_code
-		
 	data = codehelper.official_code_img_gen(session_put)
 	return HttpResponse(data)
 
 
-def get_classfication_style(username):
-	user = UserInfo.objects.filter(username=username).first()
-	blog = user.blog
-	cate_list = models.Category.objects.filter(blog=blog).annotate(c=Count('article__title')).values()
-	tag_list = models.Tag.objects.filter(blog=blog).values("pk").annotate(c=Count("article")).values_list("title", "c")
-	date_list = models.Article.objects.filter(user=user).annotate(month=TruncMonth("create_time")).values("month").annotate(c=Count('nid')).values_list('month', 'c')
-
-	return {'blog': blog, 'cate_list':cate_list, 'tag_list':tag_list, 'date_list':date_list}
-
-
 def home_site(request, username, **kwargs):
-	""" 个人站点视图函数
-	:param username:
-	:param request:
-	:return:
-	"""
+	""" 个人站点视图函数 """
 	user = UserInfo.objects.filter(username=username).first()
 	if not user:
 		return render(request, 'error.html')
@@ -148,15 +121,11 @@ def home_site(request, username, **kwargs):
 
 	
 	# 查询当前站点的每一个分类名称以及对应的文章数量
-	# ret = models.Category.objects.values("pk").annotate(c=Count('article__title')).values()
 	cate_list = models.Category.objects.filter(blog=blog).annotate(c=Count('article__title')).values()
-	
+	# cate_list = models.Category.objects.values("pk").annotate(c=Count('article__title')).values()
 	# 查询当前站点的每一个标签名称以及对应的文章数量
 	tag_list = models.Tag.objects.filter(blog=blog).values("pk").annotate(c=Count("article")).values_list("title", "c")
-	
 	# 查询当前站点的每一个年月的名称以及对应的文章数量
-	# ret = models.Article.objects.extra(select={'is_recent': "create_time > 2020-06-30"})
-	
 	date_list = models.Article.objects.filter(user=user).annotate(month=TruncMonth("create_time")).values("month").annotate(c=Count('nid')).values_list('month', 'c')
 	# date_list = models.Article.objects.extra(select={'y_m_d_date': 'date_format(create_time, "%%Y-%%m-%%d")'}).values('title', 'y_m_d_date')
 	
@@ -170,28 +139,41 @@ def home_site(request, username, **kwargs):
 	              })
 
 
+
 def article_detail(request, username, article_id):
-	user = UserInfo.objects.filter(username=username).first()
-	blog = user.blog
+	user_author = UserInfo.objects.filter(username=username).first()                # 文章作者
+	user_logined = UserInfo.objects.filter(username=request.user.username).first()  # 登录用户
+	blog = user_author.blog
 	article_obj = models.Article.objects.filter(pk=article_id).first()
 	comment_list = models.Comment.objects.filter(article_id=article_id)
 	
-	
+	# 对文章添加浏览量：
+	if not request.COOKIES.get('viewed-' + article_id):
+		if not user_author.nid == user_logined.nid:
+			models.Article.objects.filter(pk=article_id).update(views=F("views") + 1)
+			credithelpers.credit_add_controller(request, settings.CREDIT_ADDED_OF_LOOKUP_ARTICLES)
+
+	credithelpers.user_level_up(request)    # 用户积分满足后等级的更新
 	models.Tag.objects.filter(blog=blog).values("pk").annotate(c=Count("article")).values_list("title", "c")
-	
 	try:
-		# print(models.ArticleUpDown.objects.filter(user_id=request.user.pk, article_id=article_id).first().is_up)
 		is_posted = 1 if models.ArticleUpDown.objects.filter(user_id=request.user.pk, article_id=article_id).first() else 0
 		is_support = 1 if models.ArticleUpDown.objects.filter(user_id=request.user.pk, article_id=article_id).first().is_up else 0
 	except Exception as E:
 		pass
-	
 	return render(request, 'article_detail.html', locals())
 
 
+def viewed(request):
+	if request.COOKIES.get('viewed'):
+		return HttpResponse()
+	else:
+		article_id = request.POST.get('article_id')
+		cookier = HttpResponse()
+		cookier.set_cookie(key='viewed-' + article_id, value=True, max_age=1)
+		return cookier
+
 
 def digg(request):
-	
 	ret = {'status': None, 'msg': None}
 	article_id = request.POST.get('article_id')
 	is_up = json.loads(request.POST.get('is_up'))
@@ -202,7 +184,7 @@ def digg(request):
 		ret['msg'] = '每个用户只能评价一次'
 		return JsonResponse(ret)
 	else:
-		ard = models.ArticleUpDown.objects.create(user_id=user_id, article_id=article_id, is_up=is_up)
+		models.ArticleUpDown.objects.create(user_id=user_id, article_id=article_id, is_up=is_up)
 		if is_up:
 			ret['status'] = True
 			ret['msg'] = '谢谢你的支持'
@@ -216,16 +198,21 @@ def digg(request):
 
 def comment(request):
 	ret = {'status': None, 'msg': None}
-	
 	main_comment = request.POST.get('main_comment')
 	article_id = request.POST.get('article_id')
 	pid = request.POST.get('pid')
 	user_id = request.user.pk
 	
-	# 引入事务操作
-	with transaction.atomic():
+	with transaction.atomic():      # 事务层
 		comment_obj = models.Comment.objects.create(user_id=user_id, content=main_comment, article_id=article_id, parent_comment_id=pid)
 		models.Article.objects.filter(pk=article_id).update(comment_count=F("comment_count")+1)
+	
+	# 用户积分增加
+	current_user = models.UserInfo.objects.filter(nid=request.user.pk).first()
+	if current_user.today_comments <= settings.MAX_COMMENTS_ONE_DAY:
+		credithelpers.credit_add_controller(request, settings.CREDIT_ADDED_OF_MAKE_COMMENT)
+		models.UserInfo.objects.filter(nid=request.user.pk).update(today_comments=F("today_comments")+1)
+		credithelpers.user_level_up(request)    # 用户积分满足后等级的更新
 	
 	ret['status'] = True
 	ret['cre_time'] = comment_obj.create_time.strftime("%Y-%m-%d %X")
@@ -234,9 +221,9 @@ def comment(request):
 	article_obj = models.Article.objects.filter(pk=article_id).first()
 	
 	sql_obj = SqlHelper()
-	email = sql_obj.get_one('select email from CentDB.CentBLG_userinfo where nid=%s', [article_obj.user_id, ])
+	email = sql_obj.get_one('select email from CentDB2.CentBLG_userinfo where nid=%s', [article_obj.user_id, ])
 	sql_obj.close()
-	print(email)
+	
 	
 	# 发送邮件
 	# send_mail(
@@ -246,12 +233,47 @@ def comment(request):
 	# 	recipient_list=['dandelionatcha@163.com']
 	# )
 	
-	threading.Thread(target=send_mail, args=(
-		"【Cent】您的文章《%s》新增了一条评论内容" % article_obj.title,
-		main_comment,
-		settings.DEFAULT_FROM_EMAIL,
-		[email['email'], ]
-	)).start()
-	
-
+	# threading.Thread(target=send_mail, args=(
+	# 	"【Cent】您的文章《%s》新增了一条评论内容" % article_obj.title,
+	# 	main_comment,
+	# 	settings.DEFAULT_FROM_EMAIL,
+	# 	[email['email'], ]
+	# )).start()
 	return JsonResponse(ret)
+
+
+def backend(request):
+	user = request.user
+	username = user.username
+	article_list = models.Article.objects.filter(user_id=user.pk)
+	
+	return render(request, 'backend.html', locals())
+
+
+import datetime
+
+
+class DateEnconding(json.JSONEncoder):
+	def default(self, o):
+		if isinstance(o, datetime.date):
+			return o.strftime('%Y-%m-%d')
+
+
+def get_readamt_data(request):
+	sql = SqlHelper()
+	print(request.user.pk)
+	result_list = sql.get_list("select * from CentBLG_day_sumup where user_id=%s", [int(request.user.pk), ])
+	sql.close()
+	print(result_list)
+	
+	return HttpResponse(json.dumps(result_list, cls=DateEnconding))
+
+
+def get_heatmap_data(request):
+	sql = SqlHelper()
+	print(request.user.pk)
+	result_list = sql.get_list("select * from CentBLG_day_sumup where user_id=%s", [int(request.user.pk), ])
+	sql.close()
+	print(result_list)
+	
+	return HttpResponse(json.dumps(result_list, cls=DateEnconding))

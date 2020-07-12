@@ -1,0 +1,121 @@
+{% extends 'base_backend.html' %}
+
+
+{% block backend_content %}
+	<div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
+		<ul id="myTabs" class="nav nav-tabs" role="tablist">
+			<li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">编辑文章</a></li>
+			<li role="presentation" class=""><a href="#search_all" role="tab" id="search_all-tab" data-toggle="tab" aria-controls="search_all" aria-expanded="true">查看全部</a></li>
+			<li role="presentation" class=""><a href="#activity" role="tab" id="activity-tab" data-toggle="tab" aria-controls="activity" aria-expanded="true">动态记录</a></li>
+			<li role="presentation" class=""><a href="#feedback" role="tab" id="feedback-tab" data-toggle="tab" aria-controls="feedback" aria-expanded="true">意见反馈</a></li>
+		</ul>
+		<div id="myTabContent" class="tab-content">
+			<!-- 1 -->
+			<div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
+				<label for="editor"></label><textarea id="editor" placeholder="" autofocus style="height: 900px"></textarea>
+			</div>
+
+			<!-- 2 -->
+			<div role="tabpanel" class="tab-pane fade" id="search_all" aria-labelledby="search_all-tab">
+				<div>
+					<table class="table table-striped hover">
+						<thead>
+						<tr>
+							<th>No.</th>
+							<th class="text-center">文章标题</th>
+							<th class="text-center">标签</th>
+							<th class="text-center">推荐</th>
+							<th class="text-center">反对</th>
+							<th class="text-center">评论</th>
+							<th class="text-center">浏览量</th>
+							<th class="text-center">发表时间</th>
+							<th class="text-center">操作</th>
+						</tr>
+						</thead>
+						<tbody>
+						{% for article in article_list %}
+						<tr class="text-center">
+							<th scope="row">{{ forloop.counter }}</th>
+							<td>{{ article.title }}</td>
+							<td>{{ article.category.title }}</td>
+							<td>{{ article.up_count }}</td>
+							<td>{{ article.down_count }}</td>
+							<td>{{ article.comment_count }}</td>
+							<td>{{ article.views }}</td>
+							<td>{{ article.create_time|date:'Y-m-d  H:i:s' }}</td>
+							<td>
+								<i class="fa fa-search" role="button"> 原文&emsp;&emsp;</i>
+								<i class="fa fa-pencil" role="button"> 修改&emsp;&emsp;</i>
+								<i class="fa fa-trash" role="button"> 删除</i>
+							</td>
+						</tr>
+						{% endfor %}
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<!-- 3 -->
+			<div role="tabpanel" class="tab-pane fade" id="activity" aria-labelledby="activity-tab">
+				<div class="panel panel-primary">
+					<div class="panel-heading" id="headingOne" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+							   aria-expanded="true" aria-controls="collapseOne">
+						<h2 class="panel-title text-center">站内动态</h2>
+					</div>
+					<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+						<div class="panel-body">
+							<div class="row">
+								<div id="read_amount"></div>
+							</div>
+							<div class="row">
+{#								<div class="col-md-6"><div id="heat_map"></div></div>#}
+{#								<div class="col-md-6"><div id="time_line"></div></div>#}
+							</div>
+							<div class="row">
+{#								<div id="credits"></div>#}
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+
+
+			<!-- 4 -->
+			<div role="tabpanel" class="tab-pane fade" id="feedback" aria-labelledby="feedback-tab">
+					<div>
+						<textarea id="leave" style="width: 100%; height: 300px; resize: none; border-radius: 7px; border: rgba(94,200,169,0.6) 1px solid; padding: 20px; font-size: 18px"></textarea>
+					</div>
+					<div class="clearfix">
+						<button class="btn btn-default pull-right" style="margin: 0 auto">&emsp;提&emsp;交&emsp;建&emsp;议&emsp;</button>
+						<span class="pull-left" style="color: #129595; margin-top: 10px">感谢您使用
+					<img src="/static/centBlog/logo.png" alt="" height="30" >产品, 为了提高服务质量，希望您多给一些意见或建议帮助改善此平台以提供更多优质的服务。</span>
+					</div>
+
+
+
+			</div>
+		</div>
+	</div>
+
+
+
+
+	<script type="text/javascript" src="/static/centBlog/plugins/jquery-3.4.1.js"></script>
+	<script type="text/javascript" src="/static/centBlog/plugins/sd/site/assets/scripts/module.js"></script>
+	<script type="text/javascript" src="/static/centBlog/plugins/sd/site/assets/scripts/hotkeys.js"></script>
+	<script type="text/javascript" src="/static/centBlog/plugins/sd/site/assets/scripts/uploader.js"></script>
+	<script type="text/javascript" src="/static/centBlog/plugins/sd/site/assets/scripts/simditor.js"></script>
+	<script>
+        let editor = new Simditor({
+            textarea: $('#editor'),
+	        upload : true,
+	        pasteImage: true,
+	        toolbar :  [ 'title', 'bold', 'italic', 'underline', 'strikethrough',
+            'color', 'fontScale', 'ol', 'ul', 'blockquote', 'code', 'table',
+            'link', 'image', 'hr',  'indent', 'outdent','alignment' ,'html'],
+        });
+
+
+	</script>
+{% endblock %}

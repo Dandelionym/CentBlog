@@ -22,5 +22,5 @@ def get_classfication_style(username):
 	        'cate_list':cate_list,
 	        'tag_list':tag_list,
 	        'date_list':date_list,
-	        'avatar': user.avater,
+	        'avatar': user.avatar,
 	        'user':user}

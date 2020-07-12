@@ -49,26 +49,51 @@
 		#div_digg{
 			margin-top: 50px;
 		}
+		@media only screen and (max-width: 1090px) {
+			#personal_img {
+				width: 100%; height: 460px;border-radius: 9px; overflow:hidden;
+			}
+		}
 	</style>
 </head>
 <body>
 
-<nav class="navbar bordered" >
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">{{ blog.title }}</a>
-    </div>
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">管理</a></li>
-      </ul>
-    </div>
-  </div>
+<nav class="navbar bordered">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+			        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a id="title" class="navbar-brand" href="#">{{ blog.title }}</a>
+			<script>
+				if($('#title').text() === '') $('#title').text('{{ user.username }}的博客');
+			</script>
+		</div>
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href='/'>广场</a></li>
+				<li><a >新闻</a></li>
+				<li><a >我的博客</a></li>
+					<li class="dropdown">
+					<a href="#" class="" data-toggle="dropdown" role="button" aria-haspopup="true"
+					   aria-expanded="false">
+						<img style="border-radius: 999px; overflow: hidden" alt="" src="/media/{{ request.user.avatar }}" width="25" height="25">&nbsp;{{ request.user.username }}
+						<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#">个人资料</a></li>
+						<li><a href="#"></a></li>
+						<li><a href="/backend/">文章管理</a></li>
+						<li role="separator" class="divider"></li>
+						<li><a href={% url 'logout' %}>注销</a></li>
+					</ul>
+			</ul>
+
+
+		</div>
+	</div>
 </nav>
 
 <div class="container-fluid">
@@ -77,14 +102,10 @@
 			{% load my_tags %}
 			{% get_classfication_style username %}
 		</div>
-		<div class="col-md-7">
+		<div class="col-md-9">
 			{% block content %}
 
 			{% endblock %}
-		</div>
-		<div class="col-md-2">
-
-
 		</div>
 	</div>
 </div>

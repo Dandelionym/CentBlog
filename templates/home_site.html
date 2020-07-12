@@ -4,7 +4,7 @@
 	<div class="aritcle_list">
 				{% for article in article_list %}
 					<div class="article_item clearfix">
-						<h5><a>{{ article.title }}</a></h5>
+						<h5><a href="/{{ article.user.username }}/articles/{{ article.nid }}">{{ article.title }}</a></h5>
 						<div class="article_desc">
 							{{ article.desc }}
 						</div>

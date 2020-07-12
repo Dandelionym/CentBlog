@@ -13,8 +13,17 @@ class UserInfo(AbstractUser):
 	
 	level = models.IntegerField(null=True, default=1)
 	ps_credit = models.IntegerField(null=True, default=0)
-	ps_motto = models.TextField(max_length=150, null=True, default=None)
+	ps_motto = models.TextField(max_length=150, null=True, default='')
 	is_vip = models.BooleanField(null=True, default=False)
+	vip_level = models.IntegerField(null=True, default=0)
+	vip_credit = models.IntegerField(null=True, default=0)
+	is_certified = models.IntegerField(null=True, default=0)
+	qq = models.CharField(max_length=15, null=True)
+	
+	today_comments = models.IntegerField(default=0)
+	today_lookup = models.IntegerField(default=0)
+	today_release = models.IntegerField(default=0)
+	
 	
 	blog = models.OneToOneField(to='Blog', to_field='nid', null=True, on_delete=models.CASCADE)
 	def __str__(self):
@@ -67,6 +76,7 @@ class Article(models.Model):
 	comment_count = models.IntegerField(default=0)
 	up_count = models.IntegerField(default=0)
 	down_count = models.IntegerField(default=0)
+	views = models.IntegerField(default=0, null=True)
 	
 	user = models.ForeignKey(verbose_name='Author', to='UserInfo', to_field='nid', on_delete=models.CASCADE)
 	category = models.ForeignKey(to='Category', to_field='nid', null=True, on_delete=models.CASCADE)
@@ -119,17 +129,4 @@ class Comment(models.Model):
 	
 	def __str__(self):
 		return self.content
-
-
-
-
-
-
-
-
-
-
-
-
-
 

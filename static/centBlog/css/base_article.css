@@ -8,6 +8,13 @@
 .item_img {
     border-radius: 9999px;
     overflow: hidden;
+    transition: .7s;
+}
+
+.item_img:hover{
+    border-radius: 0;
+    overflow: auto;
+    transition: .7s;
 }
 
 .comment_content {

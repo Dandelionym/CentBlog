@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<div style="padding-left: 30px; padding-right: 30px">
 	<h2 class="text-center">{{ article_obj }}</h2>
 	<br/>
-	<div class="text-right">{{ article_obj.create_time|date:'Y 年 m 月 d 日' }}&emsp;&emsp;</div>
+	<div class="text-right">{{ article_obj.create_time|date:'Y 年 m 月 d 日' }}&emsp;&emsp;浏览量：{{ article_obj.views }}</div>
 
 	<br/>
 	{% csrf_token %}
@@ -39,7 +40,7 @@
 	</div>
 	<hr style="border-top: 1px solid #d9dce1;"/>
 	<div id="user_avatar" style="display: none">
-		<img  class="item_img" src="/media/{{ request.user.avater }}" width="50" height="50" alt="">
+		<img  class="item_img" src="/media/{{ request.user.avatar }}" width="50" height="50" alt="">
 	</div>
 	<div id="main">
 		{% for comment in comment_list %}
@@ -59,16 +60,16 @@
 			{% else %}
 				<div class="comment_item" id="{{ comment.nid }}">
 				<div class="media-left">
-					<img class="item_img" src="/media/{{ comment.user.avater }}" width="50" height="50">
+					<img class="item_img" src="/media/{{ comment.user.avatar }}" width="50" height="50">
 				</div>
 				<div class="media-right comment_content">
 					<div class="pull-right comment_detils">
 						{% if forloop.counter == 1 %}
-							<a role="button"><img src="/static/centBlog/images/1.png" width="35" height="35" alt="">&emsp;{{ comment.user.username }}</a>
+							<a role="button"><img src="/static/centBlog/icon/1.png" width="35" height="35" alt="">&emsp;{{ comment.user.username }}</a>
 						{% elif forloop.counter == 2 %}
-							<a role="button"><img src="/static/centBlog/images/2.png" width="35" height="35" alt="">&emsp;{{ comment.user.username }}</a>
+							<a role="button"><img src="/static/centBlog/icon/2.png" width="35" height="35" alt="">&emsp;{{ comment.user.username }}</a>
 						{% elif forloop.counter == 3 %}
-							<a role="button"><img src="/static/centBlog/images/3.png" width="35" height="35" alt="">&emsp;{{ comment.user.username }}</a>
+							<a role="button"><img src="/static/centBlog/icon/3.png" width="35" height="35" alt="">&emsp;{{ comment.user.username }}</a>
 						{% else %}
 							<a role="button">&emsp;{{ comment.user.username }}</a>
 						{% endif %}
@@ -97,6 +98,21 @@
 		document.getElementById("show_time").innerHTML = (new Date()).toLocaleString();
         function getDate() {document.getElementById("show_time").innerHTML = (new Date()).toLocaleString();}
         setInterval("getDate()", 1000);
+		$(function () {
+			$.ajax({
+		        url: '/viewed/',
+		        type: 'POST',
+		        data: {
+		            article_id: {{ article_id }},
+		            csrfmiddlewaretoken: $("[name='csrfmiddlewaretoken']").val(),
+		        },
+		        success: function () {
+
+	            }
+	        })
+        })
+
+
 
 
 		$('#div_digg .action').click(function () {
@@ -207,6 +223,6 @@
 			pid = $(this).attr('comment_pk');
         })
 	</script>
-
+</div>
 
 {% endblock %}

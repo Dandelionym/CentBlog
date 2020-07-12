@@ -9,6 +9,13 @@
 	<script src="/static/centBlog/plugins/jquery-3.4.1.js"></script>
 	<script src="/static/centBlog/plugins/bs/js/bootstrap.min.js"></script>
 	<style>
+		body {
+			line-height: 1.6;
+			font-weight: 100;
+			color: #222;
+			font-size: 1.5rem;
+			font-family: 'Sailec Light', sans-serif !important;
+		}
 		.headbar{
 			background: black; height: 50px; width: 100%; margin: 0
 		}
@@ -58,7 +65,7 @@
 
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="#">随笔<span class="sr-only">(当前)</span></a></li>
+				<li class="active"><a href="#">广场<span class="sr-only">(当前)</span></a></li>
 				<li><a href="#">新闻</a></li>
 				<li><a href="#">博文</a></li>
 			</ul>
@@ -72,9 +79,9 @@
 					<ul class="dropdown-menu">
 						<li><a href="#">个人资料</a></li>
 						<li><a href="#"></a></li>
-						<li><a href={% url 'logout' %}>注销</a></li>
+						<li><a href="/backend/">文章管理</a></li>
 						<li role="separator" class="divider"></li>
-						<li><a href="#">Separated link</a></li>
+						<li><a href={% url 'logout' %}>注销</a></li>
 					</ul>
 				</li>
 				{% else %}
@@ -112,17 +119,17 @@
 			<div class="aritcle_list">
 				{% for article in article_list %}
 					<div class="article_item">
-						<h5><a>{{ article.title }}</a></h5>
+						<h5><a href="/{{ article.user.username }}/articles/{{ article.nid }}">{{ article.title }}</a></h5>
 						<div class="article_desc">
 							<span class="media-left">
-								<img width="60" height="60" alt="头像" src='media/{{ article.user.avater }}'>
+								<img width="60" height="60" alt="头像" src='media/{{ article.user.avatar }}'>
 							</span>
 							<span class="media-right">
 								{{ article.desc }}
 							</span>
 						</div>
 						<div class="small atricle_bottom_bar">
-							<span><a>{{ article.user.username }}</a></span>&emsp;&emsp;
+							<span><a href="/{{ article.user.username }}">{{ article.user.username }}</a></span>&emsp;&emsp;
 							<span>发布于&emsp;{{ article.create_time | date:"Y-m-d  H:i:s" }}</span>&emsp;&emsp;
 							<span class="glyphicon glyphicon-comment"></span>评论（{{ article.comment_count}}）&emsp;&emsp;
 							<span class="glyphicon glyphicon-thumbs-up"></span>点赞（{{ article.up_count }}）&emsp;&emsp;
