@@ -13,3 +13,122 @@ Solved:
 -
 
 
+<div class="row headbar">
+	<div class="col-md-4 col-lg-offset-6">
+		<div class="col-md-8"></div>
+		<div class="col-md-4 box" style="display: flex; justify-content: space-between;">
+			<i class="fa fa-qq realred"></i>
+			<i class="fa fa-google yellow"></i>
+			<i class="fa fa-facebook blue"></i>
+			<i class="fa fa-github white"></i>
+			<i class="fa fa-safari green"></i>
+		</div>
+	</div>
+</div>
+<nav class="navbar navbar-default">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+			        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#"><img alt="CentBLG" src='/static/centBlog/logo-c.png' width="30" height="30"></a>
+		</div>
+
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="#">广场<span class="sr-only">(当前)</span></a></li>
+				<li><a href="#">新闻</a></li>
+				<li><a href="#">博文</a></li>
+			</ul>
+
+			<ul class="nav navbar-nav navbar-right">
+				{% if request.user.is_authenticated %}
+					<li><a href="#"><span id="user_icon" class="glyphicon glyphicon-user"></span>{{ request.user.username }}</a></li>
+					<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+					   aria-expanded="false">设置<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#">个人资料</a></li>
+						<li><a href="#"></a></li>
+						<li><a href="/backend/">文章管理</a></li>
+						<li role="separator" class="divider"></li>
+						<li><a href={% url 'logout' %}>注销</a></li>
+					</ul>
+				</li>
+				{% else %}
+					<li><a href={% url 'login' %}>登录</a></li>
+					<li><a href={% url 'register' %}>注册</a></li>
+				{% endif %}
+			</ul>
+		</div><!-- /.navbar-collapse -->
+	</div><!-- /.container-fluid -->
+</nav>
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-2">
+			<div class="panel panel-success">
+				<div class="panel-heading">Panel heading without title</div>
+				<div class="panel-body">
+					Panel content
+				</div>
+			</div>
+			<div class="panel panel-warning">
+				<div class="panel-heading">Panel heading without title</div>
+				<div class="panel-body">
+					Panel content
+				</div>
+			</div>
+			<div class="panel panel-primary">
+				<div class="panel-heading">Panel heading without title</div>
+				<div class="panel-body">
+					Panel content
+				</div>
+			</div>
+		</div>
+		<div class="col-md-7">
+			<div class="aritcle_list">
+				{% for article in article_list %}
+                    {% if article.status %}
+                        <div class="article_item">
+                            <h5><a href="/{{ article.user.username }}/articles/{{ article.nid }}">{{ article.title }}</a></h5>
+                            <div class="article_desc">
+                                <span class="media-left">
+                                    <img width="60" height="60" alt="头像" src='media/{{ article.user.avatar }}'>
+                                </span>
+                                <span class="media-right">
+                                    {{ article.desc }}
+                                </span>
+                            </div>
+                            <div class="small atricle_bottom_bar">
+                                <span><a href="/{{ article.user.username }}">{{ article.user.username }}</a></span>&emsp;&emsp;
+                                <span>发布于&emsp;{{ article.create_time | date:"Y-m-d  H:i:s" }}</span>&emsp;&emsp;
+                                <span class="glyphicon glyphicon-comment"></span>评论（{{ article.comment_count}}）&emsp;&emsp;
+                                <span class="glyphicon glyphicon-thumbs-up"></span>点赞（{{ article.up_count }}）&emsp;&emsp;
+                            </div>
+                        </div>
+                        <hr>
+                    {% endif %}
+				{% endfor %}
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="panel panel-info">
+				<div class="panel-heading">Panel heading without title</div>
+				<div class="panel-body">
+					Panel content
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading">Panel heading without title</div>
+				<div class="panel-body">
+					Panel content
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

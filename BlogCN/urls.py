@@ -38,6 +38,8 @@ urlpatterns = [
     path('backend/', views.backend),
     path('get_readamt_data/', views.get_readamt_data),
     path('get_heatmap_data/', views.get_heatmap_data),
+    path('upload/', views.upload),
+    path('modify/', views.modify),
 
 
 

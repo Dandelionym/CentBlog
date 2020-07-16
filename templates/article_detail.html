@@ -167,16 +167,15 @@
 					csrfmiddlewaretoken: $("[name='csrfmiddlewaretoken']").val(),
 				},
 				success: function (args) {
-				    console.log(args)
 				    if(args.status){
 				        if(!pid){
 							$('#comment_area').val("")
 					        let main = $('#main')
 						    let obj = main.children().length
-						    let m = (obj===0)?(`<a><img src="/static/centBlog/images/1.png" width="35" height="35" alt="">&emsp;{{ request.user.username }}</a>`):
-								        ((obj===1)?(`<a><img src="/static/centBlog/images/2.png" width="35" height="35" alt="">&emsp;{{ request.user.username }}</a>`):
-									        ((obj===2)?(`<a><img src="/static/centBlog/images/3.png" width="35" height="35" alt="">&emsp;{{ request.user.username }}</a>`):
-										        (`<a><img src="/static/centBlog/images/new.png" width="30" alt="">&emsp;{{ request.user.username }}</a>`)
+						    let m = (obj===0)?(`<a><img src="/static/centBlog/icon/1.png" width="35" height="35" alt="">&emsp;{{ request.user.username }}</a>`):
+								        ((obj===1)?(`<a><img src="/static/centBlog/icon/2.png" width="35" height="35" alt="">&emsp;{{ request.user.username }}</a>`):
+									        ((obj===2)?(`<a><img src="/static/centBlog/icon/3.png" width="35" height="35" alt="">&emsp;{{ request.user.username }}</a>`):
+										        (`<a><img src="/static/centBlog/icon/new.png" width="30" alt="">&emsp;{{ request.user.username }}</a>`)
 									        )
 								        )
 						    let s_time = args.cre_time

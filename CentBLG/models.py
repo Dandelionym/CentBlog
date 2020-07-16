@@ -77,6 +77,7 @@ class Article(models.Model):
 	up_count = models.IntegerField(default=0)
 	down_count = models.IntegerField(default=0)
 	views = models.IntegerField(default=0, null=True)
+	status = models.IntegerField(default=0, null=True)
 	
 	user = models.ForeignKey(verbose_name='Author', to='UserInfo', to_field='nid', on_delete=models.CASCADE)
 	category = models.ForeignKey(to='Category', to_field='nid', null=True, on_delete=models.CASCADE)

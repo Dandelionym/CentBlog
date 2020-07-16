@@ -6,8 +6,11 @@ from django.db.models import F
 from django.db import transaction
 from django.core.mail import send_mail
 
+from bs4 import BeautifulSoup
 import threading
 import json
+import os
+
 
 from BlogCN import settings
 from CentBLG import codehelper
@@ -261,19 +264,87 @@ class DateEnconding(json.JSONEncoder):
 
 def get_readamt_data(request):
 	sql = SqlHelper()
-	print(request.user.pk)
 	result_list = sql.get_list("select * from CentBLG_day_sumup where user_id=%s", [int(request.user.pk), ])
 	sql.close()
-	print(result_list)
-	
+
 	return HttpResponse(json.dumps(result_list, cls=DateEnconding))
 
 
 def get_heatmap_data(request):
 	sql = SqlHelper()
-	print(request.user.pk)
 	result_list = sql.get_list("select * from CentBLG_day_sumup where user_id=%s", [int(request.user.pk), ])
 	sql.close()
-	print(result_list)
-	
+
 	return HttpResponse(json.dumps(result_list, cls=DateEnconding))
+
+
+def upload(request):
+	img = request.FILES.get('file')
+	path = os.path.join(settings.MEDIA_ROOT, "articles", img.name)
+	with open(path, "wb") as f:
+		for line in img:
+			f.write(line)
+	
+	response = {
+		"success": True,
+		"file_path": "/media/articles/%s" % img.name,
+	}
+	
+	return HttpResponse(json.dumps(response))
+
+
+
+def modify(request):
+	mode = request.POST.get('mode')
+	ret = {'status': True, 'msg': None}
+	if mode == 'query':
+		article_id = request.POST.get('article_id')
+		article_obj = models.Article.objects.filter(pk=article_id).first()
+		return JsonResponse({'title': article_obj.title, 'content': article_obj.content})
+	elif mode == 'modify':
+		try:
+			article_id = request.POST.get('article_id')
+			article_title = request.POST.get('article_title')
+			article_content = request.POST.get('article_content')
+			models.Article.objects.filter(pk=article_id).update(title=article_title, content=article_content)
+		except Exception as e:
+			ret['status'] = True
+			ret['msg'] = str(e)
+		return JsonResponse(ret)
+	elif mode == 'release':
+		try:
+			article_title = request.POST.get('article_title')
+			article_content = request.POST.get('article_content')
+			soup = BeautifulSoup(article_content, 'html.parser')
+			desc = soup.text[:100] + "..."
+			models.Article.objects.create(title=article_title, desc=desc, content=article_content, user_id=request.user.pk, status=1)
+		except Exception as e:
+			ret['status'] = True
+			ret['msg'] = str(e)
+		return JsonResponse(ret)
+	elif mode == 'saved':
+		try:
+			article_id = request.POST.get('article_id')
+			models.Article.objects.filter(pk=article_id).update(status=1)
+		except Exception as e:
+			ret['status'] = True
+			ret['msg'] = str(e)
+		return JsonResponse(ret)
+	else:
+		try:
+			article_id = request.POST.get('article_id')
+			models.Article.objects.filter(nid=article_id).delete()
+		except Exception as e:
+			ret['status'] = True
+			ret['msg'] = str(e)
+		return JsonResponse(ret)
+
+
+
+
+
+
+
+
+
+

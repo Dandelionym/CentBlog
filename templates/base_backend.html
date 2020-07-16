@@ -29,7 +29,7 @@
 			font-family: 'Sailec Light', sans-serif !important;
 		}
 		.simditor .simditor-body {
-			padding: 22px 15px 40px;
+			padding: 18px 15px 40px;
 			min-height: 600px;
 			outline: none;
 			cursor: text;
@@ -40,6 +40,16 @@
 			font-weight: 100;
 			color: #222;
 			font-size: 1.5rem;
+			font-family: 'Sailec Light', sans-serif !important;
+		}
+		#article_title {
+			border: none;
+			border-bottom: #8da7c0 1px solid;
+			border-radius: 0;
+			height: 60px;
+			box-shadow: none;
+			text-align: center;
+			font-size: 2.5rem;
 			font-family: 'Sailec Light', sans-serif !important;
 		}
 	</style>
@@ -76,46 +86,51 @@
 			border-radius: 0 !important;
 			line-height: 60px;
 		}
-		.op {
+		.op, .md, .dt {
 			margin: 5px;
-			font-size: 17px;
+			font-size: 14px;
 		}
 	</style>
 </head>
 <body>
 
-<nav class="navbar bordered" >
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand white" href="#"><i class="glyphicon glyphicon-cog"></i> Cent BLG</a>
+<nav class="navbar bordered">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <i id="left_bar_show" class=" navbar-brand fa fa-caret-square-o-right white" style="margin-right: 10px; vertical-align: 1px; font-size: 22px" aria-hidden="true"></i>
+            <a class="navbar-brand white" href="#">
+                <i class="glyphicon glyphicon-cog"></i> Cent BLG
+            </a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a class="white" href="/">返回广场</a></li>
+            </ul>
+        </div>
     </div>
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a class="white" href="/">返回广场</a></li>
-      </ul>
-    </div>
-  </div>
 </nav>
 
 
 <div class="container-fluid">
 	<div class="row">
-		<div class="col-md-2">
+		<div id="left_bar" class="col-md-2">
 			<div class="panel panel-default">
-				<div class="panel-body">
-					<button class="btn btn-primary pull-right" value="提交" style="width: 100%; margin-bottom: 20px">发表</button>
+				<div class="panel-body clearfix">
+                    <i id="left_hide" class="fa fa-caret-square-o-left pull-right text-primary" aria-hidden="true" style="margin-bottom: 20px;font-size: 22px"></i>
+					<button id="article_submit" class="btn btn-primary pull-right" value="提交" style="width: 100%; margin-bottom: 20px">发表</button>
 					<button class="btn btn-success pull-right" value="提交" style="width: 100%; margin-bottom: 20px">保存</button>
 					<hr/>
 					<div class="row">
 						<div class="well" style="margin-left: 5px; margin-right: 5px; margin-bottom: -10px">
 							<p style="margin: 1px; color: #4d565c">
-								<strong class="text-primary">编辑文章：</strong>编辑框内支持图片的粘贴，编写过程中将自动保存文章，不用担心忘记保存。<br/><br/>
-								<strong class="text-primary">查看全部：</strong>支持预览所有文章，并统计文章所在的标签生成词云，点击预览将跳转至文章所在页面。如文章被删除则无法恢复，请谨慎操作。<br/><br/>
+								<span class="text-primary">字数统计:&emsp;<span id="fonts_count">0</span>&emsp;字</span><br/><br/>
+								<strong class="text-primary">编辑文章：</strong>编辑框内支持图片的粘贴，编写过程中将自动保存文章。<span class="text-danger">(图片粘贴仅支持火狐、谷歌浏览器)</span><br/><br/>
+								<strong class="text-primary">查看全部：</strong>支持预览所有文章，并统计文章所在的标签生成词云，点击预览将跳转至文章所在页面。<span class="text-danger">如文章被删除则无法恢复，请谨慎操作。</span><br/><br/>
 								<strong class="text-primary">动态记录：</strong>记录用户当日的积分以及文章浏览量，提供动态交互式可视化界面，积分等信息将于每晚24：00更新，无法查看当日积分量与浏览量。<br/>
 							</p>
 
@@ -127,7 +142,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-10">
+		<div id="content_board" class="col-md-10">
 			{% csrf_token %}
 			{% block backend_content %}
 
@@ -136,6 +151,7 @@
 		</div>
 	</div>
 </div>
+
 
 <script src="https://www.amcharts.com/lib/4/core.js"></script>
 <script src="https://www.amcharts.com/lib/4/charts.js"></script>
@@ -146,5 +162,19 @@
 <script type="text/javascript" src="/static/centBlog/js/backend_timeline.js"></script>
 <script type="text/javascript" src="/static/centBlog/js/read_amount.js"></script>
 <script type="text/javascript" src="/static/centBlog/js/heat_map.js"></script>
+<script>
+    $('#left_hide').click(function () {
+        $('#left_bar').hide()
+        $('#content_board').removeClass('col-md-10')
+        $('#content_board').addClass('col-md-12')
+    })
+
+    $('#left_bar_show').click(function () {
+        $('#content_board').removeClass('col-md-12')
+        $('#content_board').addClass('col-md-10')
+        $('#left_bar').show()
+    })
+
+</script>
 </body>
 </html>
