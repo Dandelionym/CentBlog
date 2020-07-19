@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>CentBLG | 全球最大的全平台知识分享区</title>
+	<link rel="stylesheet" href="/static/centBlog/plugins/bs/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/static/centBlog/plugins/fa/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/static/centBlog/css/color.css">
+	<script src="/static/centBlog/plugins/jquery-3.4.1.js"></script>
+	<script src="/static/centBlog/plugins/bs/js/bootstrap.min.js"></script>
+	<style>
+		body {
+			line-height: 1.6;
+			font-weight: 100;
+			color: #222;
+			font-size: 1.5rem;
+			font-family: 'Sailec Light', sans-serif !important;
+            background: url("/static/centBlog/images/timg1.jpg") no-repeat fixed;
+            background-size: cover;
+		}
+		.headbar{
+			background: black; height: 50px; width: 100%; margin: 0
+		}
+		.box i {
+			line-height: 50px;
+		}
+		#user_icon {
+			margin-right: 10px;
+			font-size: 18px;
+			vertical-align: -3px;
+		}
+		.atricle_bottom_bar {
+			margin-top: 15px;
+		}
+		.atricle_bottom_bar .glyphicon {
+			vertical-align: -1px;
+			margin-right: 2px;
+		}
+        @font-face {
+            font-family: self-defined;
+            src: url("/static/centBlog/fonts/Arial Black.ttf");
+        }
+        #border_deco{
+            border-image: url(/static/centBlog/images/line.png) 272 repeat;
+            border-image-width: 0 7.5 8;
+            padding-bottom: 40px;
+            font-size: 2.8rem;
+            font-family:self-defined;
+        }
+	</style>
+</head>
+<body>
+<nav class="navbar navbar-default">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+			        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#"><img alt="CentBLG" src='/static/centBlog/logo-c.png' width="30" height="30"></a>
+		</div>
+
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="#">广场<span class="sr-only">(当前)</span></a></li>
+				<li><a href="#">新闻</a></li>
+				<li><a href="#">博文</a></li>
+			</ul>
+
+			<ul class="nav navbar-nav navbar-right">
+				{% if request.user.is_authenticated %}
+					<li><a href="#"><img alt="" src="/media/{{ user.avatar }}" width="20" height="20" style="border-radius: 999px; margin-right: 10px">{{ request.user.username }}</a></li>
+					<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+					   aria-expanded="false">设置<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="/personal_info/">个人资料</a></li>
+						<li><a href="#"></a></li>
+						<li><a href="/backend/">文章管理</a></li>
+						<li role="separator" class="divider"></li>
+						<li><a href={% url 'logout' %}>注销</a></li>
+					</ul>
+				</li>
+				{% else %}
+					<li><a href={% url 'login' %}>登录</a></li>
+					<li><a href={% url 'register' %}>注册</a></li>
+				{% endif %}
+			</ul>
+		</div><!-- /.navbar-collapse -->
+	</div><!-- /.container-fluid -->
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3" style="height: 350px;">
+            <img src="/media/{{ user.avatar }}" style="width: 250px;height: 250px; border-radius: 999px;">
+        </div>
+        <div class="col-md-9" style="height: 300px; background: #ffffff; border-radius: 12px; box-shadow:rgba(73,77,100,0.76) 5px 5px 18px -10px">
+            <h1 class="text-center" id="border_deco">{{ blog.site_name }}</h1>
+            <h4><img src="/static/centBlog/icon/icon_info.png" width="33"> 基本信息</h4>
+
+            <div class="row clearfix" style="padding-left: 50px">
+                <div class="col-lg-6 col-md-12" style="padding-top: 5px; padding-bottom: 5px">
+                    用户名：<span style="margin-top: 20px"><strong>{{ user.username }}</strong></span>
+                </div>
+                <div class="col-lg-6 col-md-12" style="padding-top: 5px; padding-bottom: 5px">
+                    <i class="fa fa-phone">&emsp;</i><span style="margin-top: 20px"><strong>{{ user.telephone }}</strong></span>
+                </div>
+                <div class="col-lg-6 col-md-12" style="padding-top: 5px; padding-bottom: 5px">
+                    邮&emsp;箱：<span style="margin-top: 20px"><strong>{{ user.email }}</strong></span>
+                </div>
+                <div class="col-lg-6 col-md-12" style="padding-top: 5px; padding-bottom: 5px">
+                    <i class="fa fa-qq"></i>&emsp;<span style="margin-top: 20px"><strong>{{ user.qq }}</strong></span>
+                </div>
+                <div class="col-md-12">
+                    <div class="progress" style="margin-top: 5px">
+                        <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar"
+                             aria-valuenow="{{ user.ps_credit }}" aria-valuemin="0" aria-valuemax="500"
+                             style="width: {% widthratio user.ps_credit 500 100 %}%;">
+                            <span class="text-center">{% widthratio user.ps_credit 500 100 %}%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar"
+                             aria-valuenow="{{ user.vip_credit }}" aria-valuemin="0" aria-valuemax="500"
+                             style="width: {{ user.vip_credit }}%">
+                            <span class="text-center">{{ user.vip_credit }}%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        </div>
+    </div>
+    <div class="row" style="margin-top: 20px">
+        <div class="col-md-4" style="height: 300px; background: white"></div>
+        <div class="col-md-8" style="height: 300px; background: white"></div>
+    </div>
+</div>
+
+
+</body>
+</html>

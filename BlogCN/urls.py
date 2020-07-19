@@ -30,6 +30,7 @@ urlpatterns = [
     path('comment/', views.comment),
     path('viewed/', views.viewed),
     path('get_valid_img/', views.get_valid_img),
+    path('personal_info/', views.personal_info),
     
     
     

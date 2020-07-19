@@ -93,26 +93,50 @@
 	</style>
 </head>
 <body>
+<nav class="navbar navbar-default">
+	<div class="container-fluid">
+		<div class="navbar-header">
+{#            <i  class=" navbar-brand fa fa-caret-square-o-right primary" style="margin-right: 10px; vertical-align: 1px; font-size: 22px" aria-hidden="true"></i>#}
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+			        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				<span class="sr-only"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#"><img alt="CentBLG" src='/static/centBlog/logo-c.png' width="30" height="30"></a>
+		</div>
 
-<nav class="navbar bordered">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <i id="left_bar_show" class=" navbar-brand fa fa-caret-square-o-right white" style="margin-right: 10px; vertical-align: 1px; font-size: 22px" aria-hidden="true"></i>
-            <a class="navbar-brand white" href="#">
-                <i class="glyphicon glyphicon-cog"></i> Cent BLG
-            </a>
-        </div>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                <li><a class="white" href="/">返回广场</a></li>
-            </ul>
-        </div>
-    </div>
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="#">广场<span class="sr-only">(当前)</span></a></li>
+				<li><a href="#">新闻</a></li>
+				<li><a href="#">博文</a></li>
+				<li><a role="button" class="collapsed" type="button" data-toggle="collapse" data-target="#collapseExample"
+                            aria-expanded="false" aria-controls="collapseExample" style="margin: 0">设置</a></li>
+			</ul>
+
+			<ul class="nav navbar-nav navbar-right">
+				{% if request.user.is_authenticated %}
+					<li><a href="#"><img alt="" src="/media/{{ user.avatar }}" width="20" height="20" style="border-radius: 999px; margin-right: 10px">{{ request.user.username }}</a></li>
+					<li class="dropdown">
+					    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+					   aria-expanded="false">设置<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/personal_info/">个人资料</a></li>
+                            <li><a href="#"></a></li>
+                            <li><a href="/backend/">文章管理</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href={% url 'logout' %}>注销</a></li>
+                        </ul>
+				    </li>
+				{% else %}
+					<li><a href={% url 'login' %}>登录</a></li>
+					<li><a href={% url 'register' %}>注册</a></li>
+				{% endif %}
+			</ul>
+		</div><!-- /.navbar-collapse -->
+	</div><!-- /.container-fluid -->
 </nav>
 
 
@@ -121,7 +145,6 @@
 		<div id="left_bar" class="col-md-2">
 			<div class="panel panel-default">
 				<div class="panel-body clearfix">
-                    <i id="left_hide" class="fa fa-caret-square-o-left pull-right text-primary" aria-hidden="true" style="margin-bottom: 20px;font-size: 22px"></i>
 					<button id="article_submit" class="btn btn-primary pull-right" value="提交" style="width: 100%; margin-bottom: 20px">发表</button>
 					<button class="btn btn-success pull-right" value="提交" style="width: 100%; margin-bottom: 20px">保存</button>
 					<hr/>
@@ -143,6 +166,13 @@
 			</div>
 		</div>
 		<div id="content_board" class="col-md-10">
+            <div class="collapse" id="collapseExample">
+                如需全屏写作，请设置为
+                <span role="button" id="left_hide" style="margin: 20px; color: #0a66c2">
+                    <i class="fa fa-info-circle"></i>
+                </span>
+                模式，如想回复侧栏，请再次点击。请再次点击设置以隐藏此栏！
+            </div>
 			{% csrf_token %}
 			{% block backend_content %}
 
@@ -164,15 +194,16 @@
 <script type="text/javascript" src="/static/centBlog/js/heat_map.js"></script>
 <script>
     $('#left_hide').click(function () {
-        $('#left_bar').hide()
-        $('#content_board').removeClass('col-md-10')
-        $('#content_board').addClass('col-md-12')
-    })
-
-    $('#left_bar_show').click(function () {
-        $('#content_board').removeClass('col-md-12')
-        $('#content_board').addClass('col-md-10')
-        $('#left_bar').show()
+        let target = $('#content_board')
+        if(target.hasClass('col-md-10')) {
+            $('#left_bar').hide()
+            target.removeClass('col-md-10')
+            target.addClass('col-md-12')
+        }else{
+            $('#left_bar').show()
+            target.removeClass('col-md-12')
+            target.addClass('col-md-10')
+        }
     })
 
 </script>

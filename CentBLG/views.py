@@ -340,7 +340,11 @@ def modify(request):
 		return JsonResponse(ret)
 
 
-
+def personal_info(request):
+	user = request.user
+	blog = models.Blog.objects.filter(nid=user.blog_id).first()
+	print(blog.title)
+	return render(request, 'personal_info.html', locals())
 
 
 
