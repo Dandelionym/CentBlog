@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>CentBLG | 全球最大的全平台知识分享区</title>
+	<link rel="stylesheet" href="/static/centBlog/plugins/bs/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/static/centBlog/plugins/fa/css/font-awesome.min.css">
+	<link rel="stylesheet" href="/static/centBlog/css/color.css">
+	<link rel="stylesheet" href="/static/centBlog/css/style.css">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
+{#    <link rel="stylesheet" href="/static/centBlog/plugins/assets/vendor/bootstrap/css/bootstrap.min.css">#}
+    <link rel="stylesheet" href="/static/centBlog/plugins/assets/vendor/sweetalert/sweetalert.css">
+
+	<script src="/static/centBlog/plugins/jquery-3.4.1.js"></script>
+	<script src="/static/centBlog/plugins/bs/js/bootstrap.min.js"></script>
+	<style>
+		body {
+			line-height: 1.6;
+			font-weight: 100;
+			color: #222;
+			font-size: 1.5rem;
+            background: none;
+		}
+		.headbar{
+			background: black; height: 50px; width: 100%; margin: 0
+		}
+		.box i {
+			line-height: 50px;
+		}
+		#user_icon {
+			margin-right: 10px;
+			font-size: 18px;
+			vertical-align: -3px;
+		}
+		.atricle_bottom_bar {
+			margin-top: 15px;
+		}
+		.atricle_bottom_bar .glyphicon {
+			vertical-align: -1px;
+			margin-right: 2px;
+		}
+        @font-face {
+            font-family: self-defined;
+            src: url("/static/centBlog/fonts/Arial Black.ttf");
+        }
+        .site_input {
+            border: none;
+            border-bottom: 1px skyblue solid;
+            box-shadow: none;
+            text-align: center;
+            border-radius: 0;
+            margin: 0;
+            transition: .5s;
+            font-size: 1.5rem;
+            word-wrap: inherit;
+        }
+
+        .site_input:focus {
+            box-shadow: none;
+            font-size: 2.0rem;
+            transition: .5s;
+        }
+
+        .show_info {
+            border: 0;
+            background: none;
+            box-shadow: none;
+            margin: 0;
+        }
+        textarea{
+            resize: none;
+            height: 300px;
+        }
+	</style>
+</head>
+<body>
+<nav class="navbar navbar-default">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+			        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#"><img alt="CentBLG" src='/static/centBlog/logo-c.png' width="30" height="30"></a>
+		</div>
+
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li class=""><a href="/">广场</a></li>
+				<li><a href="#">新闻</a></li>
+				<li><a href="#">博文</a></li>
+			</ul>
+
+			<ul class="nav navbar-nav navbar-right">
+				{% if request.user.is_authenticated %}
+					<li><a href="#"><img alt="" src="/media/{{ user.avatar }}" width="20" height="20" style="border-radius: 999px; margin-right: 10px">{{ request.user.username }}</a></li>
+					<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+					   aria-expanded="false">我的空间<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="/personal_info/">个人资料</a></li>
+						<li><a href="/backend/">文章管理</a></li>
+						<li role="separator" class="divider"></li>
+						<li><a href={% url 'logout' %}>注销</a></li>
+					</ul>
+				</li>
+				{% else %}
+					<li><a href={% url 'login' %}>登录</a></li>
+					<li><a href={% url 'register' %}>注册</a></li>
+				{% endif %}
+			</ul>
+		</div><!-- /.navbar-collapse -->
+	</div><!-- /.container-fluid -->
+</nav>
+{% if not status %}
+
+
+{% else %}
+
+
+{% endif %}
+<div>
+    <div class="container" style="background: #229a95; height: 300px; border-radius: 9px;
+    background: url('/static/centBlog/images/cre_bg.png') no-repeat; background-size: cover">
+        <div class="content">
+            <div class="a-content">
+                <div class="carousel-content">
+                    <ul class="carousel">
+                        <li><img src="/static/centBlog/images/images-create/slider3.png"></li>
+                        <li><img src="/static/centBlog/images/images-create/slider2.png"></li>
+                        <li><img src="/static/centBlog/images/images-create/slider1.png"></li>
+                        <li><img src="/static/centBlog/images/images-create/slider4.png"></li>
+                        <li><img src="/static/centBlog/images/images-create/slider5.png"></li>
+                    </ul>
+                    <ul class="img-index"></ul>
+                    <div class="carousel-prev"><img src="/static/centBlog/images/images-create/left1.png"></div>
+                    <div class="carousel-next"><img src="/static/centBlog/images/images-create/right1.png"></div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="../static/centBlog/js/scripts/carousel.js"></script>
+        <script type="text/javascript">
+            $(function(){
+                $(".carousel-content").carousel({
+                    carousel : ".carousel",//轮播图容器
+                    indexContainer : ".img-index",//下标容器
+                    prev : ".carousel-prev",//左按钮
+                    next : ".carousel-next",//右按钮
+                    timing : 3000,//自动播放间隔
+                    animateTime : 700,//动画时间
+                    autoPlay : true,//是否自动播放 true/false
+                    direction : "left",//滚动方向 right/left
+                });
+
+                $(".carousel-content").hover(function(){
+                    $(".carousel-prev,.carousel-next").fadeIn(300);
+                },function(){
+                    $(".carousel-prev,.carousel-next").fadeOut(300);
+                });
+
+                $(".carousel-prev").hover(function(){
+                    $(this).find("img").attr("src","/static/centBlog/images/images-create/left2.png");
+                },function(){
+                    $(this).find("img").attr("src","/static/centBlog/images/images-create/left1.png");
+                });
+                $(".carousel-next").hover(function(){
+                    $(this).find("img").attr("src","/static/centBlog/images/images-create/right2.png");
+                },function(){
+                    $(this).find("img").attr("src","/static/centBlog/images/images-create/right1.png");
+                });
+            });
+        </script>
+        <hr style="margin-top: 50px"/>
+        <h3><img alt="" src="/static/centBlog/images/pen.png" width="32" height="32">
+            创建博客</h3>
+            <div class="body">
+                <div class="row">
+                    <div class="col-md-4 form-group">
+                        <label for="site_title"><span class="">博客标题:</span></label>
+                        <div class="well show_info">
+                            这将展示在你的个人博客的大标题一栏，此项内容由您个人偏好来设置。
+                        </div>
+                            <input id="site_title" class="form-control site_input">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="site_name"><span class="">博客名称:</span></label>
+                        <div class="well show_info">
+                            博客名称可以和博客标题一样，也可以自定义你喜欢的名称。
+                        </div>
+                            <input id="site_name" class="form-control site_input">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="site_theme"><span class="">博客主题:</span></label>
+                        <div class="well show_info">
+                            用一小段文字来描述你的个人博客，比如内容将会覆盖哪些方面、涉及哪些领域等。
+                        </div>
+                            <input id="site_theme" class="form-control site_input">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <label for="site_theme"></label>
+                    <div class="well show_info text-center">
+                        下面写一下博客简介，比如你的建站目的、将来的发展方向、更新时间段等，亮出你的特色！
+                    </div>
+                    <textarea id="site_theme" class="text-left form-control" style="padding: 5px;height: 120px"></textarea>
+                </div>
+
+                <!-- 用户许可说明书 -->
+                <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="display: none;">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h2 class="modal-title text-center" id="myLargeModalLabel">CentBlog用户许可协议</h2>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <p style="background: none; border: none">
+一、总章
+<br/>（总）不得利用本站危害国家安全、泄露国家秘密,不得侵犯国家社会集体的和公民的合法权益，
+<br/>（总）不得利用本站制作、复制和传播危害社会或对国家、社会造成不良影响的信息，具体细节如下：
+<br/>（一）煽动抗拒、破坏宪法和法律、行政法规实施的；
+<br/>（二）煽动颠覆国家政权，推翻社会主义制度的；
+<br/>（三）煽动分裂国家、破坏国家统一的；
+<br/>（四）煽动民族仇恨、民族歧视，破坏民族团结的；
+<br/>（五）捏造或者歪曲事实，散布谣言，扰乱社会秩序的；
+<br/>（六）宣扬封建迷信、淫秽、色情、赌博、暴力、凶杀、恐怖、教唆犯罪的；
+<br/>（七）公然侮辱他人或者捏造事实诽谤他人的，或者进行其他恶意攻击的；
+<br/>（八）损害国家机关信誉的；
+<br/>（九）其他违反宪法和法律行政法规的；
+<br/>（十）发布黄色反动文章
+<br/>二、互相尊重，对自己的言论和行为负责
+<br/>（一）尊重他人的意见与建议，不进行言语攻击等伤及他人的行为。
+<br/>（二）维护良好的社区环境，遵从社会主义核心价值观所倡导的一切内容。
+<br/>三、处罚办法
+<br/>&emsp;&emsp;如您同意此规定，则一切解释权归属 CentBlog 所有。在任何社区维护形态下，如您违反以上条例中的任何一条，您将接受所有处罚。
+并且规定该处罚指：收回一切博客资源并予以全站通报，对违规者采取相应法律措施予以制裁，并处以200元以上3000元以下的损失罚款，具体数量结合法律进一步规定。
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top: 50px">
+                    <div style="display: flex; justify-content: space-around">
+                        <span>
+                            <input id="agreement" type="checkbox" class="un-login">
+                            <label style="font-weight: 100" for="agreement">我已阅读并同意
+                                <a role="button" data-toggle="modal" data-target=".bd-example-modal-lg">《CentBlog用户使用条款》</a>
+                                的所有内容，并承诺承担一切博客内容引起的法律责任。</label>
+                        </span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between">
+                        <button class="btn btn-success btn-round js-sweetalert" data-type="cancel" style="width: 230px; margin: 0 auto">立即创建</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+</div>
+
+
+
+
+<script src="/static/centBlog/plugins/assets/vendor/sweetalert/sweetalert.min.js"></script>
+<script src="/static/centBlog/plugins/assets/bundles/vendorscripts.bundle.js"></script>
+<script src="/static/centBlog/plugins/assets/bundles/mainscripts.bundle.js"></script>
+<script src="/static/centBlog/plugins/assets/js/pages/ui/dialogs.js"></script>
+<script>
+    $('.confirm').click(function () {
+        $.ajax({
+            url: '/create_blog/',
+            type: 'POST',
+            data: {
+
+            }
+        })
+    })
+</script>
+</body>
+</html>

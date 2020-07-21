@@ -50,6 +50,11 @@
 	</style>
 </head>
 <body>
+{% if not status %}
+    <script>
+        location.href = '/create_blog/'
+    </script>
+{% endif %}
 <nav class="navbar navbar-default">
 	<div class="container-fluid">
 		<div class="navbar-header">
@@ -65,7 +70,7 @@
 
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="#">广场<span class="sr-only">(当前)</span></a></li>
+				<li class="active"><a href="/">广场<span class="sr-only">(当前)</span></a></li>
 				<li><a href="#">新闻</a></li>
 				<li><a href="#">博文</a></li>
 			</ul>
@@ -75,7 +80,7 @@
 					<li><a href="#"><img alt="" src="/media/{{ user.avatar }}" width="20" height="20" style="border-radius: 999px; margin-right: 10px">{{ request.user.username }}</a></li>
 					<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-					   aria-expanded="false">设置<span class="caret"></span></a>
+					   aria-expanded="false">我的空间<span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li><a href="/personal_info/">个人资料</a></li>
 						<li><a href="#"></a></li>
@@ -92,8 +97,15 @@
 		</div><!-- /.navbar-collapse -->
 	</div><!-- /.container-fluid -->
 </nav>
-
-<div class="container">
+{% if not status %}
+    <script>
+    {#let sign = confirm("...?")#}
+    {#if(sign){#}
+{##}
+{#    }#}
+    </script>
+{% else %}
+    <div class="container">
     <div class="row">
         <div class="col-md-3" style="height: 350px;">
             <img src="/media/{{ user.avatar }}" style="width: 250px;height: 250px; border-radius: 999px;">
@@ -137,7 +149,6 @@
 
 
 
-
         </div>
     </div>
     <div class="row" style="margin-top: 20px">
@@ -145,6 +156,8 @@
         <div class="col-md-8" style="height: 300px; background: white"></div>
     </div>
 </div>
+{% endif %}
+
 
 
 </body>

@@ -8,6 +8,7 @@ from django.core.mail import send_mail
 
 from bs4 import BeautifulSoup
 import threading
+import datetime
 import json
 import os
 
@@ -249,11 +250,8 @@ def backend(request):
 	user = request.user
 	username = user.username
 	article_list = models.Article.objects.filter(user_id=user.pk)
-	
+	has_blog = models.UserInfo.objects.filter(nid=user.pk).first().blog_id
 	return render(request, 'backend.html', locals())
-
-
-import datetime
 
 
 class DateEnconding(json.JSONEncoder):
@@ -279,15 +277,16 @@ def get_heatmap_data(request):
 
 
 def upload(request):
+	import random
 	img = request.FILES.get('file')
-	path = os.path.join(settings.MEDIA_ROOT, "articles", img.name)
+	img_append = random.random().__str__()[2:]
+	path = os.path.join(settings.MEDIA_ROOT, "articles", img_append + img.name)
 	with open(path, "wb") as f:
 		for line in img:
 			f.write(line)
-	
 	response = {
 		"success": True,
-		"file_path": "/media/articles/%s" % img.name,
+		"file_path": "/media/articles/%s" % (img_append + img.name),
 	}
 	
 	return HttpResponse(json.dumps(response))
@@ -341,14 +340,23 @@ def modify(request):
 
 
 def personal_info(request):
-	user = request.user
-	blog = models.Blog.objects.filter(nid=user.blog_id).first()
-	print(blog.title)
-	return render(request, 'personal_info.html', locals())
+	try:
+		user = request.user
+		blog = models.Blog.objects.filter(nid=user.blog_id).first()
+		if blog:
+			status = True
+			return render(request, 'personal_info.html', locals())
+		else:
+			status = False
+			message = "You don't have a blog yet. Would you like to create it now?"
+			return render(request, 'personal_info.html', locals())
+	except Exception as e:
+		print(str(e))
 
 
+def create_blog(request):
 
 
-
+	return render(request, 'create_blog.html', {})
 
 

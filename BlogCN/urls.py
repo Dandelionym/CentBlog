@@ -31,7 +31,8 @@ urlpatterns = [
     path('viewed/', views.viewed),
     path('get_valid_img/', views.get_valid_img),
     path('personal_info/', views.personal_info),
-    
+    path('create_blog/', views.create_blog),
+
     
     
     

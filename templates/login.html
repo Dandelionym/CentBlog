@@ -1,208 +1,104 @@
-<!DOCTYPE html>
+
+
+
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>登录</title>
-	<link rel="stylesheet" href="/static/centBlog/plugins/bs/css/bootstrap.min.css">
-	<link rel="stylesheet" href="/static/centBlog/plugins/fa/css/font-awesome.min.css">
-	<link rel="stylesheet" href="/static/centBlog/css/color.css">
-	<style>
-		* {
-			margin: 0;
-			padding: 0;
-			border: none;
-		}
-		#user, #pswd, #valid {
-			border-top: none !important;
-			border-left: none !important;
-			border-right: none !important;
-			border-bottom:  2px #008d9c solid !important;
-			border-radius: 0 !important;
-			box-shadow: none !important;
-			text-align: center !important;
-		}
-		.jstf_sp{
-			display: flex;
-			justify-content: space-between;
-		}
-		.jstf_sa{
-			display: flex;
-			justify-content: space-around;
-		}
-		.mg_20{
-			margin: 20px;
-		}
-		.mg_10{
-			margin: 10px;
-		}
+    <title>CentBLG | 全球最大的全平台知识分享区</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Brego Bootstrap 4x admin is super flexible, powerful, clean &amp; modern responsive admin dashboard with unlimited possibilities.">
+    <meta name="author" content="GetBootstrap, design by: puffintheme.com">
 
-		.background {
-			position: fixed;
-			bottom: 0;
-			left: 0;
-			top: 0;
-			right: 0;
-			background: -webkit-linear-gradient(right, #6dedff, #fff7b8);
-            background: -o-linear-gradient(right,      #6dedff, #fff7b8);
-            background: -moz-linear-gradient(right,    #6dedff, #fff7b8);
-            background: linear-gradient(right,         #6dedff, #fff7b8);
-		}
-		#valid {
-			background-size: 100% 70px;
-		}
+    <link rel="icon" href="favicon.png" type="image/x-icon">
+    <!-- VENDOR CSS -->
+    <link rel="stylesheet" href="/static/centBlog/plugins/assets/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://www.jq22.com/jquery/font-awesome.4.7.0.css">
+    <link rel="stylesheet" href="/static/centBlog/plugins/assets/vendor/animate-css/vivify.min.css">
 
-		.board {
-			position: fixed;
-			top:10%;
-			width: 400px;
-			padding: 20px;
-			transition: .5s;
-			margin-top: 100px;
-			background: white;
-			border-radius: 7px;
-			overflow: hidden;
-			box-shadow:2px 2px 10px #dafffb;
-		}
-		.cor_box {
-			position: fixed; right: 20%; top: 20%; z-index: 999
-		}
+    <!-- MAIN CSS -->
+    <link rel="stylesheet" href="/static/centBlog/plugins/assets/css/site.css">
 
-		@media only screen and (max-width: 1090px) {
-            .cor_box {
-				display: none;
-			}
-			.cor_box > img{
-				width: 120px;
-				height: auto;
-			}
-			.background {
-				position: fixed;
-				bottom: 0;
-				left: 0;
-				top: 0;
-				right: 0;
-				background-image: url('/static/centBlog/images/sky.jpg');
-                background-size: cover;
-			}
-			.board {
-				position: fixed;
-				padding: 40px 80px;
-				top:9%;
-				left: 25%;
-				right: 25%;
+    <style type="text/css">.jqstooltip {
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        visibility: hidden;
+        background-color: rgba(0, 0, 0, 0.6);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+        -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
+        color: white;
+        font: 10px arial, san serif;
+        text-align: left;
+        white-space: nowrap;
+        padding: 5px;
+        border: 1px solid white;
+        box-sizing: content-box;
+        z-index: 10000;
+    }
 
-				box-shadow:2px 2px 10px #aeffae;
-				transition: .5s;
-				margin-top: 100px;
-				background: white;
-				border-radius: 7px;
-				overflow: hidden;
-			}
-        }
-	</style>
+    .jqsfield {
+        color: white;
+        font: 10px arial, san serif;
+        text-align: left;
+    }</style>
 </head>
-<body>
-<div class="background">
+
+<body class="theme-blush">
+
+<div class="auth-main particles_js">
+    <div class="auth_div vivify popIn">
+        <div class="auth_brand">
+            <a class="navbar-brand" href="#"><img src="/static/centBlog/logo-c.png" width="60" class="d-inline-block align-top" alt=""></a>
+        </div>
+        <div class="card">
+            <div class="pattern">
+                <span class="red"></span>
+                <span class="indigo"></span>
+                <span class="blue"></span>
+                <span class="green"></span>
+                <span class="orange"></span>
+            </div>
+            <div class="header">
+                <p class="lead">欢迎登录</p>
+            </div>
+            <div class="body">
+                <form class="form-auth-small" action="index.html">
+                    <div class="form-group">
+                        <label for="signin-email" class="control-label sr-only">Email</label>
+                        <input type="email" class="form-control round" id="signin-email" value="" placeholder="用户名">
+                    </div>
+                    <div class="form-group">
+                        <label for="signin-password" class="control-label sr-only">Password</label>
+                        <input type="password" class="form-control round" id="signin-password" value="" placeholder="密码">
+                    </div>
+                    <div class="form-group clearfix">
+                        <label class="fancy-checkbox element-left">
+                            <input type="checkbox">
+                            <span>记住我</span>
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-round btn-block">登录</button>
+                    <div class="bottom">
+                        <span class="helper-text m-b-10"><i class="fa fa-lock"></i> <a href="page-forgot-password.html">忘记密码?</a></span>
+                        <span>还没有账号？立即<a href="/register/">注册</a></span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="particles-js">
+        <canvas class="particles-js-canvas-el" width="3360" height="1086" style="width: 100%; height: 100%;"></canvas>
+    </div>
 </div>
-<div class="container" >
-	<div class="row">
-		<div>
-			<div class="board">
-				<div class="jstf_sa" style="width: 100%;">
-					<img src="/static/centBlog/logo-c.png" alt="logo" width="60" height="60">
-				</div>
-				<form id="form">
-					{% csrf_token %}
-					<div class="form-group">
-						<label for="user">用户名</label>
-						<input type="text" id="user" class="form-control">
-					</div>
-					<div class="form-group">
-						<label for="pswd">密&emsp;码</label>
-						<input type="password" id="pswd" class="form-control">
-					</div>
-					<div class="form-group">
-						<label for="valid">验证码</label>
-						<div class="row">
-							<div class="col-sm-6">
-								<input type="text" id="valid" class="form-control">
-							</div>
-							<div class="col-sm-6 jstf_sa">
-								<img alt="验证码" height="35" id="valid_code_img" src="/get_valid_img/" width=auto>
-							</div>
-						</div>
-					</div>
+<!-- END WRAPPER -->
 
-					<div class="form-group">
-						<input type="button" id="login" value="快速登录" class="btn btn-default pull-right">
-						<input type="button" id="register" value="立即注册" class="btn btn-default pull-left">
-					</div>
-				</form>
-				<div id="assert_valid" class="alert alert-danger alert-dismissible text-center" role="alert" style="margin-top: 80px; display: none">
-
-				</div>
-			</div>
-		</div>
-		<div class="cor_box">
-			<img src="/static/centBlog/images/cordova_bot.png" alt="img">
-		</div>
-	</div>
-</div>
+<script src="/static/centBlog/plugins/assets/bundles/libscripts.bundle.js"></script>
+<script src="/static/centBlog/plugins/assets/bundles/vendorscripts.bundle.js"></script>
+<script src="/static/centBlog/plugins/assets/vendor/particlesjs/particles.min.js"></script>
+<script src="/static/centBlog/plugins/assets/bundles/mainscripts.bundle.js"></script>
+<script src="/static/centBlog/plugins/assets/js/pages/particlesjs.js"></script>
 
 
-<script type="text/javascript" src="/static/centBlog/plugins/jquery-3.4.1.js"></script>
-<script type="text/javascript" src="/static/centBlog/plugins/bs/js/bootstrap.min.js"></script>
-<script>
-	// Get valid image by flushing local page. (Also can be replaced by ajax)
-	$('#valid_code_img').click(function () {  $(this)[0].src += "?"  })
-
-	// Loginning confirm
-	$('#login').click(function () {
-
-	    $.ajax({
-		    url: '',
-		    type: 'POST',
-		    data: {
-		        user: $('#user').val(),
-			    password: $('#pswd').val(),
-			    valid_code: $('#valid').val(),
-			    csrfmiddlewaretoken: $("[name='csrfmiddlewaretoken']").val(),
-		    },
-		    success: function (args) {
-			    if(args.status){
-			        let icon = $('#status')
-			        icon.removeClass('fa-user-circle-o blue')
-			        icon.addClass('fa-check-circle green')
-				    setTimeout(function () {
-			            location.href = '/index/'
-                    }, 1500)
-			    }else{
-			        let box = $('#assert_valid')
-					box.text(args.msg)
-				    box.fadeIn(1000)
-				    setTimeout(function () {
-						box.fadeOut(1000)
-                    }, 1000)
-			    }
-            }
-	    })
-    })
-
-	// to register
-	$('#register').click(function () {
-		location.href = '/register/'
-    })
-
-	$(function () {
-		setInterval(function () {
-		    setTimeout(function () {
-				$('.cor_box').animate({top:'+=50px'},1000);
-	        }, 1000)
-		    setTimeout(function () {
-				$('.cor_box').animate({top:'-=50px'},1000);
-	        }, 1000)
-		})
-    })
-</script>
 </body>
 </html>
