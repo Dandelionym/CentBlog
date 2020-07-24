@@ -1,25 +1,18 @@
-
-
-
 <html lang="en">
 <head>
     <title>CentBLG | 全球最大的全平台知识分享区</title>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Brego Bootstrap 4x admin is super flexible, powerful, clean &amp; modern responsive admin dashboard with unlimited possibilities.">
-    <meta name="author" content="GetBootstrap, design by: puffintheme.com">
-
-    <link rel="icon" href="favicon.png" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <!-- VENDOR CSS -->
-    <link rel="stylesheet" href="/static/centBlog/plugins/assets/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/centBlog/plugins/bs/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://www.jq22.com/jquery/font-awesome.4.7.0.css">
     <link rel="stylesheet" href="/static/centBlog/plugins/assets/vendor/animate-css/vivify.min.css">
 
     <!-- MAIN CSS -->
     <link rel="stylesheet" href="/static/centBlog/plugins/assets/css/site.css">
 
-    <style type="text/css">.jqstooltip {
+    <style type="text/css">
+        .jqstooltip {
         position: absolute;
         left: 0px;
         top: 0px;
@@ -36,7 +29,6 @@
         box-sizing: content-box;
         z-index: 10000;
     }
-
     .jqsfield {
         color: white;
         font: 10px arial, san serif;
@@ -63,27 +55,32 @@
                 <p class="lead">欢迎登录</p>
             </div>
             <div class="body">
-                <form class="form-auth-small" action="index.html">
+                <div class="">
+                    {% csrf_token %}
                     <div class="form-group">
-                        <label for="signin-email" class="control-label sr-only">Email</label>
-                        <input type="email" class="form-control round" id="signin-email" value="" placeholder="用户名">
+                        <label for="user" class="control-label sr-only">用户名</label>
+                        <input type="text" class="form-control round" id="user" value="" placeholder="用户名">
                     </div>
                     <div class="form-group">
-                        <label for="signin-password" class="control-label sr-only">Password</label>
-                        <input type="password" class="form-control round" id="signin-password" value="" placeholder="密码">
+                        <label for="pswd" class="control-label sr-only">密&emsp;码</label>
+                        <input type="password" class="form-control round" id="pswd" value="" placeholder="密&emsp;码">
                     </div>
                     <div class="form-group clearfix">
-                        <label class="fancy-checkbox element-left">
-                            <input type="checkbox">
-                            <span>记住我</span>
-                        </label>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label for="valid"></label><input type="text" id="valid" class="form-control">
+                            </div>
+                            <div class="col-sm-6 jstf_sa">
+                                <img alt="验证码" height="35" id="valid_code_img" src="/get_valid_img/" width=auto>
+                            </div>
+                        </div>
                     </div>
-                    <button type="submit" class="btn btn-primary btn-round btn-block">登录</button>
+                    <button id="login" class="btn btn-primary btn-round btn-block">登录</button>
                     <div class="bottom">
-                        <span class="helper-text m-b-10"><i class="fa fa-lock"></i> <a href="page-forgot-password.html">忘记密码?</a></span>
-                        <span>还没有账号？立即<a href="/register/">注册</a></span>
+                        <span class="helper-text m-b-10"><i class="fa fa-lock"></i> <a href="/forget_pswd/">忘记密码?</a></span> <!--TODO-->
+                        <span>还没有账号？<a href="/register/">立即注册</a></span>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
@@ -92,13 +89,63 @@
     </div>
 </div>
 <!-- END WRAPPER -->
+{#<script src="/static/centBlog/plugins/assets/bundles/libscripts.bundle.js"></script>#}
+{#<script src="/static/centBlog/plugins/assets/bundles/vendorscripts.bundle.js"></script>#}
+{#<script src="/static/centBlog/plugins/assets/vendor/particlesjs/particles.min.js"></script>#}
+{#<script src="/static/centBlog/plugins/assets/bundles/mainscripts.bundle.js"></script>#}
+{#<script src="/static/centBlog/plugins/assets/js/pages/particlesjs.js"></script>#}
+<script src="/static/centBlog/plugins/jquery-3.4.1.js"></script>
+<script>
+	// Get valid image by flushing local page. (Also can be replaced by ajax)
+	$('#valid_code_img').click(function () {  $(this)[0].src += "?"  })
 
-<script src="/static/centBlog/plugins/assets/bundles/libscripts.bundle.js"></script>
-<script src="/static/centBlog/plugins/assets/bundles/vendorscripts.bundle.js"></script>
-<script src="/static/centBlog/plugins/assets/vendor/particlesjs/particles.min.js"></script>
-<script src="/static/centBlog/plugins/assets/bundles/mainscripts.bundle.js"></script>
-<script src="/static/centBlog/plugins/assets/js/pages/particlesjs.js"></script>
+	// Loginning confirm
+	$('#login').click(function () {
+	    $.ajax({
+		    url: '/login/',
+		    type: 'POST',
+		    data: {
+		        user: $('#user').val(),
+			    password: $('#pswd').val(),
+			    valid_code: $('#valid').val(),
+			    csrfmiddlewaretoken: $("[name='csrfmiddlewaretoken']").val(),
+		    },
+		    success: function (args) {
+			    if(args.status){
+			        alert(args.status)
+			        alert(args.msg)
+                    location.href = '/index/'
+			    }else{
+			        alert(args.msg)
+			    }
+            }
+	    })
+    })
 
+    // input_btn:keyboard --> login
+    $('#valid').on('keypress',function(event){
+        if(event.keyCode === 13){
+            $.ajax({
+		    url: '/login/',
+		    type: 'POST',
+		    data: {
+		        user: $('#user').val(),
+			    password: $('#pswd').val(),
+			    valid_code: $('#valid').val(),
+			    csrfmiddlewaretoken: $("[name='csrfmiddlewaretoken']").val(),
+		    },
+		    success: function (args) {
+			    if(args.status){
+                    location.href = '/index/'
+			    }else{
+			        alert(args.msg)
+			    }
+            }
+	    })
+        }
+    })
+
+</script>
 
 </body>
 </html>

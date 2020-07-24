@@ -83,7 +83,7 @@
 						<img style="border-radius: 999px; overflow: hidden" alt="" src="/media/{{ request.user.avatar }}" width="25" height="25">&nbsp;{{ request.user.username }}
 						<span class="caret"></span></a>
 					<ul class="dropdown-menu">
-						<li><a href="#">个人资料</a></li>
+						<li><a href="/personal_info/">个人资料</a></li>
 						<li><a href="/backend/">文章管理</a></li>
 						<li role="separator" class="divider"></li>
 						<li><a href={% url 'logout' %}>注销</a></li>

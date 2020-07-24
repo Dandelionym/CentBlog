@@ -36,10 +36,8 @@ def login(request):
 				ret['status'] = True
 				auth.login(request, user)        # request.user == current logined object.
 				ret['user'] = user.username
-				
 				if credithelpers.login_time_check(request.user.pk):
 					models.UserInfo.objects.filter(pk=request.user.pk).update(ps_credit=F("ps_credit") + settings.CREDIT_ADDED_OF_LOGINED)
-				
 				return JsonResponse(ret)
 			else:
 				ret['status'] = False
@@ -344,19 +342,28 @@ def personal_info(request):
 		user = request.user
 		blog = models.Blog.objects.filter(nid=user.blog_id).first()
 		if blog:
-			status = True
+			has_blog = True
 			return render(request, 'personal_info.html', locals())
 		else:
-			status = False
+			has_blog = False
 			message = "You don't have a blog yet. Would you like to create it now?"
-			return render(request, 'personal_info.html', locals())
+			return render(request, 'create_blog.html', locals())
 	except Exception as e:
 		print(str(e))
 
 
 def create_blog(request):
-
-
-	return render(request, 'create_blog.html', {})
+	if request.is_ajax():
+		user = request.user.pk
+		site_title = request.POST.get('site_title')
+		site_name = request.POST.get('site_name')
+		site_theme = request.POST.get('site_theme')
+		site_desc = request.POST.get('site_desc')
+		nid = models.Blog.objects.create(title=site_title, site_name=site_name, theme=site_theme, desc=site_desc)
+		models.UserInfo.objects.filter(pk=user).update(blog_id=nid)
+		return HttpResponse("ok")
+	else:
+		has_blog = models.Blog.objects.filter(nid=request.user.blog_id).first()
+		return render(request, 'create_blog.html', locals())
 
 

@@ -74,7 +74,38 @@ function showCancelMessage() {
         closeOnCancel: false
     }, function (isConfirm) {
         if (isConfirm) {
-            swal("完成", "你的博客已成功创建", "success");
+            let null_check = false;     // 定义是否为空的检查者变量
+            let title = $('#site_title').val()
+            let name = $('#site_name').val()
+            let theme = $('#site_theme').val()
+            let desc = $('#site_desc').val()
+            if ($.trim(title) === "" || $.trim(name) === "" || $.trim(theme) === "" || $.trim(desc) === "") {  // 未填或空格符检查
+                alert("所填选项不能为空！")
+                return
+            } else {
+                null_check = true
+            }
+            if (null_check && $("input[type='checkbox']").is(':checked')) {     // 是否认同协议并通过检查
+                $.ajax({
+                url: '/create_blog/',
+                type: 'POST',
+                data: {
+                    'site_title': title,
+                    'site_name':  name,
+                    'site_theme': theme,
+                    'site_desc':  desc,
+                    'csrfmiddlewaretoken': $("[name='csrfmiddlewaretoken']").val(),
+                },
+                success: function () {
+                    swal("完成", "你的博客已成功创建", "success");
+                    if(isConfirm){
+                        location.href = "/"
+                    }
+                }
+            })
+            } else {
+                alert("请检查未填选项.")
+            }
         } else {
             swal("已取消", "你可以再一次修改站点信息", "error");
         }

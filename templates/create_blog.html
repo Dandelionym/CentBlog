@@ -9,7 +9,6 @@
 	<link rel="stylesheet" href="/static/centBlog/css/style.css">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
 
-{#    <link rel="stylesheet" href="/static/centBlog/plugins/assets/vendor/bootstrap/css/bootstrap.min.css">#}
     <link rel="stylesheet" href="/static/centBlog/plugins/assets/vendor/sweetalert/sweetalert.css">
 
 	<script src="/static/centBlog/plugins/jquery-3.4.1.js"></script>
@@ -116,13 +115,9 @@
 		</div><!-- /.navbar-collapse -->
 	</div><!-- /.container-fluid -->
 </nav>
-{% if not status %}
-
-
+{% if has_blog %}
+    <script> location.href = '/personal_info/' </script>
 {% else %}
-
-
-{% endif %}
 <div>
     <div class="container" style="background: #229a95; height: 300px; border-radius: 9px;
     background: url('/static/centBlog/images/cre_bg.png') no-repeat; background-size: cover">
@@ -203,11 +198,11 @@
                 </div>
 
                 <div class="row">
-                    <label for="site_theme"></label>
+                    <label for="site_desc"></label>
                     <div class="well show_info text-center">
                         下面写一下博客简介，比如你的建站目的、将来的发展方向、更新时间段等，亮出你的特色！
                     </div>
-                    <textarea id="site_theme" class="text-left form-control" style="padding: 5px;height: 120px"></textarea>
+                    <textarea id="site_desc" class="text-left form-control" style="padding: 5px;height: 120px"></textarea>
                 </div>
 
                 <!-- 用户许可说明书 -->
@@ -222,25 +217,25 @@
                             </div>
                             <div class="modal-body">
                                 <p style="background: none; border: none">
-一、总章
-<br/>（总）不得利用本站危害国家安全、泄露国家秘密,不得侵犯国家社会集体的和公民的合法权益，
-<br/>（总）不得利用本站制作、复制和传播危害社会或对国家、社会造成不良影响的信息，具体细节如下：
-<br/>（一）煽动抗拒、破坏宪法和法律、行政法规实施的；
-<br/>（二）煽动颠覆国家政权，推翻社会主义制度的；
-<br/>（三）煽动分裂国家、破坏国家统一的；
-<br/>（四）煽动民族仇恨、民族歧视，破坏民族团结的；
-<br/>（五）捏造或者歪曲事实，散布谣言，扰乱社会秩序的；
-<br/>（六）宣扬封建迷信、淫秽、色情、赌博、暴力、凶杀、恐怖、教唆犯罪的；
-<br/>（七）公然侮辱他人或者捏造事实诽谤他人的，或者进行其他恶意攻击的；
-<br/>（八）损害国家机关信誉的；
-<br/>（九）其他违反宪法和法律行政法规的；
-<br/>（十）发布黄色反动文章
-<br/>二、互相尊重，对自己的言论和行为负责
-<br/>（一）尊重他人的意见与建议，不进行言语攻击等伤及他人的行为。
-<br/>（二）维护良好的社区环境，遵从社会主义核心价值观所倡导的一切内容。
-<br/>三、处罚办法
-<br/>&emsp;&emsp;如您同意此规定，则一切解释权归属 CentBlog 所有。在任何社区维护形态下，如您违反以上条例中的任何一条，您将接受所有处罚。
-并且规定该处罚指：收回一切博客资源并予以全站通报，对违规者采取相应法律措施予以制裁，并处以200元以上3000元以下的损失罚款，具体数量结合法律进一步规定。
+                                    一、总章
+                                    <br/>（总）不得利用本站危害国家安全、泄露国家秘密,不得侵犯国家社会集体的和公民的合法权益，
+                                    <br/>（总）不得利用本站制作、复制和传播危害社会或对国家、社会造成不良影响的信息，具体细节如下：
+                                    <br/>（一）煽动抗拒、破坏宪法和法律、行政法规实施的；
+                                    <br/>（二）煽动颠覆国家政权，推翻社会主义制度的；
+                                    <br/>（三）煽动分裂国家、破坏国家统一的；
+                                    <br/>（四）煽动民族仇恨、民族歧视，破坏民族团结的；
+                                    <br/>（五）捏造或者歪曲事实，散布谣言，扰乱社会秩序的；
+                                    <br/>（六）宣扬封建迷信、淫秽、色情、赌博、暴力、凶杀、恐怖、教唆犯罪的；
+                                    <br/>（七）公然侮辱他人或者捏造事实诽谤他人的，或者进行其他恶意攻击的；
+                                    <br/>（八）损害国家机关信誉的；
+                                    <br/>（九）其他违反宪法和法律行政法规的；
+                                    <br/>（十）发布黄色反动文章
+                                    <br/>二、互相尊重，对自己的言论和行为负责
+                                    <br/>（一）尊重他人的意见与建议，不进行言语攻击等伤及他人的行为。
+                                    <br/>（二）维护良好的社区环境，遵从社会主义核心价值观所倡导的一切内容。
+                                    <br/>三、处罚办法
+                                    <br/>&emsp;&emsp;如您同意此规定，则一切解释权归属 CentBlog 所有。在任何社区维护形态下，如您违反以上条例中的任何一条，您将接受所有处罚。
+                                    并且规定该处罚指：收回一切博客资源并予以全站通报，对违规者采取相应法律措施予以制裁，并处以200元以上3000元以下的损失罚款，具体数量结合法律进一步规定。
                                 </p>
                             </div>
                         </div>
@@ -257,6 +252,7 @@
                         </span>
                     </div>
                     <div style="display: flex; justify-content: space-between">
+                        {% csrf_token %}
                         <button class="btn btn-success btn-round js-sweetalert" data-type="cancel" style="width: 230px; margin: 0 auto">立即创建</button>
                     </div>
                 </div>
@@ -264,24 +260,10 @@
             </div>
         </div>
 </div>
-
-
-
-
 <script src="/static/centBlog/plugins/assets/vendor/sweetalert/sweetalert.min.js"></script>
 <script src="/static/centBlog/plugins/assets/bundles/vendorscripts.bundle.js"></script>
 <script src="/static/centBlog/plugins/assets/bundles/mainscripts.bundle.js"></script>
 <script src="/static/centBlog/plugins/assets/js/pages/ui/dialogs.js"></script>
-<script>
-    $('.confirm').click(function () {
-        $.ajax({
-            url: '/create_blog/',
-            type: 'POST',
-            data: {
-
-            }
-        })
-    })
-</script>
+{% endif %}
 </body>
 </html>

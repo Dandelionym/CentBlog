@@ -50,7 +50,7 @@
 	</style>
 </head>
 <body>
-{% if not status %}
+{% if not has_blog %}
     <script>
         location.href = '/create_blog/'
     </script>
@@ -97,14 +97,6 @@
 		</div><!-- /.navbar-collapse -->
 	</div><!-- /.container-fluid -->
 </nav>
-{% if not status %}
-    <script>
-    {#let sign = confirm("...?")#}
-    {#if(sign){#}
-{##}
-{#    }#}
-    </script>
-{% else %}
     <div class="container">
     <div class="row">
         <div class="col-md-3" style="height: 350px;">
@@ -146,9 +138,6 @@
                     </div>
                 </div>
             </div>
-
-
-
         </div>
     </div>
     <div class="row" style="margin-top: 20px">
@@ -156,7 +145,6 @@
         <div class="col-md-8" style="height: 300px; background: white"></div>
     </div>
 </div>
-{% endif %}
 
 
 
