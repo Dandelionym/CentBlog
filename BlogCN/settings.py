@@ -19,13 +19,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '&n3uwpmi$k@&fs*zb()c)(a7ohenp!+(2$e*6b2i_k%14@3@8('
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '192.168.1.5']
+ALLOWED_HOSTS = ['0.0.0.0']
 
 
 # Application definition
@@ -122,13 +121,7 @@ USE_L10N = True
 USE_TZ = False
 
 
-# Email
-EMAIL_HOST = 'smtp.163.com'
-EMAIL_PORT = 465
-EMAIL_HOST_USER = 'dandelionatcha@163.com'
-EMAIL_HOST_PASSWORD = 'FJKZAKLIRKBXLPKB'
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-EMAIL_USE_SSL = True
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
