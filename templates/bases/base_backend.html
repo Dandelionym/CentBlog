@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>后台管理</title>
+    <link rel="stylesheet" href="/static/centBlog/plugins/bs/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/centBlog/plugins/fa/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/centBlog/plugins/ly/layui/css/layui.css">
+    <link rel="stylesheet" href="/static/centBlog/plugins/sd/site/assets/styles/simditor.css">
+    <link rel="stylesheet" href="/static/centBlog/css/color.css">
+    <link rel="stylesheet" href="/static/centBlog/css/base_article.css">
+    <script src="/static/centBlog/plugins/jquery-3.4.1.js"></script>
+    <script src="/static/centBlog/plugins/bs/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            overflow: scroll;
+        }
+
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
+        body {
+            line-height: 1.6;
+            font-weight: 100;
+            color: #222;
+            font-size: 1.5rem;
+            font-family: 'Sailec Light', sans-serif !important;
+        }
+
+        .simditor .simditor-body {
+            padding: 18px 15px 40px;
+            min-height: 600px;
+            outline: none;
+            cursor: text;
+            position: relative;
+            z-index: 1;
+            background: transparent;
+            line-height: 1.6;
+            font-weight: 100;
+            color: #222;
+            font-size: 1.5rem;
+            font-family: 'Sailec Light', sans-serif !important;
+        }
+
+        #article_title {
+            border: none;
+            border-bottom: #8da7c0 1px solid;
+            border-radius: 0;
+            height: 60px;
+            box-shadow: none;
+            text-align: center;
+            font-size: 2.5rem;
+            font-family: 'Sailec Light', sans-serif !important;
+        }
+    </style>
+    <style>
+        #credits {
+            width: 100%;
+            height: 250px;
+        }
+
+        #time_line {
+            width: 100%;
+            height: 600px;
+        }
+
+        #heat_map {
+            width: 100%;
+            height: 600px;
+        }
+
+        #read_amount {
+            width: 100%;
+            height: 500px;
+        }
+
+        .demo-theme-dark .demo-background {
+            background: #000;
+        }
+
+
+        .demo-theme-dark .demo-background {
+            background: #000;
+        }
+    </style>
+</head>
+<body>
+<script>
+    {% if not has_blog %}
+        location.href = '/create_blog/'
+    {% endif %}
+</script>
+
+{% load my_tags %}
+{% get_navbar_header user.username %}
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div id="left_bar" class="col-md-2">
+            <div class="panel panel-default">
+                <div class="panel-body clearfix">
+                    <button id="article_submit" class="btn btn-primary pull-right" value="提交" style="width: 100%; margin-bottom: 20px">发表</button>
+                    <button class="btn btn-success pull-right" value="提交" style="width: 100%; margin-bottom: 20px">保存</button>
+                    <hr/>
+                    <div class="row">
+                        <div class="well" style="margin-left: 5px; margin-right: 5px; margin-bottom: -10px">
+                            <p style="margin: 1px; color: #4d565c">
+                                <span class="text-primary">字数统计:&emsp;<span id="fonts_count">0</span>&emsp;字</span><br/><br/>
+                                <strong class="text-primary">编辑文章：</strong>编辑框内支持图片的粘贴，编写过程中将自动保存文章。<span class="text-danger">(图片粘贴仅支持火狐、谷歌浏览器)</span><br/><br/>
+                                <strong class="text-primary">查看全部：</strong>支持预览所有文章，并统计文章所在的标签生成词云，点击预览将跳转至文章所在页面。<span class="text-danger">如文章被删除则无法恢复，请谨慎操作。</span><br/><br/>
+                                <strong class="text-primary">动态记录：</strong>记录用户当日的积分以及文章浏览量，提供动态交互式可视化界面，积分等信息将于每晚24：00更新，无法查看当日积分量与浏览量。<br/>
+                            </p>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="content_board" class="col-md-10">
+            <div class="collapse" id="collapseExample">
+                如需全屏写作，请设置为
+                <span role="button" id="left_hide" style="margin: 20px; color: #0a66c2">
+                    <i class="fa fa-info-circle"></i>
+                </span>
+                模式，如想回复侧栏，请再次点击。请再次点击设置以隐藏此栏！
+            </div>
+            {% csrf_token %}
+            {% block backend_content %}
+
+
+            {% endblock %}
+        </div>
+    </div>
+</div>
+
+
+<script src="https://www.amcharts.com/lib/4/core.js"></script>
+<script src="https://www.amcharts.com/lib/4/charts.js"></script>
+<script src="https://www.amcharts.com/lib/4/plugins/timeline.js"></script>
+<script src="https://www.amcharts.com/lib/4/plugins/bullets.js"></script>
+<script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+<script type="text/javascript" src="/static/centBlog/js/backend_credits.js"></script>
+<script type="text/javascript" src="/static/centBlog/js/backend_timeline.js"></script>
+<script type="text/javascript" src="/static/centBlog/js/read_amount.js"></script>
+<script type="text/javascript" src="/static/centBlog/js/heat_map.js"></script>
+<script>
+    $('#left_hide').click(function () {
+        let target = $('#content_board')
+        if (target.hasClass('col-md-10')) {
+            $('#left_bar').hide()
+            target.removeClass('col-md-10')
+            target.addClass('col-md-12')
+        } else {
+            $('#left_bar').show()
+            target.removeClass('col-md-12')
+            target.addClass('col-md-10')
+        }
+    })
+
+</script>
+</body>
+</html>

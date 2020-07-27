@@ -1,0 +1,54 @@
+<div>
+    <style>
+        .navbar-nav > li > a {
+            color: #999797 !important;
+        }
+
+        .navbar-nav > li > a:hover {
+            color: white !important;
+        }
+    </style>
+    <nav class="navbar navbar-default" style="background-color: #000000;border-color: #000000;border-radius: 0;color: white !important;">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="" href="#"><img alt="CentBLG" src='/static/centBlog/logo-c.png' style="width: 37px!important; height: 37px !important;margin-top: 5px"></a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="/">广场</a></li>
+                    <li><a href="#">新闻</a></li>
+                    <li><a href="#">博文</a></li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    {% if user.is_authenticated %}
+                        <li><a href="#"><img alt="" src="/media/{{ user.avatar }}" width="20" height="20" style="border-radius: 999px; margin-right: 10px">{{ user.username }}</a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                               aria-expanded="false">我的空间<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/personal_info/">个人资料</a></li>
+                                <li><a href="#"></a></li>
+                                <li><a href="/backend/">文章管理</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href={% url 'logout' %}>注销</a></li>
+                            </ul>
+                        </li>
+                    {% else %}
+                        <li><a href={% url 'login' %}>登录</a></li>
+                        <li><a href={% url 'register' %}>注册</a></li>
+                    {% endif %}
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+</div>

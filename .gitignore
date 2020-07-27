@@ -1,0 +1,9 @@
+# Created by .ignore support plugin (hsz.mobi)
+
+BlogCN/settings.py
+CentBLG/codehelper.py
+CentBLG/sqlhelpers.py
+
+CentBLG/migrations
+CentBLG/templatetags
+.idea
