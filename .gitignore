@@ -1,5 +1,7 @@
 # Created by .ignore support plugin (hsz.mobi)
 
+!/BlogCN/settings.py
+
 BlogCN/settings.py
 CentBLG/codehelper.py
 CentBLG/sqlhelpers.py
