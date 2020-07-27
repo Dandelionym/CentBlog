@@ -73,17 +73,6 @@ WSGI_APPLICATION = 'BlogCN.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'CentDB2',
-        'USER': 'root',
-        'PASSWORD': 'smile0217',
-        'HOST': '127.0.0.1',
-        'POST': 3306,
-        'OPTIONS': {"init_command": "SET foreign_key_checks = 0;"},
-    }
-}
 
 
 # Password validation
