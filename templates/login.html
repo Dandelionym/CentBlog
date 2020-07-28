@@ -40,19 +40,16 @@
 
 <div class="auth-main particles_js">
     <div class="auth_div vivify popIn">
-        <div class="auth_brand">
-            <a class="navbar-brand" href="#"><img src="/static/centBlog/logo-c.png" width="60" class="d-inline-block align-top" alt=""></a>
-        </div>
         <div class="card">
             <div class="pattern">
                 <span class="red"></span>
                 <span class="indigo"></span>
                 <span class="blue"></span>
-                <span class="green"></span>
-                <span class="orange"></span>
+                <span class="indigo"></span>
+                <span class="red"></span>
             </div>
             <div class="header">
-                <p class="lead">欢迎登录</p>
+                <p class="lead"><img src="/static/centBlog/logo-c.png" alt="" width="70" height="70"></p>
             </div>
             <div class="body">
                 <div class="">
@@ -82,6 +79,13 @@
                     </div>
                 </div>
             </div>
+            <div class="pattern">
+                <span class="red"></span>
+                <span class="indigo"></span>
+                <span class="blue"></span>
+                <span class="indigo"></span>
+                <span class="red"></span>
+            </div>
         </div>
     </div>
     <div id="particles-js">
@@ -89,21 +93,23 @@
     </div>
 </div>
 <!-- END WRAPPER -->
-{#<script src="/static/centBlog/plugins/assets/bundles/libscripts.bundle.js"></script>#}
-{#<script src="/static/centBlog/plugins/assets/bundles/vendorscripts.bundle.js"></script>#}
-{#<script src="/static/centBlog/plugins/assets/vendor/particlesjs/particles.min.js"></script>#}
-{#<script src="/static/centBlog/plugins/assets/bundles/mainscripts.bundle.js"></script>#}
-{#<script src="/static/centBlog/plugins/assets/js/pages/particlesjs.js"></script>#}
+<script src="/static/centBlog/plugins/assets/bundles/libscripts.bundle.js"></script>
+<script src="/static/centBlog/plugins/assets/bundles/vendorscripts.bundle.js"></script>
+<script src="/static/centBlog/plugins/assets/vendor/particlesjs/particles.min.js"></script>
+<script src="/static/centBlog/plugins/assets/bundles/mainscripts.bundle.js"></script>
+<script src="/static/centBlog/plugins/assets/js/pages/particlesjs.js"></script>
 <script src="/static/centBlog/plugins/jquery-3.4.1.js"></script>
 <script>
-	// Get valid image by flushing local page. (Also can be replaced by ajax)
-	$('#valid_code_img').click(function () {  $(this)[0].src += "?"  })
+    // Get valid image by flushing local page. (Also can be replaced by ajax)
+    $('#valid_code_img').click(function () {
+        $(this)[0].src += "?"
+    })
 
-	// Loginning confirm
-	$('#login').click(function () {
-	    $.ajax({
-		    url: '/login/',
-		    type: 'POST',
+    // Loginning confirm
+    $('#login').click(function () {
+        $.ajax({
+            url: '/login/',
+            type: 'POST',
 		    data: {
 		        user: $('#user').val(),
 			    password: $('#pswd').val(),
