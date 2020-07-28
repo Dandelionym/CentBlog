@@ -15,8 +15,7 @@
             color: #222;
             font-size: 1.5rem;
             font-family: 'Sailec Light', sans-serif !important;
-            background: url("/static/centBlog/images/timg1.jpg") no-repeat fixed;
-            background-size: cover;
+        {#background: url("/static/centBlog/images/timg1.jpg") no-repeat fixed;#} background-size: cover;
         }
 
         .headbar {
@@ -57,7 +56,26 @@
             font-size: 2.8rem;
             font-family: self-defined;
         }
+
+        #motto {
+        {#width: 100%;#} height: 100%;
+            max-height: 280px;
+            padding: 20px;
+            overflow-y: scroll;
+            border-radius: 9px;
+            font-weight: 300;
+            font-size: 20px;
+            color: white;
+            text-align: center;
+        }
+
+        #motto::-webkit-scrollbar {
+            display: none;
+        }
+
+
     </style>
+
 </head>
 <body>
 {% if not has_blog %}
@@ -68,55 +86,16 @@
 
 {% load my_tags %}
 {% get_navbar_header user.username %}
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-3" style="height: 350px;">
-            <img src="/media/{{ user.avatar }}" style="width: 250px;height: 250px; border-radius: 999px;">
-        </div>
-        <div class="col-md-9" style="height: 300px; background: #ffffff; border-radius: 12px; box-shadow:rgba(73,77,100,0.76) 5px 5px 18px -10px">
-            <h1 class="text-center" id="border_deco">{{ blog.site_name }}</h1>
-            <h4><img src="/static/centBlog/icon/icon_info.png" width="33"> 基本信息</h4>
-
-            <div class="row clearfix" style="padding-left: 50px">
-                <div class="col-lg-6 col-md-12" style="padding-top: 5px; padding-bottom: 5px">
-                    用户名：<span style="margin-top: 20px"><strong>{{ user.username }}</strong></span>
-                </div>
-                <div class="col-lg-6 col-md-12" style="padding-top: 5px; padding-bottom: 5px">
-                    <i class="fa fa-phone">&emsp;</i><span style="margin-top: 20px"><strong>{{ user.telephone }}</strong></span>
-                </div>
-                <div class="col-lg-6 col-md-12" style="padding-top: 5px; padding-bottom: 5px">
-                    邮&emsp;箱：<span style="margin-top: 20px"><strong>{{ user.email }}</strong></span>
-                </div>
-                <div class="col-lg-6 col-md-12" style="padding-top: 5px; padding-bottom: 5px">
-                    <i class="fa fa-qq"></i>&emsp;<span style="margin-top: 20px"><strong>{{ user.qq }}</strong></span>
-                </div>
-                <div class="col-md-12">
-                    <div class="progress" style="margin-top: 5px">
-                        <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar"
-                             aria-valuenow="{{ user.ps_credit }}" aria-valuemin="0" aria-valuemax="500"
-                             style="width: {% widthratio user.ps_credit 500 100 %}%;">
-                            <span class="text-center">{% widthratio user.ps_credit 500 100 %}%</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="progress">
-                        <div class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar"
-                             aria-valuenow="{{ user.vip_credit }}" aria-valuemin="0" aria-valuemax="500"
-                             style="width: {{ user.vip_credit }}%">
-                            <span class="text-center">{{ user.vip_credit }}%</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row" style="margin-top: 20px">
-        <div class="col-md-4" style="height: 300px; background: white"></div>
-        <div class="col-md-8" style="height: 300px; background: white"></div>
-    </div>
-</div>
+{##}
+{#<div class="container-fluid banner banbk">#}
+{#<div class="banseo2">#}
+{#</div>#}
+{#<div class="banseo">#}
+{#<div class="banjz"><img src="img/ggc.png"></div><input type="text" class="bantxt" id="searchtxt" placeholder="输入插件关键字.." onkeyup="autoComplete.start(event)"><button class="btn banbutt" type="button" id="seobut"><i class="fa fa-chevron-circle-right"></i>找到你梦想</button><span class="seoicn"><i class="fa fa-search"></i></span>#}
+{#</div>#}
+{#<div class="bjtx" data-toggle="tooltip" data-placement="left" title="" data-original-title="如果您的电脑配置较低，请关闭背景特效">开启背景特效</div>#}
+{##}
+{#</div>#}
 
 
 </body>

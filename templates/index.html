@@ -17,6 +17,18 @@
             font-family: 'Sailec Light', sans-serif !important;
         }
 
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
+        .header_btn {
+            margin: 0;
+            width: 185px;
+            height: 4.5rem;
+            border-radius: 0;
+            font-size: 1.6rem;
+        }
+
         .headbar {
             background: black;
             height: 50px;
@@ -43,63 +55,156 @@
             margin-right: 2px;
         }
     </style>
+    <style>
+        .welcome_info {
+            color: white;
+            text-align: center;
+            font-size: 30px;
+            font-weight: 100;
+            margin-top: 80px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+    </style>
 </head>
 <body>
 {% load my_tags %}
 {% get_navbar_header user.username %}
-
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-2">
-            <div class="panel panel-success">
-                <div class="panel-heading">Panel heading without title</div>
-                <div class="panel-body">
-                    Panel content
+<div class="container-fluid banner banbk" style="margin: 0; overflow: hidden">
+    <div class="row" style="background: black; height: 460px">
+        <div class="container" style="height: 100%; display: flex; justify-content: space-around">
+            <canvas style="height: 460px; position: absolute" id="c"></canvas>
+            <div style="margin-top: 45px; z-index: 999!important;">
+                <div class="text-center" style="color: white; font-size: 65px; font-weight: 600; vertical-align: -15px;">
+                    Cent<img src="/static/centBlog/logo-c.png" alt="" style="margin-top: -60px; height: 100px">Blog
                 </div>
-            </div>
-            <div class="panel panel-warning">
-                <div class="panel-heading">Panel heading without title</div>
-                <div class="panel-body">
-                    Panel content
+                <div class="welcome_info" style="">
+                    The World's <strong style="color: #35baf3">Largest</strong> Knowledge Sharing Platform
+                    {#                    <div style="font-size: 18px; color: white;font-weight: 100; opacity: .1">#}
+                    {#                        全世界最大的知识分享交流平台#}
+                    {#                    </div>#}
                 </div>
-            </div>
-            <div class="panel panel-primary">
-                <div class="panel-heading">Panel heading without title</div>
-                <div class="panel-body">
-                    Panel content
+                <div class="welcome_info" style='font-family: "Bitstream Vera Sans Mono", Monaco, "Courier New", Courier, monospace; margin-top: 50px'>
+                    Welcome! <span style="color: #00dada">{{ user }}</span>
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="aritcle_list">
-                {% for article in article_list %}
-                    {% if article.status %}
-                        <div class="article_item" role="button">
-                            <h4><a href="/{{ article.user.username }}/articles/{{ article.nid }}">{{ article.title }}</a></h4>
-                            <div class="article_desc">
-                                <span class="media-left">
-                                    <img width="60" height="60" alt="头像" src='media/{{ article.user.avatar }}' style="border-radius: 5px">
-                                </span>
-                                <span class="media-right">
-                                    {{ article.desc }}
-                                </span>
-                            </div>
-                            <div class="small atricle_bottom_bar">
-                                <span><a href="/{{ article.user.username }}">{{ article.user.username }}</a></span>&emsp;&emsp;
-                                <span>发布于&emsp;{{ article.create_time | date:"Y-m-d  H:i:s" }}</span>&emsp;&emsp;
-                                <span class="glyphicon glyphicon-comment"></span>评论（{{ article.comment_count}}）&emsp;&emsp;
-                                <span class="glyphicon glyphicon-thumbs-up"></span>点赞（{{ article.up_count }}）&emsp;&emsp;
-                            </div>
-                        </div>
-                        <hr>
-                    {% endif %}
-				{% endfor %}
-			</div>
-		</div>
-	</div>
+    </div>
+</div>
+<div>
+    <div class="container" style="border: 1px black solid;">
+        <div style="display: flex; align-items: center">
+            <div class="center-block" style="display: flex; justify-content: space-around; flex-wrap: wrap">
+                <button class="btn btn-danger header_btn">博客广场</button>
+                <button class="btn btn-danger header_btn">世界要闻</button>
+                <button class="btn btn-danger header_btn">量子实验室</button>
+                <button class="btn btn-danger header_btn">伽马云空间</button>
+                <button class="btn btn-danger header_btn">项目中心</button>
+                <button class="btn btn-danger header_btn">关于我们</button>
+            </div>
+        </div>
+        <hr/>
+
+    </div>
 </div>
 
 
+<script>
+    var w = c.width = window.innerWidth,
+        h = c.height = window.innerHeight,
+        ctx = c.getContext('2d'),
+        opts = {
+            len: 20,
+            count: 50,
+            baseTime: 10,
+            addedTime: 10,
+            dieChance: .05,
+            spawnChance: 1,
+            sparkChance: .1,
+            sparkDist: 10,
+            sparkSize: 2,
+            color: 'hsl(hue,100%,light%)',
+            baseLight: 50,
+            addedLight: 10,
+            shadowToTimePropMult: 6,
+            baseLightInputMultiplier: .01,
+            addedLightInputMultiplier: .02,
+            cx: w / 2,
+            cy: h / 2,
+            repaintAlpha: .04,
+            hueChange: .1
+        },
+        tick = 0,
+        lines = [],
+        dieX = w / 2 / opts.len,
+        dieY = h / 2 / opts.len,
+        baseRad = Math.PI * 2 / 6;
+    ctx.fillStyle = 'black';
+    ctx.fillRect(0, 0, w, h);
 
+    function loop() {
+        window.requestAnimationFrame(loop);
+        ++tick;
+        ctx.globalCompositeOperation = 'source-over';
+        ctx.shadowBlur = 0;
+        ctx.fillStyle = 'rgba(0,0,0,alp)'.replace('alp', opts.repaintAlpha);
+        ctx.fillRect(0, 0, w, h);
+        ctx.globalCompositeOperation = 'lighter';
+        if (lines.length < opts.count && Math.random() < opts.spawnChance) lines.push(new Line);
+        lines.map(function (line) {
+            line.step()
+        })
+    }
+
+    function Line() {
+        this.reset()
+    }
+
+    Line.prototype.reset = function () {
+        this.x = 0;
+        this.y = 0;
+        this.addedX = 0;
+        this.addedY = 0;
+        this.rad = 0;
+        this.lightInputMultiplier = opts.baseLightInputMultiplier + opts.addedLightInputMultiplier * Math.random();
+        this.color = opts.color.replace('hue', tick * opts.hueChange);
+        this.cumulativeTime = 0;
+        this.beginPhase()
+    }
+    Line.prototype.beginPhase = function () {
+        this.x += this.addedX;
+        this.y += this.addedY;
+        this.time = 0;
+        this.targetTime = (opts.baseTime + opts.addedTime * Math.random()) | 0;
+        this.rad += baseRad * (Math.random() < .5 ? 1 : -1);
+        this.addedX = Math.cos(this.rad);
+        this.addedY = Math.sin(this.rad);
+        if (Math.random() < opts.dieChance || this.x > dieX || this.x < -dieX || this.y > dieY || this.y < -dieY) this.reset()
+    }
+    Line.prototype.step = function () {
+        ++this.time;
+        ++this.cumulativeTime;
+        if (this.time >= this.targetTime) this.beginPhase();
+        var prop = this.time / this.targetTime,
+            wave = Math.sin(prop * Math.PI / 2),
+            x = this.addedX * wave,
+            y = this.addedY * wave;
+        ctx.shadowBlur = prop * opts.shadowToTimePropMult;
+        ctx.fillStyle = ctx.shadowColor = this.color.replace('light', opts.baseLight + opts.addedLight * Math.sin(this.cumulativeTime * this.lightInputMultiplier));
+        ctx.fillRect(opts.cx + (this.x + x) * opts.len, opts.cy + (this.y + y) * opts.len, 2, 2);
+        if (Math.random() < opts.sparkChance) ctx.fillRect(opts.cx + (this.x + x) * opts.len + Math.random() * opts.sparkDist * (Math.random() < .5 ? 1 : -1) - opts.sparkSize / 2, opts.cy + (this.y + y) * opts.len + Math.random() * opts.sparkDist * (Math.random() < .5 ? 1 : -1) - opts.sparkSize / 2, opts.sparkSize, opts.sparkSize)
+    }
+    loop();
+    window.addEventListener('resize',
+        function () {
+            w = c.width = window.innerWidth;
+            h = c.height = window.innerHeight;
+            ctx.fillStyle = 'black';
+            ctx.fillRect(0, 0, w, h);
+            opts.cx = w / 2;
+            opts.cy = h / 2;
+            dieX = w / 2 / opts.len;
+            dieY = h / 2 / opts.len
+        });
+</script>
 </body>
 </html>

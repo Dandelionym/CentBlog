@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>CentBLG | 全球最大的全平台知识分享区</title>
     <link rel="stylesheet" href="/static/centBlog/plugins/bs/css/bootstrap.min.css">
     <link rel="stylesheet" href="/static/centBlog/plugins/fa/css/font-awesome.min.css">
     <link rel="stylesheet" href="/static/centBlog/css/color.css">
@@ -66,17 +66,27 @@
 {% load my_tags %}
 {% get_navbar_header user.username %}
 
+
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-3">
-            {% load my_tags %}
-            {% get_classfication_style username %}
+        <div class="col-md-2">
+            {#            {% load my_tags %}#}
+            {#            {% get_classfication_style username %}#}
         </div>
-        <div class="col-md-9">
+        <div class="col-md-8">
             {% block content %}
 
             {% endblock %}
         </div>
+        <div class="col-md-2">
+
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid" style="margin-top: 50px">
+    <div class="row" style="background: black; height: 200px">
+
     </div>
 </div>
 

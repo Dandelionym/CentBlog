@@ -143,19 +143,20 @@ def home_site(request, username, **kwargs):
 
 
 def article_detail(request, username, article_id):
-	user_author = UserInfo.objects.filter(username=username).first()                # 文章作者
+	user_author = UserInfo.objects.filter(username=username).first()  # 文章作者
 	user_logined = UserInfo.objects.filter(username=request.user.username).first()  # 登录用户
 	blog = user_author.blog
 	article_obj = models.Article.objects.filter(pk=article_id).first()
+	auth_avatar = UserInfo.objects.filter(nid=article_obj.user_id).first().avatar
 	comment_list = models.Comment.objects.filter(article_id=article_id)
-	
+
 	# 对文章添加浏览量：
 	if not request.COOKIES.get('viewed-' + article_id):
 		if not user_author.nid == user_logined.nid:
 			models.Article.objects.filter(pk=article_id).update(views=F("views") + 1)
 			credithelpers.credit_add_controller(request, settings.CREDIT_ADDED_OF_LOOKUP_ARTICLES)
 
-	credithelpers.user_level_up(request)    # 用户积分满足后等级的更新
+	credithelpers.user_level_up(request)  # 用户积分满足后等级的更新
 	models.Tag.objects.filter(blog=blog).values("pk").annotate(c=Count("article")).values_list("title", "c")
 	try:
 		is_posted = 1 if models.ArticleUpDown.objects.filter(user_id=request.user.pk, article_id=article_id).first() else 0
