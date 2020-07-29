@@ -64,6 +64,45 @@
             margin-top: 80px;
             font-family: 'Courier New', Courier, monospace;
         }
+
+        .center_box {
+            height: 200px;
+            background-image: linear-gradient(145deg, #ffffff, rgb(212, 212, 212));
+        {#background-image: repeating-linear-gradient(#f7d2d2, white, #f7d2d2);#} margin: 5px;
+            border-radius: 3px;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            transition: .5s;
+        }
+
+        .center_box h2 {
+            text-align: center;
+            font-weight: 600
+        }
+
+        .center_box .info_text {
+            display: none;
+        }
+
+        .middle_1 {
+        {#background: url("/static/centBlog/images/casebg.jpg") no-repeat;#}{#background-size: cover;#}
+        }
+
+        .swiper-item > img {
+            width: inherit;
+            height: inherit;
+            object-fit: cover
+        }
+
+        .left_info_btn {
+        {#background-image: linear-gradient(180deg, rgba(212, 212, 212, 0.6), #ffffff);#}{#background-image: repeating-linear-gradient(#DDDDDD, white, #DDDDDD);#} height: 70px;
+            width: 100%;
+            border: 1px white solid;
+            font-size: 18px;
+            vertical-align: middle;
+            line-height: 3;
+        }
     </style>
 </head>
 <body>
@@ -90,8 +129,8 @@
         </div>
     </div>
 </div>
-<div>
-    <div class="container" style="border: 1px black solid;">
+<div class="middle_1">
+    <div class="container" style="">
         <div style="display: flex; align-items: center">
             <div class="center-block" style="display: flex; justify-content: space-around; flex-wrap: wrap">
                 <button class="btn btn-danger header_btn">博客广场</button>
@@ -102,12 +141,82 @@
                 <button class="btn btn-danger header_btn">关于我们</button>
             </div>
         </div>
-        <hr/>
 
+        <hr style="border: 1px solid rgba(0,0,0,0)"/>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="center_box" style="">
+                    <img alt="" src="/static/centBlog/images/pc-0710.png" style="width: 200px; position: relative">
+                    <div class="info_text">
+                        <h2>智能云提醒</h2>
+                        <p style="padding: 30px">CentBlog 集成智能化云服务，伽马云空间为您助力新时代云科技，为您的云数据保驾护航</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="center_box" style="">
+                    <img alt="" src="/static/centBlog/images/pc-0724.png" style="width: 200px">
+                    <div class="info_text">
+                        <h2>多渠道集成</h2>
+                        <p style="padding: 30px">CentBlog 以优质的多渠道知识集成策略助力知识图谱全方位覆盖，加速互联网云服务蔓延</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="center_box" style="">
+                    <img alt="" src="/static/centBlog/images/pc-0720.png" style="width: 200px">
+                    <div class="info_text">
+                        <h2>合成安全锁</h2>
+                        <p style="padding: 30px">保障数据安全性是首要问题，CentBlog为您创造分布式云存储，实现高智能化的信息加密</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="margin-top: 40px">
+    <div class="container" style="">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="left_info_btn btn btn-danger" role="button">云存储架构</div>
+                <div class="left_info_btn btn btn-danger" role="button">智能技术栈</div>
+                <div class="left_info_btn btn btn-danger" role="button">高加密通讯</div>
+                <hr/>
+                <div class="left_info_btn btn btn-danger" role="button">团队组织</div>
+                <div class="left_info_btn btn btn-danger" role="button">临时托管</div>
+                <div class="left_info_btn btn btn-danger" role="button">智能监测</div>
+                <div class="left_info_btn btn btn-danger" role="button">安全交互</div>
+            </div>
+            <div class="col-md-10" style="background: #DDDDDD; height: 530px">
+
+            </div>
+        </div>
     </div>
 </div>
 
 
+<script>
+    let text = $('.info_text');
+    let pause = 500;
+    $('.center_box').hover(
+        function () {
+            let img = $($(this).children()[0])
+            let box = $($(this).children()[1])
+            img.hide()
+            box.fadeIn(pause)
+            $(this).css('box-shadow', '1px 1px 12px 2px #dddddd')
+        },
+        function () {
+            let img = $($(this).children()[0])
+            let box = $($(this).children()[1])
+            box.hide()
+            img.fadeIn(pause)
+            $(this).css('box-shadow', 'none')
+        }
+    )
+</script>
 <script>
     var w = c.width = window.innerWidth,
         h = c.height = window.innerHeight,
