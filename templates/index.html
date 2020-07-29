@@ -104,27 +104,45 @@
             line-height: 3;
         }
 
-        #info1 {
+        .info_content {
             background: white;
             width: 100%;
             height: 100%;
+        }
+
+
+        #info1 {
             background: url("/static/centBlog/images/slider_info1.png") no-repeat;
             background-size: cover;
         }
 
         #info2 {
-            background: white;
-            width: 100%;
-            height: 100%;
             background: url("/static/centBlog/images/slider_info2.png") no-repeat;
             background-size: cover;
         }
 
         #info3 {
-            background: white;
-            width: 100%;
-            height: 100%;
             background: url("/static/centBlog/images/slider_info3.png") no-repeat;
+            background-size: cover;
+        }
+
+        #info4 {
+            background: url("/static/centBlog/images/slider_info4.png") no-repeat;
+            background-size: cover;
+        }
+
+        #info5 {
+            background: url("/static/centBlog/images/slider_info5.png") no-repeat;
+            background-size: cover;
+        }
+
+        #info6 {
+            background: url("/static/centBlog/images/slider_info6.png") no-repeat;
+            background-size: cover;
+        }
+
+        #info7 {
+            background: url("/static/centBlog/images/slider_info7.png") no-repeat;
             background-size: cover;
         }
 
@@ -213,21 +231,25 @@
                 <div box_id="2" class="left_info_btn btn btn-danger" role="button">智能技术栈</div>
                 <div box_id="3" class="left_info_btn btn btn-danger" role="button">高加密通讯</div>
                 <hr/>
-                <div box_id="4" class="left_info_btn btn btn-danger" role="button">最新版本</div>
-                <div box_id="5" class="left_info_btn btn btn-danger" role="button">国际新闻</div>
-                <div box_id="6" class="left_info_btn btn btn-danger" role="button">最佳贡献</div>
-                <div box_id="7" class="left_info_btn btn btn-danger" role="button">人才组织</div>
+                <div box_id="4" class="left_info_btn btn btn-danger" role="button">博客世界</div>
+                <div box_id="5" class="left_info_btn btn btn-danger" role="button">伽马空间</div>
+                <div box_id="6" class="left_info_btn btn btn-danger" role="button">万维图谱</div>
+                <div box_id="7" class="left_info_btn btn btn-danger" role="button">灵鹿计划</div>
             </div>
             <div id="display_content" class="col-md-10" style="height: 530px; padding: 0">
-                <div id="info1">
+                <div id="info1" class="info_content">
                     <button class="btn btn-danger" style="position: absolute; bottom: 25px; left: 45px">立即购买</button>
                 </div>
-                <div id="info2" class="hide">
+                <div id="info2" class="hide info_content">
                     <button class="btn btn-danger" style="position: absolute; bottom: 25px; left: 45px">立即购买</button>
                 </div>
-                <div id="info3" class="hide">
+                <div id="info3" class="hide info_content">
                     <button class="btn btn-danger" style="position: absolute; bottom: 25px; left: 45px">立即购买</button>
                 </div>
+                <div id="info4" class="hide info_content"></div>
+                <div id="info5" class="hide info_content"></div>
+                <div id="info6" class="hide info_content"></div>
+                <div id="info7" class="hide info_content"></div>
             </div>
         </div>
     </div>
@@ -255,31 +277,34 @@
     )
 </script>
 <script>
-    setInterval(function () {
-        let sign;
-        let control_bar = $('.slide_bar_control').children('div')
-        let active_item = $('.info_active')
-        if (active_item.next()[0]) {
-            active_item.removeClass('info_active')
-            let new_active = active_item.next()
-            new_active.addClass('info_active')
-            if (new_active.attr('box_id')) {
-                sign = new_active.attr('box_id')
-                let sign_item = $('#info' + sign)
-                $('#display_content').children().hide()
-                if (sign_item.hasClass('hide')) {
-                    sign_item.removeClass('hide')
+    let Lock = true
+
+    if (Lock)
+        setInterval(function () {
+            let sign;
+            let control_bar = $('.slide_bar_control').children('div')
+            let active_item = $('.info_active')
+            if (active_item.next()[0]) {
+                active_item.removeClass('info_active')
+                let new_active = active_item.next()
+                new_active.addClass('info_active')
+                if (new_active.attr('box_id')) {
+                    sign = new_active.attr('box_id')
+                    let sign_item = $('#info' + sign)
+                    $('#display_content').children().hide()
+                    if (sign_item.hasClass('hide')) {
+                        sign_item.removeClass('hide')
+                    }
+                    sign_item.fadeIn(500)
                 }
-                sign_item.fadeIn(500)
+            } else {
+                active_item.removeClass('info_active')
+                $(control_bar[0]).addClass('info_active')
+                sign = 1
+                $('#display_content').children('').hide()
+                $('#info' + sign).fadeIn(500)
             }
-        } else {
-            active_item.removeClass('info_active')
-            $(control_bar[0]).addClass('info_active')
-            sign = 1
-            $('#display_content').children('').hide()
-            $('#info' + sign).fadeIn(500)
-        }
-    }, 3200)
+        }, 3200)
 
 
 </script>
