@@ -103,6 +103,35 @@
             vertical-align: middle;
             line-height: 3;
         }
+
+        #info1 {
+            background: white;
+            width: 100%;
+            height: 100%;
+            background: url("/static/centBlog/images/slider_info1.png") no-repeat;
+            background-size: cover;
+        }
+
+        #info2 {
+            background: white;
+            width: 100%;
+            height: 100%;
+            background: url("/static/centBlog/images/slider_info2.png") no-repeat;
+            background-size: cover;
+        }
+
+        #info3 {
+            background: white;
+            width: 100%;
+            height: 100%;
+            background: url("/static/centBlog/images/slider_info3.png") no-repeat;
+            background-size: cover;
+        }
+
+        .info_active {
+            background: #920904;
+            transition: .5s;
+        }
     </style>
 </head>
 <body>
@@ -176,21 +205,29 @@
     </div>
 </div>
 
-<div style="margin-top: 40px">
+<div style="margin-top: 40px; margin-bottom: 40px; position: relative">
     <div class="container" style="">
         <div class="row">
-            <div class="col-md-2">
-                <div class="left_info_btn btn btn-danger" role="button">云存储架构</div>
-                <div class="left_info_btn btn btn-danger" role="button">智能技术栈</div>
-                <div class="left_info_btn btn btn-danger" role="button">高加密通讯</div>
+            <div class="col-md-2 slide_bar_control" style="overflow: hidden">
+                <div box_id="1" class="left_info_btn btn btn-danger info_active" role="button">云存储架构</div>
+                <div box_id="2" class="left_info_btn btn btn-danger" role="button">智能技术栈</div>
+                <div box_id="3" class="left_info_btn btn btn-danger" role="button">高加密通讯</div>
                 <hr/>
-                <div class="left_info_btn btn btn-danger" role="button">团队组织</div>
-                <div class="left_info_btn btn btn-danger" role="button">临时托管</div>
-                <div class="left_info_btn btn btn-danger" role="button">智能监测</div>
-                <div class="left_info_btn btn btn-danger" role="button">安全交互</div>
+                <div box_id="4" class="left_info_btn btn btn-danger" role="button">最新版本</div>
+                <div box_id="5" class="left_info_btn btn btn-danger" role="button">国际新闻</div>
+                <div box_id="6" class="left_info_btn btn btn-danger" role="button">最佳贡献</div>
+                <div box_id="7" class="left_info_btn btn btn-danger" role="button">人才组织</div>
             </div>
-            <div class="col-md-10" style="background: #DDDDDD; height: 530px">
-
+            <div id="display_content" class="col-md-10" style="height: 530px; padding: 0">
+                <div id="info1">
+                    <button class="btn btn-danger" style="position: absolute; bottom: 25px; left: 45px">立即购买</button>
+                </div>
+                <div id="info2" class="hide">
+                    <button class="btn btn-danger" style="position: absolute; bottom: 25px; left: 45px">立即购买</button>
+                </div>
+                <div id="info3" class="hide">
+                    <button class="btn btn-danger" style="position: absolute; bottom: 25px; left: 45px">立即购买</button>
+                </div>
             </div>
         </div>
     </div>
@@ -216,6 +253,35 @@
             $(this).css('box-shadow', 'none')
         }
     )
+</script>
+<script>
+    setInterval(function () {
+        let sign;
+        let control_bar = $('.slide_bar_control').children('div')
+        let active_item = $('.info_active')
+        if (active_item.next()[0]) {
+            active_item.removeClass('info_active')
+            let new_active = active_item.next()
+            new_active.addClass('info_active')
+            if (new_active.attr('box_id')) {
+                sign = new_active.attr('box_id')
+                let sign_item = $('#info' + sign)
+                $('#display_content').children().hide()
+                if (sign_item.hasClass('hide')) {
+                    sign_item.removeClass('hide')
+                }
+                sign_item.fadeIn(500)
+            }
+        } else {
+            active_item.removeClass('info_active')
+            $(control_bar[0]).addClass('info_active')
+            sign = 1
+            $('#display_content').children('').hide()
+            $('#info' + sign).fadeIn(500)
+        }
+    }, 3200)
+
+
 </script>
 <script>
     var w = c.width = window.innerWidth,
