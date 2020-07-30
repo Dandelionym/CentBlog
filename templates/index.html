@@ -21,12 +21,25 @@
             display: none;
         }
 
+        @media (min-width: 1200px) {
+            .container {
+                width: 1400px;
+            }
+        }
+
+
         .header_btn {
             margin: 0;
-            width: 185px;
+        {#width: 190px;#} width: 100%;
             height: 4.5rem;
             border-radius: 0;
             font-size: 1.6rem;
+            transition: .5s;
+        }
+
+        .header_btn:hover {
+            border-bottom: #e26666 4px solid;
+            transition: .5s;
         }
 
         .headbar {
@@ -96,10 +109,10 @@
         }
 
         .left_info_btn {
-        {#background-image: linear-gradient(180deg, rgba(212, 212, 212, 0.6), #ffffff);#}{#background-image: repeating-linear-gradient(#DDDDDD, white, #DDDDDD);#} height: 70px;
+        {#background-image: linear-gradient(180deg, rgba(212, 212, 212, 0.6), #ffffff);#}{#background-image: repeating-linear-gradient(#DDDDDD, white, #DDDDDD);#} height: 80px;
             width: 100%;
             border: 1px white solid;
-            font-size: 18px;
+            font-size: 21px;
             vertical-align: middle;
             line-height: 3;
         }
@@ -150,6 +163,129 @@
             background: #920904;
             transition: .5s;
         }
+
+        #center_box {
+            background: url("/static/centBlog/images/back_wide.jpg") no-repeat;
+            background-size: cover;
+        {#height: 300px;#} margin-bottom: 20px;
+            height: 630px;
+        }
+
+        .item_text {
+            margin: 20px;
+            font-weight: 100;
+            color: #dddbdb
+        }
+
+        .item_header {
+            display: flex;
+            justify-content: space-around
+        }
+
+        #hide1, #hide2, #hide3, #hide4, #hide5, #hide6 {
+            display: none;
+        }
+
+        a {
+            color: #da5050;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: none;
+            color: red;
+        }
+
+        .article_item a {
+            color: black;
+        }
+
+        .hover_danger:hover {
+            color: #cd0101;
+        }
+
+        .blog_desc {
+            color: #666A75;
+            margin-top: 7px;
+            margin-bottom: 7px;
+            font-size: 18px;
+        }
+
+        .article_icon {
+            font-size: 18px;
+            font-weight: 100;
+            margin-right: 4px;
+
+        }
+
+        .article_item h2 {
+            margin-bottom: 21px;
+        }
+
+        .side_bar {
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-top: 20px;
+        }
+
+        .side_bar_inner {
+            background: #f8f8f8;
+            border-radius: 2px;
+            padding: 15px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+
+        .side_bar_header {
+            display: flex;
+            justify-content: space-around
+        }
+
+        .side_bar_header img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%
+        }
+
+        .item_info {
+            font-size: 18px;
+            color: #959494;
+            text-align: center;
+            margin-top: -30px;
+            background: white;
+            padding-top: 40px;
+            padding-left: 5px;
+            padding-right: 5px
+        }
+
+        .item_info ul {
+            padding-left: 5px;
+            margin-top: 7px;
+            margin-bottom: 7px;
+        }
+
+        .item_info li {
+            list-style-type: none
+        }
+
+        .item_info a {
+            color: black
+        }
+
+        .fantastic_art ul {
+            padding-left: 5px;
+            margin-top: 7px;
+            margin-bottom: 7px;
+        }
+
+        .fantastic_art li {
+            list-style-type: none;
+            font-size: 18px;
+        }
+
+        .fantastic_art a {
+            color: black;
+        }
     </style>
 </head>
 <body>
@@ -165,9 +301,9 @@
                 </div>
                 <div class="welcome_info" style="">
                     The World's <strong style="color: #35baf3">Largest</strong> Knowledge Sharing Platform
-                    {#                    <div style="font-size: 18px; color: white;font-weight: 100; opacity: .1">#}
-                    {#                        全世界最大的知识分享交流平台#}
-                    {#                    </div>#}
+                    {#<div style="font-size: 18px; color: white;font-weight: 100; opacity: .1">#}
+                    {#    全世界最大的知识分享交流平台#}
+                    {#</div>#}
                 </div>
                 <div class="welcome_info" style='font-family: "Bitstream Vera Sans Mono", Monaco, "Courier New", Courier, monospace; margin-top: 50px'>
                     Welcome! <span style="color: #00dada">{{ user }}</span>
@@ -176,21 +312,84 @@
         </div>
     </div>
 </div>
+
+
 <div class="middle_1">
-    <div class="container" style="">
-        <div style="display: flex; align-items: center">
-            <div class="center-block" style="display: flex; justify-content: space-around; flex-wrap: wrap">
-                <button class="btn btn-danger header_btn">博客广场</button>
-                <button class="btn btn-danger header_btn">世界要闻</button>
-                <button class="btn btn-danger header_btn">量子实验室</button>
-                <button class="btn btn-danger header_btn">伽马云空间</button>
-                <button class="btn btn-danger header_btn">项目中心</button>
-                <button class="btn btn-danger header_btn">关于我们</button>
+    <div class="container-fluid" style="background: #e6e6e6">
+        <div class="container">
+            <div style="display: flex; align-items: center">
+                <div class="center-block" style="display: flex;flex: auto; justify-content: space-between;">
+                    <button box_id="1" class="btn btn-danger header_btn">博客广场</button>
+                    <button box_id="2" class="btn btn-danger header_btn">世界要闻</button>
+                    <button box_id="3" class="btn btn-danger header_btn">量子实验室</button>
+                    <button box_id="4" class="btn btn-danger header_btn">伽马云空间</button>
+                    <button box_id="5" class="btn btn-danger header_btn">项目中心</button>
+                    <button box_id="6" class="btn btn-danger header_btn">关于我们</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container-fluid" style="">
+        <div class="container">
+            <div id="header_box" style="background: #e26666; overflow: hidden; height: 0; transition: .5s">
+                <!-- 博客 -->
+                <div id="hide1" class="row">
+                    <div class="item_header">
+                        <div class="item_text">博客</div>
+                        <div class="item_text">企业文化</div>
+                        <div class="item_text">企业文化</div>
+                    </div>
+                </div>
+                <!-- 要闻 -->
+                <div id="hide2" class="row">
+                    <div class="item_header">
+                        <div class="item_text">要闻</div>
+                        <div class="item_text">企业文化</div>
+                        <div class="item_text">企业文化</div>
+                    </div>
+                </div>
+                <!-- 实验室 -->
+                <div id="hide3" class="row">
+                    <div class="item_header">
+                        <div class="item_text">实验室</div>
+                        <div class="item_text">企业文化</div>
+                        <div class="item_text">企业文化</div>
+                    </div>
+                </div>
+                <!-- 伽马云 -->
+                <div id="hide4" class="row">
+                    <div class="item_header">
+                        <div class="item_text">伽马</div>
+                        <div class="item_text">企业文化</div>
+                        <div class="item_text">企业文化</div>
+                    </div>
+                </div>
+                <!-- 项目 -->
+                <div id="hide5" class="row">
+                    <div class="item_header">
+                        <div class="item_text">项目</div>
+                        <div class="item_text">企业文化</div>
+                        <div class="item_text">企业文化</div>
+                    </div>
+                </div>
+                <!-- 关于 -->
+                <div id="hide6" class="row">
+                    <div class="item_header">
+                        <div class="item_text">关于</div>
+                        <div class="item_text">企业文化</div>
+                        <div class="item_text">企业文化</div>
+                        <div class="item_text">企业文化</div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <hr style="border: 1px solid rgba(0,0,0,0)"/>
+    </div>
 
+    <hr style="border: 1px solid rgba(0,0,0,0)"/>
+    <div class="container">
         <div class="row">
             <div class="col-md-4">
                 <div class="center_box" style="">
@@ -230,13 +429,13 @@
                 <div box_id="1" class="left_info_btn btn btn-danger info_active" role="button">云存储架构</div>
                 <div box_id="2" class="left_info_btn btn btn-danger" role="button">智能技术栈</div>
                 <div box_id="3" class="left_info_btn btn btn-danger" role="button">高加密通讯</div>
-                <hr/>
+                <hr style="margin-top: 40px; margin-bottom: 40px"/>
                 <div box_id="4" class="left_info_btn btn btn-danger" role="button">博客世界</div>
                 <div box_id="5" class="left_info_btn btn btn-danger" role="button">伽马空间</div>
                 <div box_id="6" class="left_info_btn btn btn-danger" role="button">万维图谱</div>
                 <div box_id="7" class="left_info_btn btn btn-danger" role="button">灵鹿计划</div>
             </div>
-            <div id="display_content" class="col-md-10" style="height: 530px; padding: 0">
+            <div id="display_content" class="col-md-10" style="height: 688px; padding: 0">
                 <div id="info1" class="info_content">
                     <button class="btn btn-danger" style="position: absolute; bottom: 25px; left: 45px">立即购买</button>
                 </div>
@@ -255,10 +454,188 @@
     </div>
 </div>
 
+<div class="container-fluid" id="center_box">
+    <div class="container">
+        <div class="jumbotron" style="background: none">
+            <h1 style="">产业园专区</h1>
+            <p>Cent Blog 优质产业园区将提供...</p>
+            <p><a class="btn btn-primary btn-lg" href="#" role="button">了解更多</a></p>
+        </div>
+    </div>
+</div>
 
+
+<div class="container-fluid" style="font-size: 2.2rem;font-weight:100;">
+    <div class="container">
+        <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs">
+            <ul id="myTabs" class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="false">知识社区</a></li>
+                <li role="presentation" class=""><a href="#profile" role="tab" id="profile-tab1" data-toggle="tab" aria-controls="profile" aria-expanded="true">伽马云空间</a></li>
+                <li role="presentation" class=""><a href="#dropdown1" role="tab" id="profile-tab2" data-toggle="tab" aria-controls="profile" aria-expanded="true">量子实验室</a></li>
+                <li role="presentation" class=""><a href="#dropdown2" role="tab" id="profile-tab3" data-toggle="tab" aria-controls="profile" aria-expanded="true">产品发行区</a></li>
+            </ul>
+            <div id="myTabContent" class="tab-content" style="height: 800px; background: silver">
+                <div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
+
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab1">
+
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="dropdown1" aria-labelledby="dropdown1-tab2">
+
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="dropdown2" aria-labelledby="dropdown2-tab3">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid" style="background: url('/static/centBlog/images/bg-01.png') no-repeat; background-size: cover; height: 530px;margin-top: 50px; margin-bottom: 50px">
+    <div class="container">
+        <div class="jumbotron" style="background: none; color: white">
+            <h1 style="">云社区</h1>
+            <p>Cent Blog 优质产业园区将提供...</p>
+            <p><a class="btn btn-primary btn-lg" href="#" role="button">了解更多</a></p>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            {% for article in article_list %}
+                <div class="article_item">
+                    <h2><a class="hover_danger" href="#">{{ article.title }}&emsp;&emsp;<span class="fa fa-link" style="color: silver; font-size: 21px"></span></a></h2>
+                    <div class="row">
+                        <div class="col-md-9 blog_desc">{{ article.desc }}</div>
+                        <div class="col-md-3">
+                            <img alt="" src="/static/centBlog/images/images-create/slider3.png" width="235" height="160">
+                        </div>
+                    </div>
+
+                    <div>
+                        <span><img alt="" src="/media/{{ article.user.avatar }}" width="30" height="30" style="border-radius: 9999px"></span>
+                        <span style="font-size: 18px">{{ article.user.username }}</span>&emsp;&emsp;&emsp;
+                        <span style="color: silver; font-size: 17px">
+                                        <span class="article_icon fa fa-eye"></span>{{ article.views }}&emsp;&nbsp;
+                                        <span class="article_icon fa fa-star-o"></span>{{ article.up_count }}&emsp;&nbsp;
+                                        <span class="article_icon fa fa-commenting-o"></span>{{ article.comment_count }}
+                                    </span>
+                    </div>
+                </div>
+                <hr style="margin-top: 35px; margin-bottom: 35px"/>
+            {% endfor %}
+        </div>
+        <div class="col-md-3">
+            <div class="side_bar">
+                <div class="side_bar_inner">
+                    <div class="clearfix">
+                        <h4 class="pull-left">云享专家</h4>
+                        <h4 class="pull-right text-danger">更多 ></h4>
+                    </div>
+                    <div>
+                        <div class="side_bar_header">
+                            <img alt="" src="/media/avatars/mac.jpg">
+                        </div>
+                        <div class="item_info">
+                            <h4>Dandelion</h4>
+                            我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我
+                            <ul class="text-left text-primary">
+                                <li><a href=""> · Web开发进阶妙招：常用...</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="side_bar_inner">
+                    <div class="clearfix">
+                        <h4 class="pull-left">精华贴</h4>
+                    </div>
+                    <hr/>
+                    <div class="fantastic_art">
+                        <ul>
+                            <li><a href=""> · Web开发进阶妙招：常用...</a></li>
+                            <li><a href=""> · Web开发进阶妙招：常用...</a></li>
+                            <li><a href=""> · Web开发进阶妙招：常用...</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="side_bar_inner">
+                    <div class="clearfix">
+                        <h4 class="pull-left">社区公告</h4>
+                    </div>
+                    <hr/>
+                    <div class="fantastic_art">
+                        <ul>
+                            <li><a href=""> · Web开发进阶妙招：常用...</a></li>
+                            <li><a href=""> · Web开发进阶妙招：常用...</a></li>
+                            <li><a href=""> · Web开发进阶妙招：常用...</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="side_bar_inner">
+                    <div class="clearfix">
+                        <h4 class="pull-left">友情链接</h4>
+                    </div>
+                    <hr/>
+                    <div class="fantastic_art">
+                        <ul>
+                            <li><a href=""></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
 <script>
+    $('.header_btn').hover(
+        function () {
+            let sign = $(this).attr('box_id')
+            $('#hide' + sign).show()
+            $('#header_box').css('transition', '.5s').css('height', '68px')
+        },
+        function () {
+            let sign = $(this).attr('box_id')
+            let head_box = $('#header_box')
+            if (!head_box.is(':hover')) $('#hide' + sign).hide()
+            head_box.css('transition', '.5s').css('height', '0px')
+        }
+    )
+    $('#header_box').hover(
+        function () {
+            $('#header_box').css('transition', '.5s').css('height', '68px')
+        },
+        function () {
+            $('#header_box').css('transition', '.5s').css('height', '0px')
+        }
+    )
+</script>
+<script>
+    //
     let text = $('.info_text');
-    let pause = 500;
+    let pause = 360;
     $('.center_box').hover(
         function () {
             let img = $($(this).children()[0])
@@ -277,8 +654,8 @@
     )
 </script>
 <script>
+    // slide box
     let Lock = true
-
     if (Lock)
         setInterval(function () {
             let sign;
