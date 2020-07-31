@@ -26,5 +26,13 @@ Solved:
 
 Mysql本地socket连接出问题：
     sudo /usr/local/mysql/support-files/mysql.server restart
+    或者
+    sudo mysqld --user=root start
+
+Mysql备份恢复：
+    备份命令mysqldump格式
+        格式：mysqldump -h主机名  -P端口 -u用户名 -p密码 数据库名 > 文件名.sql
+    恢复：
+        mysql -h10.6.208.183 -utest2 -p123  -P3310 < test.sql，也可以直接在mysql命令行下面用source导入
 
 
