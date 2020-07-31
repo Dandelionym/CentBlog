@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/static/centBlog/plugins/fa/css/font-awesome.min.css">
     <link rel="stylesheet" href="/static/centBlog/css/color.css">
     <link rel="stylesheet" href="/static/centBlog/css/base_article.css">
+    <link rel="stylesheet" href="/static/centBlog/css/article_detail.css">
     <script src="/static/centBlog/plugins/jquery-3.4.1.js"></script>
     <script src="/static/centBlog/plugins/bs/js/bootstrap.min.js"></script>
     <style>
@@ -23,7 +24,6 @@
             white-space: pre-wrap;
             overflow-x: auto;
         }
-
         body {
             line-height: 1.6;
             font-weight: 100;
@@ -31,12 +31,10 @@
             font-size: 1.5rem;
             font-family: 'Sailec Light', sans-serif !important;
         }
-
         .bordered {
             border: #dddddd 1px solid;
             border-radius: 0 !important;
         }
-
         .atricle_bottom_bar {
             margin-top: 15px;
             color: gray;
@@ -49,6 +47,15 @@
 
         #div_digg {
             margin-top: 50px;
+        }
+
+        .footer_bottom {
+            margin-top: 50px
+        }
+
+        .footer_bottom .row {
+            background: black;
+            height: 200px
         }
 
         @media only screen and (max-width: 1090px) {
@@ -68,24 +75,17 @@
 
 
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-md-2">
-            {#            {% load my_tags %}#}
-            {#            {% get_classfication_style username %}#}
-        </div>
-        <div class="col-md-8">
+    <div class="container">
+        <div class="row">
             {% block content %}
 
             {% endblock %}
         </div>
-        <div class="col-md-2">
-
-        </div>
     </div>
 </div>
 
-<div class="container-fluid" style="margin-top: 50px">
-    <div class="row" style="background: black; height: 200px">
+<div class="container-fluid footer_bottom">
+    <div class="row">
 
     </div>
 </div>

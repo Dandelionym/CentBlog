@@ -1,0 +1,60 @@
+#PC_display {
+    position: fixed;
+    top: 70px;
+    right: 20px
+}
+
+#info_box {
+    min-width: 200px;
+    width: fit-content;
+    height: 62px;
+    border: #f5f5f5 1px solid;
+    border-radius: 999px;
+    background: #ffffff;
+    transition: .5s;
+    box-shadow: 3px 2px 9px #dddd;
+    overflow: hidden
+}
+
+.info_box_span {
+    margin: 0 auto;
+    font-size: 15px;
+}
+
+.info_box_span_span {
+    color: #19c988;
+    margin-left: 6px
+}
+
+.articel_author_span {
+    font-size: 18px;
+    margin-left: 5px;
+    margin-top: 4px
+}
+
+.line_base {
+    margin: 1px;
+    opacity: 0
+}
+
+.atticle_head_info {
+    padding-left: 30px;
+    padding-right: 30px
+}
+
+.look_view {
+    margin: 0 auto;
+    width: 249px;
+    height: auto;
+    display: flex;
+    justify-content: space-between
+}
+
+#reply_who {
+    color: #acaaaa
+}
+
+.area_input_group {
+    margin-top: 10px;
+    width: 100%
+}

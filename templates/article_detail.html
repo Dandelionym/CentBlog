@@ -1,18 +1,17 @@
 {% extends 'bases/base.html' %}
 
 {% block content %}
-    <div id="PC_display" style="position: fixed; top: 70px; right: 20px">
-        <div id="info_box" class="clearfix "
-             style="min-width: 200px; width: fit-content; height: 62px; border: #f5f5f5 1px solid; border-radius: 999px; background: #ffffff; transition: .5s; box-shadow: 3px 2px 9px #dddd; overflow: hidden">
-            <img class="pull-left" alt="" src="/media/{{ auth_avatar }}" width="60" height="60" style="border-radius: 999px;">
-            <span style="font-size: 18px; margin-left: 5px; margin-top: 4px">{{ user_author }}</span>
-            <hr style="margin: 1px; opacity: 0"/>
-            <span style="margin: 0 auto;font-size: 15px;">
-            {% if user_author.level <= 2 %}        <span style="color: #19c988; margin-left: 6px">Lv.{{ user_author.level }}&emsp;初出茅庐</span>
-            {% elif user_author.level <= 4 %}      <span style="color: #1d9acf; margin-left: 6px">Lv.{{ user_author.level }}&emsp;游刃有余</span>
-            {% elif user_author.level <= 6 %}      <span style="color: #7f17d8; margin-left: 6px">Lv.{{ user_author.level }}&emsp;千载难逢</span>
-            {% elif user_author.level <= 8 %}      <span style="color: #d87417; margin-left: 6px">Lv.{{ user_author.level }}&emsp;万众瞩目</span>
-            {% else %}                             <span style="color: #ffbc1f; margin-left: 6px">Lv.{{ user_author.level }}&emsp;唯我独尊</span>
+    <div id="PC_display">
+        <div id="info_box" class="clearfix">
+            <img class="pull-left" alt="" src="/media/{{ auth_avatar }}" width="60" height="60" style="border-radius: 50%;">
+            <span class="articel_author_span">{{ user_author }}</span>
+            <hr class="line_base"/>
+            <span class="info_box_span">
+            {% if user_author.level <= 2 %}        <span class="info_box_span_span">Lv.{{ user_author.level }}&emsp;初出茅庐</span>
+            {% elif user_author.level <= 4 %}      <span class="info_box_span_span">Lv.{{ user_author.level }}&emsp;游刃有余</span>
+            {% elif user_author.level <= 6 %}      <span class="info_box_span_span">Lv.{{ user_author.level }}&emsp;千载难逢</span>
+            {% elif user_author.level <= 8 %}      <span class="info_box_span_span">Lv.{{ user_author.level }}&emsp;万众瞩目</span>
+            {% else %}                             <span class="info_box_span_span">Lv.{{ user_author.level }}&emsp;唯我独尊</span>
             {% endif %}</span>
         </div>
     </div>
@@ -22,19 +21,19 @@
     </div>
 
 
-    <div style="padding-left: 30px; padding-right: 30px">
-        <h2 class="text-center">{{ article_obj }}</h2>
+    <div class="atticle_head_info">
+        <h1 class="text-center">{{ article_obj }}</h1>
         <br/>
         <div class="text-right">{{ article_obj.create_time|date:'Y 年 m 月 d 日' }}&emsp;&emsp;浏览量：{{ article_obj.views }}</div>
-
+        <hr/>
         <br/>
         {% csrf_token %}
         <div class="cont">
             {{ article_obj.content|safe }}
-	</div>
-	<div id="div_digg">
-		<div style="margin: 0 auto; width: 249px; height: auto; display: flex; justify-content: space-between">
-			{% if is_posted == 1 %}
+        </div>
+        <div id="div_digg">
+            <div class="look_view">
+                {% if is_posted == 1 %}
 				{% if is_support %}
 					<button class="action btn btn-success disabled"><i class="fa fa-thumbs-o-up"></i> 已推荐 <span>{{ article_obj.up_count }}</span></button>
 					<button class="action btn btn-default disabled"><i class="fa fa-thumbs-o-down"></i> 反对 <span>{{ article_obj.down_count }}</span></button>
@@ -101,51 +100,53 @@
 			</div>
 			{% endif %}
 		{%  endfor %}
-	</div>
-	<span>发表评论&emsp;&emsp;<span id="reply_who" style="color: #acaaaa"></span></span>
-	<div class="input-group" style="margin-top: 10px; width: 100%">
-		<textarea name="" id="comment_area" rows="6"></textarea>
     </div>
-	<div class="clearfix">
-		<span id="show_time"></span>
-		<button id="submit_comment" class="btn btn-default pull-right"> 提 交 </button>
-	</div>
+        <span>发表评论&emsp;&emsp;<span id="reply_who"></span></span>
+        <div class="input-group area_input_group">
+            <label for="comment_area"></label><textarea name="" id="comment_area" rows="6"></textarea>
+        </div>
+        <div class="clearfix">
+            <span id="show_time"></span>
+            <button id="submit_comment" class="btn btn-default pull-right"> 提 交</button>
+        </div>
 
 
+        <script type="text/javascript" src="/static/centBlog/plugins/jquery-3.4.1.js"></script>
+        <script>
+            // This user has read the article, so his credit will be added a lot.
+            var pid = ""
+            document.getElementById("show_time").innerHTML = (new Date()).toLocaleString();
 
-	<script src="/static/centBlog/plugins/jquery-3.4.1.js"></script>
-	<script>
-		var pid = ""
-		document.getElementById("show_time").innerHTML = (new Date()).toLocaleString();
-        function getDate() {document.getElementById("show_time").innerHTML = (new Date()).toLocaleString();}
-        setInterval("getDate()", 1000);
-		$(function () {
-			$.ajax({
-		        url: '/viewed/',
-		        type: 'POST',
-		        data: {
-		            article_id: {{ article_id }},
-		            csrfmiddlewaretoken: $("[name='csrfmiddlewaretoken']").val(),
-		        },
-		        success: function () {
+            function getDate() {
+                document.getElementById("show_time").innerHTML = (new Date()).toLocaleString();
+            }
 
-	            }
-	        })
-        })
+            setInterval("getDate()", 1000);
+            $(function () {
+                $.ajax({
+                    url: '/viewed/',
+                    type: 'POST',
+                    data: {
+                        article_id: {{ article_id }},
+                        csrfmiddlewaretoken: $("[name='csrfmiddlewaretoken']").val(),
+                    },
+                    success: function () {
 
+                    }
+                })
+            })
 
-
-
-		$('#div_digg .action').click(function () {
-			let box = $('#msg')
-		    if($('.action').hasClass('disabled')){
-			    box.text('您已经评价过了')
-				box.fadeIn(1000)
-				box.fadeOut(2000)
-				return
-			}
-			let is_up = $(this).hasClass('btn-success');
-			let num = $(this)[0].children[2].children[0].innerHTML
+            // Show  alert in a kind way : for support or not support view.
+            $('#div_digg .action').click(function () {
+                let box = $('#msg')
+                if ($('.action').hasClass('disabled')) {
+                    box.text('您已经评价过了')
+                    box.fadeIn(1000)
+                    box.fadeOut(2000)
+                    return
+                }
+                let is_up = $(this).hasClass('btn-success');
+                let num = $(this)[0].children[2].children[0].innerHTML
 			let num_obj = $($(this)[0].children[2].children[0])
 			let obj = $(this)
 
@@ -163,28 +164,27 @@
 						num_obj.text(num)
 						obj.addClass('disabled')
 						obj.next().addClass('disabled')
-				    } else {
-				        let box = $('#msg')
-						box.text(args.msg)
-						box.fadeIn(1000)
-						box.fadeOut(1000)
-				    }
-				}
-			})
-        })
+                    } else {
+                        let box = $('#msg')
+                        box.text(args.msg)
+                        box.fadeIn(1000)
+                        box.fadeOut(1000)
+                    }
+                }
+            })
+            })
 
-
-        $('#submit_comment').click(function () {
-			let comment_text = $('#comment_area').val()
-
-            $.ajax({
-				url: '/comment/',
-				type: 'POST',
-	            dataType: 'JSON',
-				data: {
-				    pid: pid,
-					main_comment: comment_text,
-					article_id: "{{ article_obj.pk }}",
+            // Give comment that allowd everyone show their perspective.
+            $('#submit_comment').click(function () {
+                let comment_text = $('#comment_area').val()
+                $.ajax({
+                    url: '/comment/',
+                    type: 'POST',
+                    dataType: 'JSON',
+                    data: {
+                        pid: pid,
+                        main_comment: comment_text,
+                        article_id: "{{ article_obj.pk }}",
 					csrfmiddlewaretoken: $("[name='csrfmiddlewaretoken']").val(),
 				},
 				success: function (args) {
@@ -224,25 +224,25 @@
 								<br/>
 								<span>${content}</span>
 							</div>`
-							)
-				        }
-					    pid = ""
-				    } else {
-						alert("出现了一点意外，请稍等一下再试试")
-				    }
-				}
-			})
-        })
+                            )
+                        }
+                        pid = ""
+                    } else {
+                        alert("出现了一点意外，请稍等一下再试试")
+                    }
+                }
+                })
+            })
 
-
-		$('.reply_btn').click(function () {
-		    let container_comment = $('#comment_area')
-			container_comment.focus()
-			let info = '@'+$(this).attr('username')+'  '
-			$('#reply_who').text(info)
-			pid = $(this).attr('comment_pk');
-        })
-	</script>
-</div>
+            // reply their comment.
+            $('.reply_btn').click(function () {
+                let container_comment = $('#comment_area')
+                container_comment.focus()
+                let info = '@' + $(this).attr('username') + '  '
+                $('#reply_who').text(info)
+                pid = $(this).attr('comment_pk');
+            })
+        </script>
+    </div>
 
 {% endblock %}
