@@ -23,20 +23,21 @@ from CentBLG.sqlhelpers import SqlHelper
 
 
 class DateEnconding(json.JSONEncoder):
+    """ 定义一个日期转化的类，因为日期不能直接序列化，需要指定格式 """
     def default(self, o):
         if isinstance(o, datetime.date):
             return o.strftime('%Y-%m-%d')
 
 
 def login(request):
-    """ 用户登录 """
+    """ 实现用户登录的功能， """
     ret = {'status': False, 'msg': None, 'user': None}
     if request.method == 'POST':
         user = request.POST.get('user')
         password = request.POST.get('password')
         valid_code = request.POST.get('valid_code')
-        if valid_code.upper() == request.session.get('valid_code').upper():
-            user = auth.authenticate(username=user, password=password)
+        if valid_code.upper() == request.session.get('valid_code').upper():  # 验证码校验过程，通过Session筛选用户个人的验证码
+            user = auth.authenticate(username=user, password=password)  # User Model定义的时候设定了 __str__(): return username
             if user:
                 ret['status'] = True
                 auth.login(request, user)  # request.user == current logined object.
@@ -58,11 +59,11 @@ def login(request):
 
 def register(request):
     """ 用户注册	"""
-    if request.is_ajax():
+    if request.is_ajax():  # Ajax 完整性校验、准确性校验
         form = UserForm(request.POST)
         ret = {'status': False, 'msg': None}
 
-        if form.is_valid():
+        if form.is_valid():  # 根据数据库完成合法性校验
             ret['status'] = True
             user = form.cleaned_data.get('user')
             pswd = form.cleaned_data.get('pswd')
@@ -82,7 +83,7 @@ def register(request):
 
 
 def index(request):
-    """ 用户主页 """
+    """ 用户主页 """  # 1，0 版本时，index 为用户主页，2.0版本中代表Cent所有产业介绍
     user = request.user
     article_list = models.Article.objects.all()
     return render(request, 'index.html', locals())
@@ -107,9 +108,10 @@ def get_valid_img(request):
 def home_site(request, username, **kwargs):
     """ 个人站点视图函数 """
     user = UserInfo.objects.filter(username=username).first()
+
     if not user:
         return render(request, 'error.html')
-    # 根据Username查询当前对应的博客站点
+
     blog = user.blog
     # 当前博客对应的所有文章，也可以: article_list = user.article_set.all()
     if not kwargs:
@@ -146,15 +148,16 @@ def home_site(request, username, **kwargs):
 
 
 def article_detail(request, username, article_id):
-    user_author = UserInfo.objects.filter(username=username).first()  # 文章作者
-    user_logined = UserInfo.objects.filter(username=request.user.username).first()  # 登录用户
+    user_author = UserInfo.objects.filter(username=username).first()  # 文章作者对象
+    user_logined = UserInfo.objects.filter(username=request.user.username).first()  # 登录用户对象
     blog = user_author.blog
     article_obj = models.Article.objects.filter(pk=article_id).first()
     auth_avatar = UserInfo.objects.filter(nid=article_obj.user_id).first().avatar
     comment_list = models.Comment.objects.filter(article_id=article_id)
 
-    # 对文章添加浏览量：
-    if not request.COOKIES.get('viewed-' + article_id):
+    # 对文本添加浏览量
+    # 更新算法：获取文章id值锁定文章的位置，调用增值函数对用户的积分进行数值控制，校验方式在credithelpers.user_level_up(request)中
+    if not request.COOKIES.get('viewed-' + article_id):  # 截取文章id，该id值通过渲染绑定在标签的自定属性中
         if not user_author.nid == user_logined.nid:
             models.Article.objects.filter(pk=article_id).update(views=F("views") + 1)
             credithelpers.credit_add_controller(request, settings.CREDIT_ADDED_OF_LOOKUP_ARTICLES)
@@ -175,11 +178,12 @@ def viewed(request):
     else:
         article_id = request.POST.get('article_id')
         cookier = HttpResponse()
-        cookier.set_cookie(key='viewed-' + article_id, value=True, max_age=1)
+        cookier.set_cookie(key='viewed-' + article_id, value=True, max_age=settings.ARTICEL_VIEWED_COOKIE_AGE)
         return cookier
 
 
 def digg(request):
+    """ 点赞操作 """
     ret = {'status': None, 'msg': None}
     article_id = request.POST.get('article_id')
     is_up = json.loads(request.POST.get('is_up'))
@@ -203,6 +207,7 @@ def digg(request):
 
 
 def comment(request):
+    """ 评论之后讲发送邮件通知对方 """
     ret = {'status': None, 'msg': None}
     main_comment = request.POST.get('main_comment')
     article_id = request.POST.get('article_id')
@@ -239,7 +244,6 @@ def comment(request):
         )).start()
     except Exception as e:
         ret['msg'] = "Something wrong with status 502：" + str(e)
-
     return JsonResponse(ret)
 
 
@@ -252,22 +256,23 @@ def backend(request):
 
 
 def get_readamt_data(request):
+    """ Ajax 操作 ： 获取阅读数量 """
     sql = SqlHelper()
     result_list = sql.get_list("select * from CentBLG_day_sumup where user_id=%s", [int(request.user.pk), ])
     sql.close()
-
     return HttpResponse(json.dumps(result_list, cls=DateEnconding))
 
 
 def get_heatmap_data(request):
+    """ Ajax 操作 ： 获取阅读数量 """
     sql = SqlHelper()
     result_list = sql.get_list("select * from CentBLG_day_sumup where user_id=%s", [int(request.user.pk), ])
     sql.close()
-
     return HttpResponse(json.dumps(result_list, cls=DateEnconding))
 
 
 def upload(request):
+    """ 发表文章的图片上传 """
     import random
     img = request.FILES.get('file')
     img_append = random.random().__str__()[2:]
@@ -279,11 +284,11 @@ def upload(request):
         "success": True,
         "file_path": "/media/articles/%s" % (img_append + img.name),
     }
-
     return HttpResponse(json.dumps(response))
 
 
 def modify(request):
+    """ 文章的修改 """
     mode = request.POST.get('mode')
     ret = {'status': True, 'msg': None}
     if mode == 'query':
@@ -330,6 +335,7 @@ def modify(request):
 
 
 def personal_info(request):
+    """ 查看个人信息，如果没有博客，则自动跳转 """
     try:
         user = request.user
         blog = models.Blog.objects.filter(nid=user.blog_id).first()
@@ -345,6 +351,7 @@ def personal_info(request):
 
 
 def create_blog(request):
+    """ 创建博客 """
     if request.is_ajax():
         user = request.user.pk
         site_title = request.POST.get('site_title')
