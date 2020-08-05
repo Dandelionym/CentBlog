@@ -22,16 +22,10 @@
             display: none;
         }
 
-        @media (min-width: 1200px) {
-            .container {
-                width: 1400px;
-            }
-        }
-
 
         .header_btn {
             margin: 0;
-        {#width: 190px;#} width: 100%;
+            width: 100%;
             height: 4.5rem;
             border-radius: 0;
             font-size: 1.6rem;
@@ -110,12 +104,12 @@
         }
 
         .left_info_btn {
-        {#background-image: linear-gradient(180deg, rgba(212, 212, 212, 0.6), #ffffff);#}{#background-image: repeating-linear-gradient(#DDDDDD, white, #DDDDDD);#} height: 80px;
+            height: 50px;
             width: 100%;
             border: 1px white solid;
-            font-size: 21px;
+            font-size: 17px;
             vertical-align: middle;
-            line-height: 3;
+            line-height: 2;
         }
 
         .info_content {
@@ -123,7 +117,6 @@
             width: 100%;
             height: 100%;
         }
-
 
         #info1 {
             background: url("/static/centBlog/images/slider_info1.png") no-repeat;
@@ -287,11 +280,25 @@
 
         .fantastic_art li {
             list-style-type: none;
-            font-size: 18px;
+            font-size: 14px;
         }
 
         .fantastic_art a {
             color: black;
+        }
+
+        #display_content {
+            height: 454px;
+        }
+
+        @media (min-width: 1000px) {
+            .container {
+                width: 1200px;
+            }
+
+            #display_content {
+                height: 540px;
+            }
         }
     </style>
 </head>
@@ -430,7 +437,7 @@
 </div>
 
 <div style="margin-top: 40px; margin-bottom: 40px; position: relative">
-    <div class="container" style="">
+    <div class="container">
         <div class="row">
             <div class="col-md-2 slide_bar_control" style="overflow: hidden">
                 <div box_id="1" class="left_info_btn btn btn-danger info_active" role="button">云存储架构</div>
@@ -442,7 +449,7 @@
                 <div box_id="6" class="left_info_btn btn btn-danger" role="button">万维图谱</div>
                 <div box_id="7" class="left_info_btn btn btn-danger" role="button">灵鹿计划</div>
             </div>
-            <div id="display_content" class="col-md-10" style="height: 688px; padding: 0">
+            <div id="display_content" class="col-md-10" style="">
                 <div id="info1" class="info_content">
                     <button class="btn btn-danger" style="position: absolute; bottom: 25px; left: 45px">立即购买</button>
                 </div>
@@ -452,28 +459,42 @@
                 <div id="info3" class="hide info_content">
                     <button class="btn btn-danger" style="position: absolute; bottom: 25px; left: 45px">立即购买</button>
                 </div>
-                <div id="info4" class="hide info_content"></div>
-                <div id="info5" class="hide info_content"></div>
-                <div id="info6" class="hide info_content"></div>
-                <div id="info7" class="hide info_content"></div>
+                <div id="info4" class="hide info_content">
+
+                </div>
+                <div id="info5" class="hide info_content">
+                    <button class="btn btn-danger" style="position: absolute; bottom: 25px; left: 45px">立即购买</button>
+                </div>
+                <div id="info6" class="hide info_content">
+                    <button class="btn btn-danger" style="position: absolute; bottom: 25px; left: 45px">了解计划</button>
+                </div>
+                <div id="info7" class="hide info_content">
+                    <button class="btn btn-danger" style="position: absolute; bottom: 25px; left: 45px">了解详情</button>
+                </div>
             </div>
         </div>
     </div>
+</div>
+
+<div class="container" style="display: flex; margin-bottom: 30px; margin-top: 30px; text-align: center">
+    <img src='/static/centBlog/images/divider.png' alt="" height="50" style="margin: 0 auto">
 </div>
 
 <div class="container-fluid" id="center_box">
     <div class="container">
         <div class="jumbotron" style="background: none">
             <h1 style="">产业园专区</h1>
-            <h4><strong>Industrial Park Area </strong>&emsp;&emsp;&emsp;&emsp;<span style="color: #655d5d">Centprim-based Core Processing Mechanism</span></h4><br/>
-            <p>&emsp;&emsp;CentBlog产业园区下分三大部署类产业，其首要执行部门所属为CentBlog核心产业园区精工制造。产业园分布广、聚合高，具有高可拓展性的特点，是国内第一家全方位驱动的动态产业园。
-                2020年6月，CentBlog扩充其社区功能，增强其驱动核心，并发布<strong>第二代CentCore图像处理内核</strong>，显著提升了图像合成效果。2020年7月，再续发布高斯图像处理器，大程度提升了强压制性
-                能的分布式处理能力。在分布式数据库方面，CentBlog拥有独创的服务架构，其中CentCore对SQL/NOSQL数据库拥有极佳的兼容性，该自主研发的数据库服务接口与伽马云实验室紧密衔接，并生成良好的数据生态。
-                此外，CentBlog还覆盖了多个数据处理模块，相对广大计算机科学工作者的需求，CentCore在应用数据操作方面更胜一筹，因此也更获广大用户的偏好。<br/>
-                &emsp;&emsp;CentPrime优质产业园区提供丰富的计算机视觉技术成果体验，涵盖生成对抗网络（GAN）的变体实现，包括基于Tensorflow实现的CycleGAN、CCGAN等技术。
-                产业园展示区涵盖多种元素的标示，包含挖掘建模、数据分析等热门技术。此外还提供数学建模的在线分析工具，诸如文本情感分析、时间序列分析、数据预处理等富有价值的功能。
-            </p>
-            <a class="btn btn-primary btn-lg" href="#" role="button">进入产业园区</a>
+            <h4><strong>Industrial Park Area </strong>&emsp;&emsp;&emsp;&emsp;<br/><span style="color: #655d5d">Centprim-based Core Processing Mechanism</span></h4><br/>
+            <div style="background: rgba(255,255,255,0.45); padding: 20px; border-radius: 9px">
+                <p id="intro_board1">&emsp;&emsp;CentBlog产业园区下分三大部署类产业，其首要执行部门所属为CentBlog核心产业园区精工制造。产业园分布广、聚合高，具有高可拓展性的特点，是国内第一家全方位驱动的动态产业园。
+                    2020年6月，CentBlog扩充其社区功能，增强其驱动核心，并发布<strong>第二代CentCore图像处理内核</strong>，显著提升了图像合成效果。2020年7月，再续发布高斯图像处理器，大程度提升了强压制性
+                    能的分布式处理能力。在分布式数据库方面，CentBlog拥有独创的服务架构，其中CentCore对SQL/NOSQL数据库拥有极佳的兼容性，该自主研发的数据库服务接口与伽马云实验室紧密衔接，并生成良好的数据生态。
+                    此外，CentBlog还覆盖了多个数据处理模块，相对广大计算机科学工作者的需求，CentCore在应用数据操作方面更胜一筹，因此也更获广大用户的偏好。<br/>
+                    &emsp;&emsp;CentPrime优质产业园区提供丰富的计算机视觉技术成果体验，涵盖生成对抗网络（GAN）的变体实现，包括基于Tensorflow实现的CycleGAN、CCGAN等技术。
+                    产业园展示区涵盖多种元素的标示，包含挖掘建模、数据分析等热门技术。此外还提供数学建模的在线分析工具，诸如文本情感分析、时间序列分析、数据预处理等富有价值的功能。
+                </p>
+            </div>
+            <br/><a class="btn btn-warning btn-lg pull-right" href="#" role="button">进入产业园区</a>
         </div>
     </div>
 </div>
@@ -506,14 +527,19 @@
     </div>
 </div>
 
+<div class="container" style="display: flex; margin-bottom: 30px; margin-top: 30px; text-align: center">
+    <img src='/static/centBlog/images/divider2.png' alt="" height="50" style="margin: 0 auto">
+</div>
+
 <div class="container-fluid" style="background: url('/static/centBlog/images/pc-0728.jpg') no-repeat; background-size: cover; min-height: 655px;margin-top: 50px; margin-bottom: 0">
     <div class="container">
         <div class="jumbotron" style="background: none;">
             <h1 style="margin-bottom: 30px">云社区</h1>
-            <h4><strong>Cent Cloud Community </strong>&emsp;&emsp;&emsp;&emsp;<span style="color: #655d5d">Expand Knowledge Exchange in All-Dimensional Frequency Bands</span></h4>
+            <h4><strong>Cent Cloud Community </strong>&emsp;&emsp;&emsp;&emsp;<br/><span style="color: #655d5d">Expand Knowledge Exchange in All-Dimensional Frequency Bands</span>
+            </h4>
             <br/>
             <p>
-                &emsp;&emsp;Cent云社区面向广大用户开放的知识分享社区。自2020年以来，CentBlog已拥有上千用户构成的知识交流群体，涵盖多个学术领域，此外还包含云享平台，专门为在线直播交流提供了良好的基础条件。
+                &emsp;&emsp;Cent云社区是面向广大用户开放的知识分享社区。自2020年以来，CentBlog已拥有上千用户构成的知识交流群体，涵盖多个学术领域，此外还包含云享平台，专门为在线直播交流提供了良好的基础条件。
                 社区覆盖面广、功能丰富且强大，是开发者首选的技术交流基地，同时也提供了其他非开发者作为知识分享与理论探讨的重量级平台。
                 Cent云社区架构严谨，技术类别分析较为缜密、细致，在功能不断优化升级的同时也对平台稳定性有同样深度的优化，力求打造多聚能的良好社区环境。
                 此外Cent云社区搭载CentPrime云服务逻辑架构，更加方便地对用户的信息进行安全保密，在一定程度上为良好的通信质量提供了有效的保障。
@@ -529,109 +555,107 @@
         <div class="row">
             <div class="col-md-9">
                 {% for article in article_list %}
-                <div class="article_item">
-                    <h2><a class="hover_danger" href="#">{{ article.title }}&emsp;&emsp;<span class="fa fa-link" style="color: silver; font-size: 21px"></span></a></h2>
-                    <div class="row">
-                        <div class="col-md-9 blog_desc">{{ article.desc }}</div>
-                        <div class="col-md-3">
-                            <img alt="" src="/static/centBlog/images/images-create/slider3.png" width="235" height="160">
+                    <div class="article_item">
+                        <h2><a class="hover_danger" href="/{{ article.user }}/articles/{{ article.nid }}">{{ article.title }}&emsp;&emsp;<span class="fa fa-link"
+                                                                                                                                               style="color: silver; font-size: 21px"></span></a>
+                        </h2>
+                        <div class="row">
+                            <div class="col-md-9 blog_desc">{{ article.desc }}</div>
+                            <div class="col-md-3">
+                                <img alt="" src="/static/centBlog/images/images-create/slider3.png" style="width: 100%; border-radius: 9px">
+                            </div>
+                        </div>
+                        <div style="margin-top: 10px">
+                            <span><img alt="" src="/media/{{ article.user.avatar }}" width="30" height="30" style="border-radius: 9999px"></span>
+                            <span style="font-size: 18px">{{ article.user.username }}</span>&emsp;&emsp;&emsp;
+                            <span style="color: silver; font-size: 17px; ">
+                                <span class="article_icon fa fa-eye"></span>{{ article.views }}&emsp;&nbsp;
+                                <span class="article_icon fa fa-star-o"></span>{{ article.up_count }}&emsp;&nbsp;
+                                <span class="article_icon fa fa-commenting-o"></span>{{ article.comment_count }}
+                            </span>
+                        </div>
+                    </div>
+                    <hr style="margin-top: 35px; margin-bottom: 35px"/>
+                {% endfor %}
+            </div>
+            <div class="col-md-3">
+                <div class="side_bar">
+                    <div class="side_bar_inner">
+                        <div class="clearfix">
+                            <h4 class="pull-left">云享专家</h4>
+                            <h4 class="pull-right text-danger">更多 ></h4>
+                        </div>
+                        <div>
+                            <div class="side_bar_header">
+                                <img alt="" src="/media/avatars/mac.jpg">
+                            </div>
+                            <div class="item_info">
+                                <h4>Dandelion</h4>
+                                测试人的简历信息；
+                                <ul class="text-left text-primary">
+                                    <li><a href=""> · Web开发进阶妙招：常用...</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
 
-                    <div>
-                        <span><img alt="" src="/media/{{ article.user.avatar }}" width="30" height="30" style="border-radius: 9999px"></span>
-                        <span style="font-size: 18px">{{ article.user.username }}</span>&emsp;&emsp;&emsp;
-                        <span style="color: silver; font-size: 17px">
-                                        <span class="article_icon fa fa-eye"></span>{{ article.views }}&emsp;&nbsp;
-                                        <span class="article_icon fa fa-star-o"></span>{{ article.up_count }}&emsp;&nbsp;
-                                        <span class="article_icon fa fa-commenting-o"></span>{{ article.comment_count }}
-                                    </span>
-                    </div>
-                </div>
-                <hr style="margin-top: 35px; margin-bottom: 35px"/>
-            {% endfor %}
-        </div>
-        <div class="col-md-3">
-            <div class="side_bar">
-                <div class="side_bar_inner">
-                    <div class="clearfix">
-                        <h4 class="pull-left">云享专家</h4>
-                        <h4 class="pull-right text-danger">更多 ></h4>
-                    </div>
-                    <div>
-                        <div class="side_bar_header">
-                            <img alt="" src="/media/avatars/mac.jpg">
+                    <div class="side_bar_inner">
+                        <div class="clearfix">
+                            <h4 class="pull-left">精华贴</h4>
                         </div>
-                        <div class="item_info">
-                            <h4>Dandelion</h4>
-                            我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我我
-                            <ul class="text-left text-primary">
+                        <hr/>
+                        <div class="fantastic_art">
+                            <ul>
+                                <li><a href=""> · Web开发进阶妙招：常用...</a></li>
+                                <li><a href=""> · Web开发进阶妙招：常用...</a></li>
                                 <li><a href=""> · Web开发进阶妙招：常用...</a></li>
                             </ul>
                         </div>
                     </div>
-                </div>
 
-                <div class="side_bar_inner">
-                    <div class="clearfix">
-                        <h4 class="pull-left">精华贴</h4>
+                    <div class="side_bar_inner">
+                        <div class="clearfix">
+                            <h4 class="pull-left">社区公告</h4>
+                        </div>
+                        <hr/>
+                        <div class="fantastic_art">
+                            <ul>
+                                <li><a href=""> · Web开发进阶妙招：常用...</a></li>
+                                <li><a href=""> · Web开发进阶妙招：常用...</a></li>
+                                <li><a href=""> · Web开发进阶妙招：常用...</a></li>
+                            </ul>
+                        </div>
                     </div>
-                    <hr/>
-                    <div class="fantastic_art">
-                        <ul>
-                            <li><a href=""> · Web开发进阶妙招：常用...</a></li>
-                            <li><a href=""> · Web开发进阶妙招：常用...</a></li>
-                            <li><a href=""> · Web开发进阶妙招：常用...</a></li>
-                        </ul>
-                    </div>
-                </div>
 
-                <div class="side_bar_inner">
-                    <div class="clearfix">
-                        <h4 class="pull-left">社区公告</h4>
-                    </div>
-                    <hr/>
-                    <div class="fantastic_art">
-                        <ul>
-                            <li><a href=""> · Web开发进阶妙招：常用...</a></li>
-                            <li><a href=""> · Web开发进阶妙招：常用...</a></li>
-                            <li><a href=""> · Web开发进阶妙招：常用...</a></li>
-                        </ul>
+                    <div class="side_bar_inner">
+                        <div class="clearfix">
+                            <h4 class="pull-left">友情链接</h4>
+                        </div>
+                        <hr/>
+                        <div class="fantastic_art">
+                            <ul>
+                                <li><a href=""></a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-
-                <div class="side_bar_inner">
-                    <div class="clearfix">
-                        <h4 class="pull-left">友情链接</h4>
-                    </div>
-                    <hr/>
-                    <div class="fantastic_art">
-                        <ul>
-                            <li><a href=""></a></li>
-                        </ul>
-                    </div>
-                </div>
-
             </div>
         </div>
+    </div>
+    <div class="container">
+        <div class="panel panel-warning">
+            <div class="panel-body">
+                更多内容请转到 <a href="">博客云社区</a> 查看...
+            </div>
         </div>
     </div>
 </div>
 
+<div class="container-fluid" style="height:200px;background: rgba(190,190,190,0.27)">
 
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
+</div>
+
+
 <script>
     $('.header_btn').hover(
         function () {

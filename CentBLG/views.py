@@ -85,7 +85,12 @@ def register(request):
 def index(request):
     """ 用户主页 """  # 1，0 版本时，index 为用户主页，2.0版本中代表Cent所有产业介绍
     user = request.user
-    article_list = models.Article.objects.all()
+    article_list_all = models.Article.objects.all()
+    article_list = []
+    count = 0
+    for i in range(len(article_list_all)):
+        if i == 4: break
+        article_list.append(article_list_all[i])
     return render(request, 'index.html', locals())
 
 
@@ -232,17 +237,18 @@ def comment(request):
     article_obj = models.Article.objects.filter(pk=article_id).first()
 
     sql_obj = SqlHelper()
-    email = sql_obj.get_one('select email from CentDB2.CentBLG_userinfo where nid=%s', [article_obj.user_id, ])
+    email = sql_obj.get_one("select email from CentDB2.CentBLG_userinfo where nid=%s", [article_obj.user_id, ])
     sql_obj.close()
-
+    new_comment = "您的文章《%s》新增了一条评论内容，快去看看吧！" % article_obj.title,
     try:
         threading.Thread(target=send_mail, args=(
-            "【Cent News】您的文章《%s》新增了一条评论内容，快去看看吧！" % article_obj.title,
-            main_comment,
+            "来自 CentBlog 的消息",
+            new_comment,
             settings.DEFAULT_FROM_EMAIL,
             [email['email'], ]
         )).start()
     except Exception as e:
+        print(str(e))
         ret['msg'] = "Something wrong with status 502：" + str(e)
     return JsonResponse(ret)
 

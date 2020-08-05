@@ -24,3 +24,7 @@ def get_classfication_style(username):
 def get_navbar_header(username):
     user = UserInfo.objects.filter(username=username).first()
     return locals()
+
+
+def divider(module_name):
+    return locals()
