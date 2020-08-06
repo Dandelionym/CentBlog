@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 """Django's command-line utility for administrative tasks."""
+"""Now this project can provide 897.30#/sec request."""
+
 import os
 import sys
 

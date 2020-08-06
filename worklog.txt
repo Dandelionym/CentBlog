@@ -29,7 +29,8 @@ Solved:
 Mysql本地socket连接出问题：
     sudo /usr/local/mysql/support-files/mysql.server restart
     或者
-    sudo mysqld --user=root start
+    sudo mysqld --user=root
+    mysql -uroot -p
 
 
 Mysql备份恢复：
