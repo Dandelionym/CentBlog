@@ -11,6 +11,10 @@ body::-webkit-scrollbar {
     display: none;
 }
 
+.logo_image {
+    margin-top: -60px;
+    height: 100px
+}
 
 .header_btn {
     margin: 0;
@@ -80,6 +84,34 @@ body::-webkit-scrollbar {
     transition: .5s;
 }
 
+.center_box img {
+    width: 200px;
+    position: relative
+}
+
+.slide_bar_control {
+    overflow: hidden;
+}
+
+.slide_bar_control hr {
+    margin-top: 40px;
+    margin-bottom: 40px
+}
+
+.slider_button_list {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    position: relative
+}
+
+.hr_index_header {
+    border: 1px solid rgba(0, 0, 0, 0)
+}
+
+.center_box p {
+    padding: 30px
+}
+
 .center_box h2 {
     text-align: center;
     font-weight: 600
@@ -146,9 +178,66 @@ body::-webkit-scrollbar {
     background-size: cover;
 }
 
+#info1, #info2, #info3, #info4, #info5, #info6, #info7 button {
+    position: absolute;
+    bottom: 25px;
+    left: 45px
+}
+
+.divider_img {
+    display: flex;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    text-align: center
+}
+
+.divider2_img {
+    display: flex;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    text-align: center
+}
+
+.cent_info_box_CCC {
+    background: url('/static/centBlog/images/pc-0728.jpg') no-repeat;
+    background-size: cover;
+    min-height: 655px;
+    margin-top: 50px;
+    margin-bottom: 0
+}
+
+.cent_info_box_CCC h1 {
+    margin-bottom: 30px
+}
+
+.cent_info_box_CCC span {
+    color: #655d5d
+}
+
+
+.mg0_auto {
+    margin: 0 auto
+}
+
 .info_active {
     background: #920904;
     transition: .5s;
+}
+
+.cent_info_box_IPA {
+    background: rgba(255, 255, 255, 0.45);
+    padding: 20px;
+    border-radius: 9px
+}
+
+.center_wide_guide {
+    font-size: 2.2rem;
+    font-weight: 100;
+}
+
+#myTabContent {
+    height: 800px;
+    background: silver
 }
 
 #center_box {
