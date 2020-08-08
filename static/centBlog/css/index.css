@@ -192,10 +192,10 @@ body::-webkit-scrollbar {
 }
 
 .divider2_img {
-    display: flex;
-    margin-bottom: 30px;
-    margin-top: 30px;
-    text-align: center
+    display: flex !important;
+    margin-bottom: 30px !important;
+    margin-top: 30px !important;
+    text-align: center;
 }
 
 .cent_info_box_CCC {
@@ -214,6 +214,10 @@ body::-webkit-scrollbar {
     color: #655d5d
 }
 
+.line_of_item {
+    margin-top: 35px;
+    margin-bottom: 35px
+}
 
 .mg0_auto {
     margin: 0 auto
@@ -233,6 +237,10 @@ body::-webkit-scrollbar {
 .center_wide_guide {
     font-size: 2.2rem;
     font-weight: 100;
+}
+
+.jumbotron {
+    background: none !important;
 }
 
 #myTabContent {
