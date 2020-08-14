@@ -245,7 +245,9 @@ body::-webkit-scrollbar {
 
 #myTabContent {
     height: 800px;
-    background: silver
+    background: white;
+    border: none;
+    border-radius: 0 0 9px 9px;
 }
 
 #center_box {
