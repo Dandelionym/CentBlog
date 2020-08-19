@@ -47,46 +47,60 @@
 			margin: 20px;
 		}
 
-		.mg_10{
-			margin: 10px;
-		}
+        .mg_10 {
+            margin: 10px;
+        }
 
-		.background {
-			position: fixed;
-			bottom: 0;
-			left: 0;
-			top: 0;
-			right: 0;
-			background: -webkit-linear-gradient(right, #acf6ff, #efdbfc);
-            background: -o-linear-gradient(right,      #acf6ff, #efdbfc);
-            background: -moz-linear-gradient(right,    #acf6ff, #efdbfc);
-            background: linear-gradient(right,         #acf6ff, #efdbfc);
-		}
-		#valid {
-			background-size: 100% 70px;
-		}
+        .background {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            top: 0;
+            right: 0;
+        {#background: -webkit-linear-gradient(right, #acf6ff, #efdbfc);#}{#background: -o-linear-gradient(right,      #acf6ff, #efdbfc);#}{#background: -moz-linear-gradient(right,    #acf6ff, #efdbfc);#}{#background: linear-gradient(right,         #acf6ff, #efdbfc);#} background: url("/static/centBlog/images/bg_regist.jpg") no-repeat;
+            background-size: cover;
+        }
 
-		.board {
-			position: fixed;
-			top:5%;
-			width: 400px;
-			padding: 20px;
-			transition: .5s;
-			margin-top: 100px;
-			background: white;
-			border-radius: 7px;
-			overflow: hidden;
-			box-shadow:2px 2px 10px #a0fff0;
-		}
-		.cor_box {
-			position: fixed; right: 20%; top: 20%; z-index: 999
-		}
-		.cor_box_word {
-			position: fixed; right: 14%; width: 500px; bottom: 28%; z-index: 999
-		}
-		.cor_box_word h2{
-			color: white;
-		}
+        #valid {
+            background-size: 100% 70px;
+        }
+
+        .board {
+            position: fixed;
+            top: 5%;
+            width: 400px;
+            padding: 20px;
+            transition: .5s;
+            margin-top: 100px;
+            background: white;
+            border-radius: 7px;
+            overflow: hidden;
+            box-shadow: 2px 2px 10px #3b3b3b;
+        }
+
+        .board:hover {
+            box-shadow: 2px 2px 10px #398dc6;
+            transition: 1s;
+        }
+
+        .cor_box {
+            position: fixed;
+            right: 20%;
+            top: 20%;
+            z-index: 999
+        }
+
+        .cor_box_word {
+            position: fixed;
+            right: 14%;
+            width: 500px;
+            bottom: 28%;
+            z-index: 999
+        }
+
+        .cor_box_word h2 {
+            color: white;
+        }
 
 		@media only screen and (max-width: 1090px) {
 			.cor_box, .cor_box_word {
