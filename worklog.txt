@@ -32,6 +32,8 @@ Mysql本地socket连接出问题：
     sudo mysqld --user=root
     mysql -uroot -p
 
+    怀疑是 CRASH，经过测试发现这确实是个大问题；于是我卸载了它，安装了MariaDB
+
 
 Mysql备份恢复：
     备份命令mysqldump格式

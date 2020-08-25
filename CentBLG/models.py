@@ -38,8 +38,8 @@ class Blog(models.Model):
 	title = models.CharField(verbose_name='BlogTitle', max_length=64)
 	site_name = models.CharField(verbose_name='BlogTitleName', max_length=64)
 	theme = models.CharField(verbose_name='BlogTheme', max_length=32)
-	desc = models.CharField(max_length=255)
-	
+	desc = models.CharField(max_length=255, default='')
+
 	def __str__(self):
 		return self.nid
 	
