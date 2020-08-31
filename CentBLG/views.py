@@ -224,6 +224,9 @@ def comment(request):
         comment_obj = models.Comment.objects.create(user_id=user_id, content=main_comment, article_id=article_id, parent_comment_id=pid)
         models.Article.objects.filter(pk=article_id).update(comment_count=F("comment_count") + 1)
 
+    # sql_helper = SqlHelper()
+    # sql_helper.modify("update CentBLG_userinfo set today_comments = today_comments + 1 where nid = %s", [user_id, ])
+    # sql_helper.close()
     # 用户积分增加
     current_user = models.UserInfo.objects.filter(nid=request.user.pk).first()
     if current_user.today_comments <= settings.MAX_COMMENTS_ONE_DAY:
@@ -265,7 +268,7 @@ def backend(request):
 def get_readamt_data(request):
     """ Ajax 操作 ： 获取阅读数量 """
     sql = SqlHelper()
-    result_list = sql.get_list("select * from CentBLG_day_sumup where user_id=%s", [int(request.user.pk), ])
+    result_list = sql.get_list("select * from CentBLG_day_sumup where uid=%s", [int(request.user.pk), ])
     sql.close()
     return HttpResponse(json.dumps(result_list, cls=DateEnconding))
 
@@ -273,7 +276,7 @@ def get_readamt_data(request):
 def get_heatmap_data(request):
     """ Ajax 操作 ： 获取阅读数量 """
     sql = SqlHelper()
-    result_list = sql.get_list("select * from CentBLG_day_sumup where user_id=%s", [int(request.user.pk), ])
+    result_list = sql.get_list("select * from CentBLG_day_sumup where uid=%s", [int(request.user.pk), ])
     sql.close()
     return HttpResponse(json.dumps(result_list, cls=DateEnconding))
 
@@ -319,6 +322,8 @@ def modify(request):
             soup = BeautifulSoup(article_content, 'html.parser')
             desc = soup.text[:100] + "..."
             models.Article.objects.create(title=article_title, desc=desc, content=article_content, user_id=request.user.pk, status=1)
+            sql_helper = SqlHelper()
+            sql_helper.modify("update CentBlG_userinfo set today_release = today_release + 1 where nid=%s", [request.user.pk, ])
         except Exception as e:
             ret['status'] = True
             ret['msg'] = str(e)
