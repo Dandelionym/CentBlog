@@ -262,14 +262,14 @@
             <div class="col-md-9">
                 {% for article in article_list %}
                     <div class="article_item">
-                        <h2>
+                        <h3>
                             <a class="hover_danger" href="/{{ article.user }}/articles/{{ article.nid }}">
                                 {{ article.title }}&emsp;&emsp;<span class="fa fa-link" style="color: silver; font-size: 21px"></span></a>
-                        </h2>
+                        </h3>
                         <div class="row">
                             <div class="col-md-9 blog_desc">{{ article.desc }}</div>
                             <div class="col-md-3">
-                                <img alt="" src="/static/centBlog/images/images-create/slider3.png" style="width: 100%; border-radius: 9px">
+                                <img alt="" src="/static/centBlog/images/images-create/slider3.png" style="width: 100%; border-radius: 5px">
                             </div>
                         </div>
                         <div style="margin-top: 10px">
@@ -313,9 +313,11 @@
                         <hr/>
                         <div class="fantastic_art">
                             <ul>
-                                <li><a href=""> · Web开发进阶妙招：常用...</a></li>
-                                <li><a href=""> · Web开发进阶妙招：常用...</a></li>
-                                <li><a href=""> · Web开发进阶妙招：常用...</a></li>
+                                {% for foo in result %}
+                                    <li><a href="/{{ foo.username }}/articles/{{ foo.nid }}">
+                                        <img src="/static/centBlog/images/fivestar.png" width="18" style="border-radius: 50%; overflow: hidden; vertical-align: -3px">
+                                        <span style="color: red">{{ foo.up_count }}</span>&emsp;&nbsp;{{ foo.title }}</a></li>
+                                {% endfor %}
                             </ul>
                         </div>
                     </div>
@@ -323,6 +325,7 @@
                     <div class="side_bar_inner">
                         <div class="clearfix">
                             <h4 class="pull-left">社区公告</h4>
+                            {#                            TODO #}
                         </div>
                         <hr/>
                         <div class="fantastic_art">

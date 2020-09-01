@@ -92,6 +92,11 @@ def index(request):
     for i in range(len(article_list_all)):
         if i == 4: break
         article_list.append(article_list_all[i])
+    sql_helper = SqlHelper()
+    result = sql_helper.get_list(
+        "select username, CentBLG_article.nid, title, up_count  from CentBLG_article, CentBLG_userinfo where CentBLG_article.user_id=CentBLG_userinfo.nid order by up_count desc limit 3",
+        [])
+    sql_helper.close()
     return render(request, 'index.html', locals())
 
 

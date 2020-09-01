@@ -222,8 +222,8 @@ body::-webkit-scrollbar {
 }
 
 .line_of_item {
-    margin-top: 35px;
-    margin-bottom: 35px
+    margin-top: 20px;
+    margin-bottom: 20px
 }
 
 .mg0_auto {
@@ -306,7 +306,7 @@ a:hover {
     color: #666A75;
     margin-top: 7px;
     margin-bottom: 7px;
-    font-size: 18px;
+    font-size: 1.4rem;
 }
 
 .article_icon {
