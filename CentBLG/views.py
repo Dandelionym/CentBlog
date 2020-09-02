@@ -93,9 +93,10 @@ def index(request):
         if i == 4: break
         article_list.append(article_list_all[i])
     sql_helper = SqlHelper()
-    result = sql_helper.get_list(
+    result = sql_helper.get_list(  # 精品文章榜单
         "select username, CentBLG_article.nid, title, up_count  from CentBLG_article, CentBLG_userinfo where CentBLG_article.user_id=CentBLG_userinfo.nid order by up_count desc limit 3",
         [])
+
     sql_helper.close()
     return render(request, 'index.html', locals())
 
@@ -315,7 +316,7 @@ def modify(request):
             article_id = request.POST.get('article_id')
             article_title = request.POST.get('article_title')
             article_content = request.POST.get('article_content')
-            models.Article.objects.filter(pk=article_id).update(title=article_title, content=article_content)
+            models.Article.objects.filter(pk=article_id).update(title=article_title, content=article_content, desc=article_content[:150] + "...")
         except Exception as e:
             ret['status'] = True
             ret['msg'] = str(e)
@@ -325,7 +326,7 @@ def modify(request):
             article_title = request.POST.get('article_title')
             article_content = request.POST.get('article_content')
             soup = BeautifulSoup(article_content, 'html.parser')
-            desc = soup.text[:100] + "..."
+            desc = soup.text[:150] + "..."
             models.Article.objects.create(title=article_title, desc=desc, content=article_content, user_id=request.user.pk, status=1)
             sql_helper = SqlHelper()
             sql_helper.modify("update CentBlG_userinfo set today_release = today_release + 1 where nid=%s", [request.user.pk, ])
@@ -381,3 +382,7 @@ def create_blog(request):
     else:
         has_blog = models.Blog.objects.filter(nid=request.user.blog_id).first()
         return render(request, 'create_blog.html', locals())
+
+
+def public(request):
+    return render(request, 'public.html', locals())

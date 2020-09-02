@@ -17,6 +17,7 @@ urlpatterns = [
     path('get_valid_img/', views.get_valid_img),
     path('personal_info/', views.personal_info),
     path('create_blog/', views.create_blog),
+    path('public/', views.public),
 
     path('backend/', views.backend),
     path('get_readamt_data/', views.get_readamt_data),
