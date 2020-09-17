@@ -42,3 +42,4 @@ Mysql备份恢复：
         mysql -h10.6.208.183 -utest2 -p123  -P3310 < test.sql，也可以直接在mysql命令行下面用source导入
 
 
+
