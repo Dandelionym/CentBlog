@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/static/centBlog/css/personal_info.css">
     <script src="/static/centBlog/plugins/jquery-3.4.1.js"></script>
     <script src="/static/centBlog/plugins/bs/js/bootstrap.min.js"></script>
+
 </head>
 <body>
 {% if not has_blog %}
@@ -20,10 +21,10 @@
 {% load my_tags %}
 {% get_navbar_header user.username %}
 
-<div class="header_info">
+<div style="background: black; padding-bottom: 60px">
     <div class="container">
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-2 col-sm-12">
                 <img class="header_avatar" alt="" src="/media/{{ user.avatar }}">
             </div>
             <div class="col-md-8 header_name">
@@ -37,10 +38,14 @@
 
 <div class="container">
     <div class="page-header">
-        <h2> 每一次的成就，离不开努力与坚持！ <br/><small>Every achievement is inseparable from efforts and persistence</small></h2>
+        <h4><span id="sayHello"></span><br/><small>Every achievement is inseparable from efforts and persistence</small></h4>
     </div>
 </div>
 
 
+<script src="/static/centBlog/js/sayhello.js"></script>
+<script>
+    sayHello('#sayHello')
+</script>
 </body>
 </html>

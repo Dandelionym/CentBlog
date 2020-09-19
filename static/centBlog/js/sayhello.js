@@ -17,3 +17,4 @@ function sayHello(jquery_elem_id) {
     else if (hour < 23)        {$(jquery_elem_id)[0].innerHTML = "生活总会在意外之间变得美妙，晚安"}
     else                       {$(jquery_elem_id)[0].innerHTML = "有些条路你必须坚持下去，保持清醒"}
 }
+
