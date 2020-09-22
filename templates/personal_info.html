@@ -40,6 +40,31 @@
     <div class="page-header">
         <h4><span id="sayHello"></span><br/><small>Every achievement is inseparable from efforts and persistence</small></h4>
     </div>
+    <div>
+        <div class="col-md-4">
+
+        </div>
+        <div class="col-md-8">
+            {% for articel in articel_list %}
+                <div class="media">
+                    <div class="media-left media-top">
+                        <a href="#">
+                            <img class="media-object" src="/static/centBlog/images/sky.jpg" alt="..." width="64" height="64">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">{{ articel.title }}<br/><small>{{ articel.create_time }}</small>&emsp;&emsp;<small>{{ articel.length }} words</small></h4>
+                        <h5 class="media-heading"></h5>
+                        <br/>
+                        <div style="font-weight: 300">
+                            {{ articel.desc }}
+                        </div>
+                    </div>
+                </div>
+                <hr/>
+            {% endfor %}
+        </div>
+    </div>
 </div>
 
 
