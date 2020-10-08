@@ -4,19 +4,12 @@ body {
     color: #222;
     font-size: 1.5rem;
     font-family: 'Sailec Light', sans-serif !important;
-    /*background: rgba(154, 208, 255, 0.17);*/
-    background: url("/static/centBlog/images/bg2-1.png") no-repeat !important;
-    background-size: cover;
+    background: white !important;
 }
 
 body::-webkit-scrollbar {
     display: none;
 }
-
-/*.middle_1 {*/
-/*        background: url("/static/centBlog/images/bg2-1.png") no-repeat !important;*/
-/*    background-size: cover;*/
-/*}*/
 
 .logo_image {
     margin-top: -60px;

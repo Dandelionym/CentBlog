@@ -9,6 +9,41 @@
     <link rel="stylesheet" href="/static/centBlog/css/index.css">
     <script src="/static/centBlog/plugins/jquery-3.4.1.js"></script>
     <script src="/static/centBlog/plugins/bs/js/bootstrap.min.js"></script>
+    <style>
+        .head_bar_nav {
+            margin-left: 20px;
+            font-weight: 700;
+            font-size: 15px
+        }
+
+        .item_font_style {
+            font-size: 12px;
+            font-weight: 200;
+        }
+
+        .head_ul_list {
+            list-style-type: none;
+            padding-left: 0
+        }
+
+        .head_ul_list span {
+            font-weight: 400;
+            color: #86969f;
+        }
+
+        .wide_box {
+            margin-left: 5px;
+            margin-right: 5px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            display: flex;
+            justify-content: space-between !important;
+        }
+
+        .wide_box span {
+            box-shadow: 5px 5px 5px 1px rgba(229, 228, 228, 0.85);
+        }
+    </style>
 </head>
 <body>
 {% load my_tags %}
@@ -34,6 +69,167 @@
 
 
 <div class="middle_1">
+
+    <div class="container" style="">
+        <div class="row clearfix" style="margin-top: 20px">
+            <div class="pull-left">
+                <img style="width: 30px; height: 30px; margin-right: 5px" src='/static/centBlog/logo-c.png'>
+                <span style="font-size: 18px; font-weight: 700; vertical-align: -5px">Cent Prime</span>
+            </div>
+            <div class="pull-right">
+                <span class="head_bar_nav">云上集团</span>
+                <span class="head_bar_nav">买家中心</span>
+                <span class="head_bar_nav">控制台</span>
+                <span class="head_bar_nav">微服务大厅</span>&emsp;&emsp;
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <span style="margin-right: 20px; font-size: 24px; font-weight: 700; vertical-align: -15px">云市场</span>
+                <img style="width: 150px; margin-top: 20px" src='/static/centBlog/images/jingpinhuiju.png'>
+            </div>
+            <div class="col-md-6 clearfix" style="padding-top: 20px">
+                <input class="pull-left" style="border: 1px #c0c0c0 #b00404; width: 87%;" placeholder="请输入您需要的服务">
+                <input class="pull-right" role="button" style="background: #d61414; width: 13%; text-align: center; color: white; border: #ea7c7c solid 2px; font-weight: 400"
+                       value="搜索">
+            </div>
+            <div class="col-md-3">
+                <img style="width: 100px; margin-top: 20px; margin-top: -2px; float: right" src='/static/centBlog/images/yunduanxingping.png'>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <span style="color: rgba(112,128,144,0.52); font-weight: 500; margin-top: 3px; margin-right: 5px; font-size: 12px;">小程序</span>
+                <span style="color: rgba(112,128,144,0.52); font-weight: 500; margin-top: 3px; margin-right: 5px; font-size: 12px;">弹性云存储</span>
+                <span style="color: rgba(112,128,144,0.52); font-weight: 500; margin-top: 3px; margin-right: 5px; font-size: 12px;">建站</span>
+                <span style="color: rgba(112,128,144,0.52); font-weight: 500; margin-top: 3px; margin-right: 5px; font-size: 12px;">云速邮箱</span>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+        <div class="row" style="padding-top: 20px">
+            <div class="col-md-3" style="background: rgba(192,192,192,0.11); height: 40px; line-height: 40px; font-weight: 600">全部商品</div>
+            <div class="col-md-8">
+                <span style="padding: 5px; font-weight: 400; line-height: 40px; margin-left: 30px; font-size: 15px">软硬件设备</span>
+                <span style="padding: 5px; font-weight: 400; line-height: 40px; margin-left: 30px; border-right: 2px rgba(192,192,192,0.18) solid; padding-right: 30px; font-size: 15px">严选商城</span>
+                <span style="padding: 5px; font-weight: 200; line-height: 40px; margin-left: 20px; font-size: 13px">自然语言处理</span>
+                <span style="padding: 5px; font-weight: 200; line-height: 40px; margin-left: 20px; font-size: 13px">机器视觉</span>
+                <span style="padding: 5px; font-weight: 200; line-height: 40px; margin-left: 20px; font-size: 13px">机器视觉</span>
+
+            </div>
+            <div class="col-md-1">
+                <span style="padding: 5px; font-weight: 400; line-height: 40px;font-size: 15px">案例中心</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid" style="background: url('/static/centBlog/images/header_bg_mv_01.png'); height: 400px">
+        <div class="container" style="padding: 0">
+            <div class="col-md-3" style="height: 385px;padding-top: 5px; background: white;margin: 0; border-radius: 0 0 4px 4px">
+                <ul class="head_ul_list">
+                    <li>
+                        <h5>基础软件&emsp;<svg style="vertical-align: -4px" t="1602114410909" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                           p-id="2813" width="18" height="18">
+                            <path d="M320 885.333333c-8.533333 0-17.066667-4.266667-23.466667-10.666666-12.8-12.8-10.666667-34.133333 2.133334-44.8L654.933333 512 298.666667 194.133333c-12.8-10.666667-14.933333-32-2.133334-44.8 10.666667-12.8 32-14.933333 44.8-2.133333l384 341.333333c6.4 6.4 10.666667 14.933333 10.666667 23.466667 0 8.533333-4.266667 17.066667-10.666667 23.466667l-384 341.333333c-6.4 6.4-12.8 8.533333-21.333333 8.533333z"
+                                  p-id="2814" style="-webkit-user-select: auto;" fill="#dbdbdb"></path>
+                        </svg>
+                        </h5>
+                        <span class="item_font_style">玩转商城</span>&emsp;
+                        <span class="item_font_style">数据库与缓存</span>&emsp;
+                        <span class="item_font_style">运行环境</span>&emsp;
+                    </li>
+                    <li>
+                        <h5>企业应用&emsp;<svg style="vertical-align: -4px" t="1602114410909" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                           p-id="2813" width="18" height="18">
+                            <path d="M320 885.333333c-8.533333 0-17.066667-4.266667-23.466667-10.666666-12.8-12.8-10.666667-34.133333 2.133334-44.8L654.933333 512 298.666667 194.133333c-12.8-10.666667-14.933333-32-2.133334-44.8 10.666667-12.8 32-14.933333 44.8-2.133333l384 341.333333c6.4 6.4 10.666667 14.933333 10.666667 23.466667 0 8.533333-4.266667 17.066667-10.666667 23.466667l-384 341.333333c-6.4 6.4-12.8 8.533333-21.333333 8.533333z"
+                                  p-id="2814" style="-webkit-user-select: auto;" fill="#dbdbdb"></path>
+                        </svg>
+                        </h5>
+                        <span class="item_font_style">协同办公</span>&emsp;
+                        <span class="item_font_style">财务管理</span>&emsp;
+                        <span class="item_font_style">存储与备份</span>&emsp;
+                    </li>
+                    <li>
+                        <h5>安全市场&emsp;<svg style="vertical-align: -4px" t="1602114410909" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                           p-id="2813" width="18" height="18">
+                            <path d="M320 885.333333c-8.533333 0-17.066667-4.266667-23.466667-10.666666-12.8-12.8-10.666667-34.133333 2.133334-44.8L654.933333 512 298.666667 194.133333c-12.8-10.666667-14.933333-32-2.133334-44.8 10.666667-12.8 32-14.933333 44.8-2.133333l384 341.333333c6.4 6.4 10.666667 14.933333 10.666667 23.466667 0 8.533333-4.266667 17.066667-10.666667 23.466667l-384 341.333333c-6.4 6.4-12.8 8.533333-21.333333 8.533333z"
+                                  p-id="2814" style="-webkit-user-select: auto;" fill="#dbdbdb"></path>
+                        </svg>
+                        </h5>
+                        <span class="item_font_style">问题缺陷与跟踪</span>&emsp;
+                        <span class="item_font_style">数据安全</span>&emsp;
+                        <span class="item_font_style">网络安全</span>&emsp;
+                    </li>
+                    <li>
+                        <h5>行业解决方案&emsp;<svg style="vertical-align: -4px" t="1602114410909" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                             p-id="2813" width="18" height="18">
+                            <path d="M320 885.333333c-8.533333 0-17.066667-4.266667-23.466667-10.666666-12.8-12.8-10.666667-34.133333 2.133334-44.8L654.933333 512 298.666667 194.133333c-12.8-10.666667-14.933333-32-2.133334-44.8 10.666667-12.8 32-14.933333 44.8-2.133333l384 341.333333c6.4 6.4 10.666667 14.933333 10.666667 23.466667 0 8.533333-4.266667 17.066667-10.666667 23.466667l-384 341.333333c-6.4 6.4-12.8 8.533333-21.333333 8.533333z"
+                                  p-id="2814" style="-webkit-user-select: auto;" fill="#dbdbdb"></path>
+                        </svg>
+                        </h5>
+                        <span class="item_font_style">教育</span>&emsp;
+                        <span class="item_font_style">媒体视频</span>&emsp;
+                        <span class="item_font_style">智慧环保</span>&emsp;
+                    </li>
+                    <li>
+                        <h5>专业服务&emsp;<svg style="vertical-align: -4px" t="1602114410909" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                           p-id="2813" width="18" height="18">
+                            <path d="M320 885.333333c-8.533333 0-17.066667-4.266667-23.466667-10.666666-12.8-12.8-10.666667-34.133333 2.133334-44.8L654.933333 512 298.666667 194.133333c-12.8-10.666667-14.933333-32-2.133334-44.8 10.666667-12.8 32-14.933333 44.8-2.133333l384 341.333333c6.4 6.4 10.666667 14.933333 10.666667 23.466667 0 8.533333-4.266667 17.066667-10.666667 23.466667l-384 341.333333c-6.4 6.4-12.8 8.533333-21.333333 8.533333z"
+                                  p-id="2814" style="-webkit-user-select: auto;" fill="#dbdbdb"></path>
+                        </svg>
+                        </h5>
+                        <span class="item_font_style">数据迁移</span>&emsp;
+                        <span class="item_font_style">故障排查</span>&emsp;
+                        <span class="item_font_style">咨询与培训</span>&emsp;
+                    </li>
+                    <li>
+                        <h5>API&emsp;<svg style="vertical-align: -4px" t="1602114410909" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                          p-id="2813" width="18" height="18">
+                            <path d="M320 885.333333c-8.533333 0-17.066667-4.266667-23.466667-10.666666-12.8-12.8-10.666667-34.133333 2.133334-44.8L654.933333 512 298.666667 194.133333c-12.8-10.666667-14.933333-32-2.133334-44.8 10.666667-12.8 32-14.933333 44.8-2.133333l384 341.333333c6.4 6.4 10.666667 14.933333 10.666667 23.466667 0 8.533333-4.266667 17.066667-10.666667 23.466667l-384 341.333333c-6.4 6.4-12.8 8.533333-21.333333 8.533333z"
+                                  p-id="2814" style="-webkit-user-select: auto;" fill="#dbdbdb"></path>
+                        </svg>
+                        </h5>
+                        <span class="item_font_style">图像生成</span>&emsp;
+                        <span class="item_font_style">图像风格迁移</span>&emsp;
+                        <span class="item_font_style">云环境缓存</span>&emsp;
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-9" style="height: 285px;margin: 0; border-radius: 0 0 4px 4px;">
+                <div class="row" style="height: 275px;background: #947878; margin-left: 5px; margin-right: 5px;margin-top: 5px; margin-bottom: 5px;">
+
+                </div>
+                <div class="row wide_box">
+                    <span style="width: 100%;margin: 5px; margin-left: 0; background:grey;">
+                        <div style="width: 100%;height: 95px;padding: 20px; background: url('/static/centBlog/images/doufukuai1.jpg')">
+                            <h4 style="font-weight: 500; margin-bottom: 5px">云服务专区</h4>
+                            <p style="font-size: 13px">企业级应用平台</p>
+                        </div>
+                    </span>
+                    <span style="width: 100%;margin: 5px; background:grey;">
+                        <div style="width: 100%;height: 95px;padding: 20px; background: url('/static/centBlog/images/doufukuai2.jpg')">
+                            <h4 style="font-weight: 500; margin-bottom: 5px">云环境直播间</h4>
+                            <p style="font-size: 13px">专家团队汇聚，展望未来</p>
+                        </div>
+                    </span>
+                    <span style="width: 100%;margin: 5px; background:grey;">
+                        <div style="width: 100%;height: 95px;padding: 20px; background: url('/static/centBlog/images/doufukuai3.jpg')">
+                            <h4 style="font-weight: 500; margin-bottom: 5px">企业初创中心</h4>
+                            <p style="font-size: 13px">一站式企业服务</p>
+                        </div>
+                    </span>
+                    <span style="width: 100%;margin: 5px; margin-right: 0; background:grey;">
+                        <div style="width: 100%;height: 95px;padding: 20px; background: url('/static/centBlog/images/doufukuai4.jpg')">
+                            <h4 style="font-weight: 500; margin-bottom: 5px">案例服务</h4>
+                            <p style="font-size: 13px">企业级架构指南</p>
+                        </div>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <div class="container-fluid">
         <div class="container">
             <div class="flex_align_center">
@@ -105,81 +301,87 @@
             </div>
         </div>
     </div>
+    <!--
+    {#  Move-Slider-Box ::hover like #}
 
-    <hr class="hr_index_header"/>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="center_box">
-                    <img alt="" src="/static/centBlog/images/pc-0710.png">
-                    <div class="info_text">
-                        <h2>智能云提醒</h2>
-                        <p>CentBlog 集成智能化云服务，伽马云空间为您助力新时代云科技，为您的云数据保驾护航</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="center_box">
-                    <img alt="" src="/static/centBlog/images/pc-0724.png">
-                    <div class="info_text">
-                        <h2>多渠道集成</h2>
-                        <p>CentBlog 以优质的多渠道知识集成策略助力知识图谱全方位覆盖，加速互联网云服务蔓延</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="center_box">
-                    <img alt="" src="/static/centBlog/images/pc-0720.png">
-                    <div class="info_text">
-                        <h2>合成安全锁</h2>
-                        <p>保障数据安全性是首要问题，CentBlog为您创造分布式云存储，实现高智能化的信息加密</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    {#    <hr class="hr_index_header"/>#}
+    {#    <div class="container">#}
+    {#        <div class="row">#}
+    {#            <div class="col-md-4">#}
+    {#                <div class="center_box">#}
+    {#                    <img alt="" src="/static/centBlog/images/pc-0710.png">#}
+    {#                    <div class="info_text">#}
+    {#                        <h2>智能云提醒</h2>#}
+    {#                        <p>CentBlog 集成智能化云服务，伽马云空间为您助力新时代云科技，为您的云数据保驾护航</p>#}
+    {#                    </div>#}
+    {#                </div>#}
+    {#            </div>#}
+    {#            <div class="col-md-4">#}
+    {#                <div class="center_box">#}
+    {#                    <img alt="" src="/static/centBlog/images/pc-0724.png">#}
+    {#                    <div class="info_text">#}
+    {#                        <h2>多渠道集成</h2>#}
+    {#                        <p>CentBlog 以优质的多渠道知识集成策略助力知识图谱全方位覆盖，加速互联网云服务蔓延</p>#}
+    {#                    </div>#}
+    {#                </div>#}
+    {#            </div>#}
+    {#            <div class="col-md-4">#}
+    {#                <div class="center_box">#}
+    {#                    <img alt="" src="/static/centBlog/images/pc-0720.png">#}
+    {#                    <div class="info_text">#}
+    {#                        <h2>合成安全锁</h2>#}
+    {#                        <p>保障数据安全性是首要问题，CentBlog为您创造分布式云存储，实现高智能化的信息加密</p>#}
+    {#                    </div>#}
+    {#                </div>#}
+    {#            </div>#}
+    {#        </div>#}
+    {#    </div>#}
+
+
+-->
+
+
 </div>
 
-<div class="slider_button_list">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-2 slide_bar_control">
-                <div box_id="1" class="left_info_btn btn btn-danger info_active" role="button">云存储架构</div>
-                <div box_id="2" class="left_info_btn btn btn-danger" role="button">智能技术栈</div>
-                <div box_id="3" class="left_info_btn btn btn-danger" role="button">高加密通讯</div>
-                <hr/>
-                <div box_id="4" class="left_info_btn btn btn-danger" role="button">博客世界</div>
-                <div box_id="5" class="left_info_btn btn btn-danger" role="button">伽马空间</div>
-                <div box_id="6" class="left_info_btn btn btn-danger" role="button">万维图谱</div>
-                <div box_id="7" class="left_info_btn btn btn-danger" role="button">灵鹿计划</div>
-            </div>
-            <div id="display_content" class="col-md-10">
-                <div id="info1" class="info_content">
-                    <button class="btn btn-danger">立即购买</button>
-                </div>
-                <div id="info2" class="hide info_content">
-                    <button class="btn btn-danger">立即购买</button>
-                </div>
-                <div id="info3" class="hide info_content">
-                    <button class="btn btn-danger">立即购买</button>
-                </div>
-                <div id="info4" class="hide info_content">
-
-                </div>
-                <div id="info5" class="hide info_content">
-                    <button class="btn btn-danger">立即购买</button>
-                </div>
-                <div id="info6" class="hide info_content">
-                    <button class="btn btn-danger">了解计划</button>
-                </div>
-                <div id="info7" class="hide info_content">
-                    <button class="btn btn-danger">了解详情</button>
-                    x
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+{#<div class="slider_button_list">#}
+{#    <div class="container">#}
+{#        <div class="row">#}
+{#            <div class="col-md-2 slide_bar_control">#}
+{#                <div box_id="1" class="left_info_btn btn btn-danger info_active" role="button">云存储架构</div>#}
+{#                <div box_id="2" class="left_info_btn btn btn-danger" role="button">智能技术栈</div>#}
+{#                <div box_id="3" class="left_info_btn btn btn-danger" role="button">高加密通讯</div>#}
+{#                <hr/>#}
+{#                <div box_id="4" class="left_info_btn btn btn-danger" role="button">博客世界</div>#}
+{#                <div box_id="5" class="left_info_btn btn btn-danger" role="button">伽马空间</div>#}
+{#                <div box_id="6" class="left_info_btn btn btn-danger" role="button">万维图谱</div>#}
+{#                <div box_id="7" class="left_info_btn btn btn-danger" role="button">灵鹿计划</div>#}
+{#            </div>#}
+{#            <div id="display_content" class="col-md-10">#}
+{#                <div id="info1" class="info_content">#}
+{#                    <button class="btn btn-danger">立即购买</button>#}
+{#                </div>#}
+{#                <div id="info2" class="hide info_content">#}
+{#                    <button class="btn btn-danger">立即购买</button>#}
+{#                </div>#}
+{#                <div id="info3" class="hide info_content">#}
+{#                    <button class="btn btn-danger">立即购买</button>#}
+{#                </div>#}
+{#                <div id="info4" class="hide info_content">#}
+{##}
+{#                </div>#}
+{#                <div id="info5" class="hide info_content">#}
+{#                    <button class="btn btn-danger">立即购买</button>#}
+{#                </div>#}
+{#                <div id="info6" class="hide info_content">#}
+{#                    <button class="btn btn-danger">了解计划</button>#}
+{#                </div>#}
+{#                <div id="info7" class="hide info_content">#}
+{#                    <button class="btn btn-danger">了解详情</button>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#</div>#}
 
 <div class="container divider_img">
     <img class="mg0_auto" src='/static/centBlog/images/divider.png' alt="" height="50">
