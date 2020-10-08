@@ -1,0 +1,81 @@
+    <!--
+    {#  Move-Slider-Box ::hover like #}
+
+    {#    <hr class="hr_index_header"/>#}
+    {#    <div class="container">#}
+    {#        <div class="row">#}
+    {#            <div class="col-md-4">#}
+    {#                <div class="center_box">#}
+    {#                    <img alt="" src="/static/centBlog/images/pc-0710.png">#}
+    {#                    <div class="info_text">#}
+    {#                        <h2>智能云提醒</h2>#}
+    {#                        <p>CentBlog 集成智能化云服务，伽马云空间为您助力新时代云科技，为您的云数据保驾护航</p>#}
+    {#                    </div>#}
+    {#                </div>#}
+    {#            </div>#}
+    {#            <div class="col-md-4">#}
+    {#                <div class="center_box">#}
+    {#                    <img alt="" src="/static/centBlog/images/pc-0724.png">#}
+    {#                    <div class="info_text">#}
+    {#                        <h2>多渠道集成</h2>#}
+    {#                        <p>CentBlog 以优质的多渠道知识集成策略助力知识图谱全方位覆盖，加速互联网云服务蔓延</p>#}
+    {#                    </div>#}
+    {#                </div>#}
+    {#            </div>#}
+    {#            <div class="col-md-4">#}
+    {#                <div class="center_box">#}
+    {#                    <img alt="" src="/static/centBlog/images/pc-0720.png">#}
+    {#                    <div class="info_text">#}
+    {#                        <h2>合成安全锁</h2>#}
+    {#                        <p>保障数据安全性是首要问题，CentBlog为您创造分布式云存储，实现高智能化的信息加密</p>#}
+    {#                    </div>#}
+    {#                </div>#}
+    {#            </div>#}
+    {#        </div>#}
+    {#    </div>#}
+
+
+-->
+
+
+
+{#<div class="slider_button_list">#}
+{#    <div class="container">#}
+{#        <div class="row">#}
+{#            <div class="col-md-2 slide_bar_control">#}
+{#                <div box_id="1" class="left_info_btn btn btn-danger info_active" role="button">云存储架构</div>#}
+{#                <div box_id="2" class="left_info_btn btn btn-danger" role="button">智能技术栈</div>#}
+{#                <div box_id="3" class="left_info_btn btn btn-danger" role="button">高加密通讯</div>#}
+{#                <hr/>#}
+{#                <div box_id="4" class="left_info_btn btn btn-danger" role="button">博客世界</div>#}
+{#                <div box_id="5" class="left_info_btn btn btn-danger" role="button">伽马空间</div>#}
+{#                <div box_id="6" class="left_info_btn btn btn-danger" role="button">万维图谱</div>#}
+{#                <div box_id="7" class="left_info_btn btn btn-danger" role="button">灵鹿计划</div>#}
+{#            </div>#}
+{#            <div id="display_content" class="col-md-10">#}
+{#                <div id="info1" class="info_content">#}
+{#                    <button class="btn btn-danger">立即购买</button>#}
+{#                </div>#}
+{#                <div id="info2" class="hide info_content">#}
+{#                    <button class="btn btn-danger">立即购买</button>#}
+{#                </div>#}
+{#                <div id="info3" class="hide info_content">#}
+{#                    <button class="btn btn-danger">立即购买</button>#}
+{#                </div>#}
+{#                <div id="info4" class="hide info_content">#}
+{##}
+{#                </div>#}
+{#                <div id="info5" class="hide info_content">#}
+{#                    <button class="btn btn-danger">立即购买</button>#}
+{#                </div>#}
+{#                <div id="info6" class="hide info_content">#}
+{#                    <button class="btn btn-danger">了解计划</button>#}
+{#                </div>#}
+{#                <div id="info7" class="hide info_content">#}
+{#                    <button class="btn btn-danger">了解详情</button>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#</div>#}
+

@@ -201,7 +201,7 @@ body::-webkit-scrollbar {
 .cent_info_box_CCC {
     background: url('/static/centBlog/images/pc-0728.jpg') no-repeat;
     background-size: cover;
-    min-height: 655px;
+    min-height: 500px !important;
     margin-top: 50px;
     margin-bottom: 0
 }
