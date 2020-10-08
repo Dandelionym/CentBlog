@@ -43,6 +43,16 @@
         .wide_box span {
             box-shadow: 5px 5px 5px 1px rgba(229, 228, 228, 0.85);
         }
+
+        .head_link_img {
+            text-decoration: none;
+            position: relative !important;
+            width: 100%;
+        }
+
+        .head_link_img:hover {
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
@@ -195,9 +205,59 @@
                     </li>
                 </ul>
             </div>
-            <div class="col-md-9" style="height: 285px;margin: 0; border-radius: 0 0 4px 4px;">
-                <div class="row" style="height: 275px;background: #947878; margin-left: 5px; margin-right: 5px;margin-top: 5px; margin-bottom: 5px;">
-
+            <div class="col-md-9" style="height: 285px;margin: 0; border-radius: 0 0 4px 4px">
+                <div id="slide_boxes" class="row" style="height: 275px;margin-left: 5px; margin-right: 5px;margin-top: 5px; margin-bottom: 5px; overflow: hidden ">
+                    <div role="link" class="head_link_img" href="#">
+                        <div class="item_slide" style="width: 100%; height: 275px; background:url('/static/centBlog/images/mofangyun.jpg') no-repeat; background-size: cover">
+                            <div style="padding-top: 50px; padding-left: 50px">
+                                <h2 style="font-weight: 200">企业级云解决方案</h2>
+                                <p>独家首发，三重好礼，提供高维度的解决方案</p>
+                                <p><span style="color:#cd2222; font-weight:800;font-size: 18px">￥280</span>/月</p>
+                                <button class="btn btn-danger" value="立即购买">立即购买</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div role="link" class="head_link_img" href="#" style="display: none">
+                        <div class="item_slide"
+                             style="width: 100%; height: 275px; background:url('/static/centBlog/images/yingjianshangcheng.jpg') no-repeat; background-size: cover">
+                            <div style="padding-top: 50px; padding-left: 50px">
+                                <h2 style="font-weight: 200">性能级分布式云存储</h2>
+                                <p>全方位支持SQL、NoSQL，使用更上手</p>
+                                <p><span style="color:#cd2222; font-weight:800;font-size: 18px">￥1249</span>/月</p>
+                                <button class="btn btn-danger" value="立即购买">立即购买</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div role="link" class="head_link_img" href="#" style="display: none">
+                        <div class="item_slide" style="width: 100%; height: 275px; background:url('/static/centBlog/images/yunpan.png') no-repeat; background-size: cover">
+                            <div style="padding-top: 50px; padding-left: 50px">
+                                <h2 style="font-weight: 200">NVIDIA联合图像生成工程</h2>
+                                <p>风格迁移、特征增减、资源互补</p>
+                                <p><span style="color:#cd2222; font-weight:800;font-size: 18px">￥2280</span>/月</p>
+                                <button class="btn btn-danger" value="立即购买">资源申请</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div role="link" class="head_link_img" href="#" style="display: none">
+                        <div class="item_slide" style="width: 100%; height: 275px; background:url('/static/centBlog/images/jianzhan.png') no-repeat; background-size: cover">
+                            <div style="padding-top: 50px; padding-left: 50px">
+                                <h2 style="font-weight: 200">云博客空间</h2>
+                                <p>提供完整的社区资源及个人独创空间</p>
+                                <p><span style="color:#cd2222; font-weight:800;font-size: 18px">限时免费</span></p>
+                                <button class="btn btn-danger" value="立即购买">立即申请</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div role="link" class="head_link_img" href="#" style="display: none">
+                        <div class="item_slide" style="width: 100%; height: 275px; background:url('/static/centBlog/images/boke2.png') no-repeat; background-size: cover">
+                            <div style="padding-top: 50px; padding-left: 50px">
+                                <h2 style="font-weight: 200">"灵鹿计划"推举</h2>
+                                <p>伽马云空间实验室持续推举青年人才进入知名企业</p>
+                                <p><span style="color:#cd2222; font-weight:800;font-size: 18px">仅限前100名</span></p>
+                                <button class="btn btn-danger" value="立即购买">了解更多</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="row wide_box">
                     <span style="width: 100%;margin: 5px; margin-left: 0; background:grey;">
@@ -767,5 +827,6 @@
             dieY = h / 2 / opts.len
         });
 </script>
+<script src="/static/centBlog/js/index_slide.js" type="text/javascript"></script>
 </body>
 </html>
