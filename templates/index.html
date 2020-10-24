@@ -391,8 +391,8 @@
     <div class="container">
         <div class="bs-example bs-example-tabs" data-example-id="togglable-tabs" style="font-size:1.5rem;">
             <ul id="myTabs" class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="false">知识社区</a></li>
-                <li role="presentation" class=""><a href="#profile" role="tab" id="profile-tab1" data-toggle="tab" aria-controls="profile" aria-expanded="true">伽马云空间</a></li>
+                <li role="presentation" class="active"><a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="false">伽马云空间</a></li>
+                <li role="presentation" class=""><a href="#profile" role="tab" id="profile-tab1" data-toggle="tab" aria-controls="profile" aria-expanded="true">知识社区</a></li>
                 <li role="presentation" class=""><a href="#dropdown1" role="tab" id="profile-tab2" data-toggle="tab" aria-controls="profile" aria-expanded="true">量子实验室</a></li>
                 <li role="presentation" class=""><a href="#dropdown2" role="tab" id="profile-tab3" data-toggle="tab" aria-controls="profile" aria-expanded="true">产品发行区</a></li>
             </ul>
@@ -460,23 +460,23 @@
             <div class="col-md-9">
                 {% for article in article_list %}
                     <div class="article_item">
-                        <h3>
+                        <h4>
                             <a class="hover_danger" href="/{{ article.user }}/articles/{{ article.nid }}">
                                 {{ article.title }}&emsp;&emsp;<span class="fa fa-link" style="color: silver; font-size: 21px"></span></a>
-                        </h3>
+                        </h4>
                         <div class="row">
-                            <div class="col-md-9 blog_desc">{{ article.desc }}</div>
+                            <div class="col-md-12 blog_desc">{{ article.desc }}</div>
                             <div class="col-md-3">
-                                <img alt="" src="/static/centBlog/images/images-create/slider3.png" style="width: 100%; border-radius: 5px">
+                                {#                                <img alt="" src="/static/centBlog/images/images-create/slider3.png" style="width: 100%; border-radius: 5px">#}
                             </div>
                         </div>
                         <div style="margin-top: 10px">
                             <span><img alt="" src="/media/{{ article.user.avatar }}" width="30" height="30" style="border-radius: 9999px"></span>
-                            <span style="font-size: 18px">{{ article.user.username }}</span>&emsp;&emsp;&emsp;
-                            <span style="color: silver; font-size: 17px; ">
-                                <span class="article_icon fa fa-eye"></span>{{ article.views }}&emsp;&nbsp;
-                                <span class="article_icon fa fa-star-o"></span>{{ article.up_count }}&emsp;&nbsp;
-                                <span class="article_icon fa fa-commenting-o"></span>{{ article.comment_count }}
+                            <a class="hover_danger" role="button" href="/{{ article.user }}/"><span style="font-size: 18px">{{ article.user.username }}</span>&emsp;&emsp;&emsp;</a>
+                            <span class="pull-right" style="color: silver; font-size: 15px; ">
+                                <span style="font-size: 12px" class="article_icon fa fa-eye"></span>{{ article.views }}&emsp;&nbsp;
+                                <span style="font-size: 12px" class="article_icon fa fa-star-o"></span>{{ article.up_count }}&emsp;&nbsp;
+                                <span style="font-size: 12px" class="article_icon fa fa-commenting-o"></span>{{ article.comment_count }}
                             </span>
                         </div>
                     </div>

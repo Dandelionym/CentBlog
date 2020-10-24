@@ -8,4 +8,11 @@ CentBLG/sqlhelpers.py
 
 CentBLG/migrations
 CentBLG/templatetags
+CentBLG/views.py
+
+CentBLG
+templates
+static
+media
+BlogCN
 .idea
