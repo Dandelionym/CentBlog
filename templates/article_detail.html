@@ -2,18 +2,20 @@
 
 {% block content %}
     <div id="PC_display">
-        <div id="info_box" class="clearfix">
-            <img class="pull-left" alt="" src="/media/{{ auth_avatar }}" width="60" height="60" style="border-radius: 50%;">
-            <span class="articel_author_span">{{ user_author }}</span>
-            <hr class="line_base"/>
-            <span class="info_box_span">
-            {% if user_author.level <= 2 %}        <span class="info_box_span_span">Lv.{{ user_author.level }}&emsp;初出茅庐</span>
-            {% elif user_author.level <= 4 %}      <span class="info_box_span_span">Lv.{{ user_author.level }}&emsp;游刃有余</span>
-            {% elif user_author.level <= 6 %}      <span class="info_box_span_span">Lv.{{ user_author.level }}&emsp;千载难逢</span>
-            {% elif user_author.level <= 8 %}      <span class="info_box_span_span">Lv.{{ user_author.level }}&emsp;万众瞩目</span>
-            {% else %}                             <span class="info_box_span_span">Lv.{{ user_author.level }}&emsp;唯我独尊</span>
-            {% endif %}</span>
-        </div>
+        <a class="hover_danger" role="button" href="/{{ user_author }}/">
+            <div id="info_box" class="clearfix">
+                <img class="pull-left" alt="" src="/media/{{ auth_avatar }}" width="60" height="60" style="border-radius: 50%;">
+                <span class="articel_author_span">{{ user_author }}</span>
+                <hr class="line_base"/>
+                <span class="info_box_span">
+                {% if user_author.level <= 2 %}        <span class="info_box_span_span">Lv.{{ user_author.level }}&emsp;初出茅庐</span>
+                {% elif user_author.level <= 4 %}      <span class="info_box_span_span">Lv.{{ user_author.level }}&emsp;游刃有余</span>
+                {% elif user_author.level <= 6 %}      <span class="info_box_span_span">Lv.{{ user_author.level }}&emsp;千载难逢</span>
+                {% elif user_author.level <= 8 %}      <span class="info_box_span_span">Lv.{{ user_author.level }}&emsp;万众瞩目</span>
+                {% else %}                             <span class="info_box_span_span">Lv.{{ user_author.level }}&emsp;唯我独尊</span>
+                {% endif %}</span>
+            </div>
+        </a>
     </div>
 
     <div id="moblile_display">
