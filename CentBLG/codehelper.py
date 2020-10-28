@@ -12,8 +12,9 @@ def official_code_img_gen(session_put):
 	
 	img = Image.new("RGBA", (width, height), color=(255, 255, 255))
 	draw = ImageDraw.Draw(img)
-	BHB_font = ImageFont.truetype('/static/centBlog/fonts/Arial Black.ttf', size=30)
-	
+	BHB_font = ImageFont.truetype('arial.ttf', size=30)
+	# BHB_font = ImageFont.load_default()
+
 	official_code = ""
 	
 	for i in range(4):

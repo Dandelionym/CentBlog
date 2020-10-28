@@ -40,6 +40,19 @@
             justify-content: space-between !important;
         }
 
+        .article_item {
+            transition: .5s;
+        }
+
+
+        .article_item:hover {
+            box-shadow: 10px 10px 1px 10px rgba(84, 184, 255, 0.49);
+            transition: .5s;
+            box-shadow: 1px 6px 20px -6px rgba(84, 184, 255, 0.49);
+
+        }
+
+
         .wide_box span {
             box-shadow: 5px 5px 5px 1px rgba(229, 228, 228, 0.85);
         }
@@ -381,7 +394,7 @@
                     产业园展示区涵盖多种元素的标示，包含挖掘建模、数据分析等热门技术。此外还提供数学建模的在线分析工具，诸如文本情感分析、时间序列分析、数据预处理等富有价值的功能。
                 </p>
             </div>
-            <br/><a class="btn btn-warning btn-lg pull-right" href="#" role="button">进入产业园区</a>
+            <br/><a class="btn btn-danger btn-lg pull-right" href="#" role="button">进入产业园区</a>
         </div>
     </div>
 </div>
@@ -505,111 +518,115 @@
     </div>
 </div>
 
-<div class="container-fluid" style="background: white !important;">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-9">
-                {% for article in article_list %}
-                    <div class="article_item">
-                        <h4>
-                            <a class="hover_danger" href="/{{ article.user }}/articles/{{ article.nid }}">
-                                {{ article.title }}&emsp;&emsp;<span class="fa fa-link" style="color: silver; font-size: 21px"></span></a>
-                        </h4>
-                        <div class="row">
-                            <div class="col-md-12 blog_desc">{{ article.desc }}</div>
-                            <div class="col-md-3">
-                                {#                                <img alt="" src="/static/centBlog/images/images-create/slider3.png" style="width: 100%; border-radius: 5px">#}
+<div class="container-fluid" style="background: rgba(115,236,255,0.09) !important;">
+    <div class="" style="margin: 0 auto; width: 70%; border: 2px rgba(120,206,238,0.22) solid; border-top: 0; padding-top: 30px; background: white; margin-bottom: 50px">
+        <div class="container" style="">
+            <div class="row">
+                <div class="col-md-9">
+                    {% for article in article_list %}
+                        <div class="article_item" style="border: 1px rgba(222,222,222,0.29) solid; border-radius: 9px; padding: 10px; margin-bottom: 15px">
+                            <h4>
+                                <a class="hover_danger" href="/{{ article.user }}/articles/{{ article.nid }}">
+                                    {{ article.title }}&emsp;&emsp;</a>
+                            </h4>
+                            <div class="row">
+                                <a class="hover_danger" href="/{{ article.user }}/articles/{{ article.nid }}">
+                                    <div class="col-md-12 blog_desc">{{ article.desc }}</div>
+                                </a>
+                                <div class="col-md-3">
+                                </div>
                             </div>
-                        </div>
-                        <div style="margin-top: 10px">
-                            <span><img alt="" src="/media/{{ article.user.avatar }}" width="30" height="30" style="border-radius: 9999px">&nbsp;</span>
-                            <a class="hover_danger" role="button" href="/{{ article.user }}/"><span style="font-size: 18px; vertical-align: -3px">{{ article.user.username }}</span>&emsp;&emsp;&emsp;</a>
-                            <span class="pull-right" style="color: silver; font-size: 15px; ">
+                            <div style="margin-top: 10px">
+                                <span><img alt="" src="/media/{{ article.user.avatar }}" width="23" height="23" style="border-radius: 9999px">&nbsp;</span>
+                                <a class="hover_danger" role="button" href="/{{ article.user }}/"><span
+                                        style="font-size: 18px; vertical-align: -3px">{{ article.user.username }}</span>&emsp;&emsp;&emsp;</a>
+                                <span class="pull-right" style="color: silver; font-size: 15px; ">
                                 <span style="font-size: 12px" class="article_icon fa fa-eye"></span>{{ article.views }}&emsp;&nbsp;
                                 <span style="font-size: 12px" class="article_icon fa fa-star-o"></span>{{ article.up_count }}&emsp;&nbsp;
                                 <span style="font-size: 12px" class="article_icon fa fa-commenting-o"></span>{{ article.comment_count }}
                             </span>
-                        </div>
-                    </div>
-                    <hr class="line_of_item"/>
-                {% endfor %}
-            </div>
-            <div class="col-md-3">
-                <div class="side_bar">
-                    <div class="side_bar_inner">
-                        <div class="clearfix">
-                            <h4 class="pull-left">云享专家</h4>
-                            <h4 class="pull-right text-danger">更多 ></h4>
-                        </div>
-                        <div>
-                            <div class="side_bar_header">
-                                <img alt="" src="/media/avatars/t1.png">
                             </div>
-                            <div class="item_info">
-                                <h4>Dandelion</h4>
-                                测试人的简历信息；
-                                <ul class="text-left text-primary">
-                                    <li><a href=""> · Web开发进阶妙招：...</a></li>
+                        </div>
+                        {#                        <hr class="line_of_item"/>#}
+                    {% endfor %}
+                </div>
+                <div class="col-md-3">
+                    <div class="side_bar">
+                        <div class="side_bar_inner">
+                            <div class="clearfix">
+                                <h4 class="pull-left">云享专家</h4>
+                                <h4 class="pull-right text-danger">更多 ></h4>
+                            </div>
+                            <div>
+                                <div class="side_bar_header">
+                                    <img alt="" src="/media/avatars/t1.png">
+                                </div>
+                                <div class="item_info">
+                                    <h4>Dandelion</h4>
+                                    测试人的简历信息；
+                                    <ul class="text-left text-primary">
+                                        <li><a href=""> · Web开发进阶妙招：...</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="side_bar_inner">
+                            <div class="clearfix">
+                                <h4 class="pull-left">精华贴</h4>
+                            </div>
+                            <hr/>
+                            <div class="fantastic_art">
+                                <ul>
+                                    {% for foo in result %}
+                                        <li><a href="/{{ foo.username }}/articles/{{ foo.nid }}">
+                                            <img src="/static/centBlog/images/fivestar.png" width="18" style="border-radius: 50%; overflow: hidden; vertical-align: -3px">
+                                            <span style="color: red">{{ foo.up_count }}</span>&emsp;&nbsp;{{ foo.title }}</a></li>
+                                    {% endfor %}
                                 </ul>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="side_bar_inner">
-                        <div class="clearfix">
-                            <h4 class="pull-left">精华贴</h4>
+                        <div class="side_bar_inner">
+                            <div class="clearfix">
+                                <h4 class="pull-left">社区公告</h4>
+                            </div>
+                            <hr/>
+                            <div class="fantastic_art">
+                                <ul>
+                                    <li><a href=""> · Web开发进阶妙招：常用...</a></li>
+                                    <li><a href=""> · Web开发进阶妙招：常用...</a></li>
+                                    <li><a href=""> · Web开发进阶妙招：常用...</a></li>
+                                </ul>
+                            </div>
                         </div>
-                        <hr/>
-                        <div class="fantastic_art">
-                            <ul>
-                                {% for foo in result %}
-                                    <li><a href="/{{ foo.username }}/articles/{{ foo.nid }}">
-                                        <img src="/static/centBlog/images/fivestar.png" width="18" style="border-radius: 50%; overflow: hidden; vertical-align: -3px">
-                                        <span style="color: red">{{ foo.up_count }}</span>&emsp;&nbsp;{{ foo.title }}</a></li>
-                                {% endfor %}
-                            </ul>
-                        </div>
-                    </div>
 
-                    <div class="side_bar_inner">
-                        <div class="clearfix">
-                            <h4 class="pull-left">社区公告</h4>
-                        </div>
-                        <hr/>
-                        <div class="fantastic_art">
-                            <ul>
-                                <li><a href=""> · Web开发进阶妙招：常用...</a></li>
-                                <li><a href=""> · Web开发进阶妙招：常用...</a></li>
-                                <li><a href=""> · Web开发进阶妙招：常用...</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="side_bar_inner">
-                        <div class="clearfix">
-                            <h4 class="pull-left">友情链接</h4>
-                        </div>
-                        <hr/>
-                        <div class="fantastic_art">
-                            <ul>
-                                <li><a href=""></a></li>
-                            </ul>
+                        <div class="side_bar_inner">
+                            <div class="clearfix">
+                                <h4 class="pull-left">友情链接</h4>
+                            </div>
+                            <hr/>
+                            <div class="fantastic_art">
+                                <ul>
+                                    <li><a href=""></a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="container">
-        <div class="panel panel-warning">
-            <div class="panel-body">
-                更多内容请转到 <a href="">博客云社区</a> 查看...
+        <div class="container">
+            <div class="panel panel-warning">
+                <div class="panel-body">
+                    更多内容请转到 <a href="">博客云社区</a> 查看...
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-<div class="container-fluid" style="height:200px;background: rgba(190,190,190,0.27)">
+<div class="container-fluid" style="height:200px;background: rgb(0,0,0)">
     <div class="container">
         <div class="row text-center list-unstyledcol" style="color: #484343">
             <div class="col-md-4">

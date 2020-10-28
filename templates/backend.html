@@ -42,7 +42,7 @@
 						{% for article in article_list %}
 						<tr class="text-center">
 							<th scope="row">{{ forloop.counter }}</th>
-							<td>{{ article.title }}</td>
+                            <td><a class="text-danger" href="/{{ article.user }}/articles/{{ article.nid }}">{{ article.title }}</a></td>
 							<td>{{ article.category.title }}</td>
 							<td>{{ article.up_count }}</td>
 							<td>{{ article.down_count }}</td>

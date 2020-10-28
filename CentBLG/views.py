@@ -90,11 +90,11 @@ def index(request):
     article_list = []
     count = 0
     for i in range(len(article_list_all)):
-        if i == 4: break
+        if i == 5: break
         article_list.append(article_list_all[i])
     sql_helper = SqlHelper()
     result = sql_helper.get_list(  # 精品文章榜单
-        "select username, CentBLG_article.nid, title, up_count  from CentBLG_article, CentBLG_userinfo where CentBLG_article.user_id=CentBLG_userinfo.nid order by up_count desc limit 3",
+        "select username, CentBLG_article.nid, title, up_count  from CentBLG_article, CentBLG_userinfo where CentBLG_article.user_id=CentBLG_userinfo.nid order by up_count desc limit 4",
         [])
 
     sql_helper.close()
