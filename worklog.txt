@@ -42,4 +42,9 @@ Mysql备份恢复：
         mysql -h10.6.208.183 -utest2 -p123  -P3310 < test.sql，也可以直接在mysql命令行下面用source导入
 
 
-
+Mysql忘记密码：
+    net stop mysql
+    mysqld --console --skip-grant-tables --shared-memory
+    新开一个cmd，mysql -u root -p
+    use mysql;
+    update user set authentication_string='' where user='root';

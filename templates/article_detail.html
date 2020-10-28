@@ -2,7 +2,7 @@
 
 {% block content %}
     <div id="PC_display">
-        <a class="hover_danger" role="button" href="/{{ user_author }}/">
+        <a class="hover_danger" role="button" href="/{{ user_author }}/" style="text-decoration: none">
             <div id="info_box" class="clearfix">
                 <img class="pull-left" alt="" src="/media/{{ auth_avatar }}" width="60" height="60" style="border-radius: 50%;">
                 <span class="articel_author_span">{{ user_author }}</span>
@@ -30,7 +30,7 @@
         <hr/>
         <br/>
         {% csrf_token %}
-        <div class="cont">
+        <div class="cont" style="font-weight: 400">
             {{ article_obj.content|safe }}
         </div>
         <div id="div_digg">

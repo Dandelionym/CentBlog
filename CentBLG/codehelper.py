@@ -6,17 +6,18 @@ import random
 def official_code_img_gen(session_put):
 	width = 200
 	height = 45
-	
+
 	def get_random_color():
 		return random.randint(100, 200), random.randint(100, 200), random.randint(100, 200)
-	
+
 	img = Image.new("RGBA", (width, height), color=(255, 255, 255))
 	draw = ImageDraw.Draw(img)
-	BHB_font = ImageFont.truetype('arial.ttf', size=30)
+	BHB_font = ImageFont.truetype('PingFang.ttc', size=30)
+	# BHB_font = ImageFont.truetype('arial.ttf', size=30)
 	# BHB_font = ImageFont.load_default()
 
 	official_code = ""
-	
+
 	for i in range(4):
 		random_num = str(random.randint(0, 9))
 		random_lower_alpha = chr(random.randint(97, 122))
