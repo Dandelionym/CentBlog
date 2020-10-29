@@ -316,7 +316,7 @@ def modify(request):
             article_id = request.POST.get('article_id')
             article_title = request.POST.get('article_title')
             article_content = request.POST.get('article_content')
-            models.Article.objects.filter(pk=article_id).update(title=article_title, content=article_content, desc=article_content[:150] + "...")
+            models.Article.objects.filter(pk=article_id).update(title=article_title, content=article_content, desc=article_content[:250] + "...")
         except Exception as e:
             ret['status'] = True
             ret['msg'] = str(e)

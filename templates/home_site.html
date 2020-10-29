@@ -1,20 +1,24 @@
 {% extends 'bases/base.html' %}
 
 {% block content %}
-    <div class="aritcle_list">
+    <div class="aritcle_list" style="border: 1px rgba(95,107,112,0.13) solid; padding:20px;margin-top: 30px">
         {% for article in article_list %}
             <div class="article_item clearfix">
-                <h5><a href="/{{ article.user.username }}/articles/{{ article.nid }}">{{ article.title }}</a></h5>
-                <div class="article_desc">
-                    {{ article.desc }}
-                </div>
-                <div class="small atricle_bottom_bar pull-right">
-                    <span>Posted &emsp;{{ article.create_time | date:"Y-m-d  H:i:s" }}</span>&emsp;&emsp;
-                    <span class="glyphicon glyphicon-comment"></span>评论（{{ article.comment_count }}）&emsp;&emsp;
-                    <span class="glyphicon glyphicon-thumbs-up"></span>点赞（{{ article.up_count }}）&emsp;&emsp;
-                </div>
+                <h4><a href="/{{ article.user.username }}/articles/{{ article.nid }}" style="text-decoration: none">{{ article.title }}</a></h4>
+                <a href="/{{ article.user.username }}/articles/{{ article.nid }}" style="text-decoration: none; color: black">
+                    <div class="article_desc">
+                        {{ article.desc }}
+                    </div>
+                </a>
+                <a href="/{{ article.user.username }}/articles/{{ article.nid }}" style="text-decoration: none; color: black">
+                    <div class="small atricle_bottom_bar pull-right">
+                        <span>Posted &emsp;{{ article.create_time | date:"Y-m-d  H:i:s" }}</span>&emsp;&emsp;
+                        <span class="glyphicon glyphicon-comment"></span>评论（{{ article.comment_count }}）&emsp;&emsp;
+                        <span class="glyphicon glyphicon-thumbs-up"></span>点赞（{{ article.up_count }}）&emsp;&emsp;
+                    </div>
+                </a>
             </div>
-            <hr>
+            {#            <hr>#}
         {% endfor %}
     </div>
 
