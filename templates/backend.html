@@ -3,7 +3,7 @@
 
 {% block backend_content %}
 	<div class="bs-example bs-example-tabs" data-example-id="togglable-tabs" style="margin-top: 10px">
-		<ul id="myTabs" class="nav nav-tabs" role="tablist">
+        <ul id="myTabs" class="nav nav-tabs" role="tablist" style="font-weight: 400">
 			<li role="presentation" class="active"><a href="#home" role="tab" id="home-tab"  data-toggle="tab" aria-controls="home" aria-expanded="true">
                 编辑文章</a></li>
 			<li role="presentation" class=""><a href="#search_all" role="tab" id="search_all-tab" data-toggle="tab" aria-controls="search_all" aria-expanded="true">查看全部</a></li>
@@ -12,13 +12,19 @@
 		</ul>
 		<div id="myTabContent" class="tab-content">
 			<!-- 1 -->
-			<div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
-				{% csrf_token %}
-				<div class="form-group" style="margin-top: 20px; margin-bottom: -12px">
-						<input article_id="" id="article_title" type="text" class="form-control" placeholder="请输入文章标题...">
-				</div>
-				<label for="editor"></label><textarea id="editor" placeholder="" autofocus style="min-height: 900px; "></textarea>
-			</div>
+            <div role="tabpanel" class="tab-pane fade active in" id="home" aria-labelledby="home-tab">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group" style="margin-top: 20px; margin-bottom: -12px">
+                            <input article_id="" id="article_title" type="text" class="form-control" placeholder="请输入文章标题...">
+                        </div>
+                        <label for="editor"></label><textarea id="editor" placeholder="" autofocus style="min-height: 900px; "></textarea>
+                    </div>
+                    <div class="col-md-2">
+                    </div>
+                </div>
+            </div>
 
 			<!-- 2 -->
 			<div role="tabpanel" class="tab-pane fade" id="search_all" aria-labelledby="search_all-tab" style="padding-top: 10px">
