@@ -24,7 +24,7 @@
 <div style="background: black; padding-bottom: 60px">
     <div class="container">
         <div style="position: absolute; float:top;">
-            <canvas id="canvas" style="width: 100%; height: 250px"></canvas>
+            {#            <canvas id="canvas" style="width: 100%; height: 250px"></canvas>#}
         </div>
         <div class="row">
             <div class="col-md-2 col-sm-12">
@@ -96,15 +96,10 @@
                     {% endif %}
                 </a>
                 <a href="#" class="list-group-item"><span style="color: #2b669a"></span>
-                    <div class="progress">
-                        <div class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar"
-                             aria-valuenow="{{ user.vip_credit }}" aria-valuemin="0" aria-valuemax="500"
-                             style="width: {{ user.vip_credit }}%">
-                            <span class="text-center">{{ user.vip_credit }}%</span>
-                        </div>
-                    </div>
+
                 </a>
                 <a href="#" class="list-group-item"><span style="color: #2b669a"></span>
+                    <span class="small">距离升级还需要积分：</span>
                     <div class="progress">
                         <div class="progress-bar progress-bar-danger progress-bar-striped active" role="progressbar"
                              aria-valuenow="{{ user.ps_credit }}" aria-valuemin="0" aria-valuemax="500"
@@ -117,14 +112,17 @@
         </div>
         <div class="col-md-8" style="border: 1px rgba(226,224,224,0.8) solid; border-radius: 5px">
             <br/>
-            {% for articel in articel_list %}
-                <label><input id="article_length" type="text" value="{{ forloop.counter }}" style="display: none"/></label>
-            {% endfor %}
-            <img src="/static/centBlog/images/bg_none.png" style="width: 100%">
+            {% load my_tags %}
+            {% self_change_info user.username %}
+            {#            <img src="/static/centBlog/images/bg_none.png" style="width: 100%">#}
         </div>
     </div>
 </div>
 
+
+<div class="container">
+
+</div>
 
 <script src="/static/centBlog/js/sayhello.js"></script>
 <script>
