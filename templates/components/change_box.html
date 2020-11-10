@@ -1,12 +1,180 @@
 <style>
+    .input-group {
+        margin-bottom: 0;
+        border-radius: 0;
+    }
 
+    .input-group span {
+        background: rgba(243, 153, 178, 0.1);
+        border: none;
+        color: #a90324;
+        font-weight: 500;
+        border-radius: 0;
+    }
+
+    .input-group input {
+        border: none;
+        box-shadow: none;
+        border-radius: 0;
+        color: #161515;
+        font-weight: 400;
+        background: rgba(243, 153, 178, 0.1);
+        border-radius: 0;
+        transition: .5s;
+    }
+
+    .input-group input::-webkit-input-placeholder {
+        font-weight: 200;
+    }
+
+    .input-group input:focus {
+        box-shadow: none;
+        transition: .5s;
+    }
 </style>
 
 <div>
-    <h4>资料完善</h4>
+    <hr/>
     <div class="container">
         <div class="row">
-            <div class=""></div>
+            <div class="col-md-4">
+                <div>
+                    <h4 class="text-left">
+                        <svg style="vertical-align: -6px" t="1605008154299" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1397"
+                             width="25" height="25">
+                            <path d="M970.752 770.048l-362.496-606.208c-53.248-88.064-137.216-88.064-190.464 0l-362.496 606.208c-53.248 88.064-12.288 157.696 90.112 157.696h737.28c100.352 0 139.264-71.68 88.064-157.696z m-446.464 34.816c0 12.288-10.24 22.528-22.528 22.528s-22.528-10.24-22.528-22.528v-61.44c0-12.288 10.24-22.528 22.528-22.528s22.528 10.24 22.528 22.528v61.44z m0-163.84c0 12.288-10.24 22.528-22.528 22.528s-22.528-10.24-22.528-22.528v-307.2c0-12.288 10.24-22.528 22.528-22.528s22.528 10.24 22.528 22.528v307.2z"
+                                  p-id="1398" fill="#ea8544"></path>
+                        </svg>
+                        请尽快完善个人信息
+                    </h4>
+                </div>
+                <div style="overflow: hidden; border-radius: 9px">
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">姓名</span>
+                        <input type="text" class="form-control" placeholder="请输入你的真实名字" aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">卡号</span>
+                        <input type="text" class="form-control" placeholder="请输入你的学号/职工号" aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">专业</span>
+                        <input type="text" class="form-control" placeholder="请输入你从事的职业或在读专业" aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">手机</span>
+                        <input type="text" class="form-control" placeholder="请输入11位的手机号（用于紧急通讯）" aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">邮箱</span>
+                        <input type="text" class="form-control" placeholder="请确保邮箱连接畅通" aria-describedby="basic-addon1">
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon" id="basic-addon1">地址</span>
+                        <input type="text" class="form-control" placeholder="省市县/区、单位、详细住址" aria-describedby="basic-addon1">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+
+            </div>
+            <div class="col-md-2">
+                <?xml version="1.0" encoding="UTF-8"?>
+                <svg height="256px" viewBox="0 0 194 356" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <defs>
+                        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+                            <stop stop-color="#D6F0C9" offset="0%"></stop>
+                            <stop stop-color="#B6D9C5" offset="100%"></stop>
+                        </linearGradient>
+                        <linearGradient x1="74.9887368%" y1="50%" x2="24.6321632%" y2="76.8911188%" id="linearGradient-2">
+                            <stop stop-color="#C8E6C7" offset="0%"></stop>
+                            <stop stop-color="#A3D5C5" offset="100%"></stop>
+                        </linearGradient>
+                        <linearGradient x1="81.695353%" y1="37.1629282%" x2="20.3735602%" y2="70.828774%" id="linearGradient-3">
+                            <stop stop-color="#D2EDC9" offset="0%"></stop>
+                            <stop stop-color="#A8D7C6" offset="100%"></stop>
+                        </linearGradient>
+                        <path d="M10.0833333,0 L100.833333,0 C106.944444,15.1744792 110,28.7137044 110,40.6176758 C110,52.5216471 106.944444,63.6490885 100.833333,74 L10.0833333,74 C3.36111111,67.1274414 1.38768241e-15,55.990682 0,40.5897217 C0,25.1887614 3.36111111,11.6588542 10.0833333,0 Z"
+                              id="path-4"></path>
+                        <linearGradient x1="35.2760404%" y1="0%" x2="35.2760418%" y2="76.4019428%" id="linearGradient-6">
+                            <stop stop-color="#F3B97A" offset="0%"></stop>
+                            <stop stop-color="#E5A662" offset="100%"></stop>
+                        </linearGradient>
+                        <linearGradient x1="0%" y1="50%" x2="100%" y2="50%" id="linearGradient-7">
+                            <stop stop-color="#FBD097" offset="0%"></stop>
+                            <stop stop-color="#F5C390" offset="43.3939436%"></stop>
+                            <stop stop-color="#ECA56A" offset="100%"></stop>
+                        </linearGradient>
+                    </defs>
+                    <g id="植物" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                        <g id="Artboard" transform="translate(-1348.000000, -48.000000)">
+                            <g id="植物-小叶草" transform="translate(1340.000000, 46.000000)">
+                                <path d="M49.5,37.5 C41.9069218,81.3239094 39.9720259,112.514014 43.6953125,131.070312 C49.5,160 79.1840532,172.576872 98.15625,213.34375 C104.568042,227.121213 109.015959,250.173296 111.5,282.5"
+                                      id="Line-8" stroke="#B0D6C7" stroke-width="2" stroke-linecap="square"></path>
+                                <path d="M121.5,284.5 C121.616287,263.046461 123.332433,248.425367 126.648438,240.636719 C137.469049,215.221214 156.817449,200.242013 160.832031,183.6875 C166.692033,159.523225 166.692033,130.408642 160.832031,96.34375"
+                                      id="Line-9" stroke="#B0D6C7" stroke-width="2" stroke-linecap="square"></path>
+                                <g id="Group-3">
+                                    <path d="M51.6544014,53.8228221 C59.321068,46.0624244 63.1544014,37.3957577 63.1544014,27.8228221 C63.1544014,18.2498864 59.321068,9.58321973 51.6544014,1.82282206 C43.9877347,9.58321973 40.1544014,18.2498864 40.1544014,27.8228221 C40.1544014,37.3957577 43.9877347,46.0624244 51.6544014,53.8228221 Z"
+                                          id="Oval-7" fill="#CEE4D0" transform="translate(51.654401, 27.822822) rotate(12.000000) translate(-51.654401, -27.822822) "></path>
+                                    <path d="M108.548975,237.19504 C116.215641,230.445147 120.048975,222.906993 120.048975,214.580578 C120.048975,206.254163 116.215641,198.716008 108.548975,191.966115 C99.5734716,198.97042 95.0857202,206.635781 95.0857202,214.962196 C95.0857202,223.288611 99.5734716,230.699559 108.548975,237.19504 Z"
+                                          id="Oval-7-Copy-5" fill="url(#linearGradient-1)"
+                                          transform="translate(107.567347, 214.580578) rotate(11.000000) translate(-107.567347, -214.580578) "></path>
+                                    <path d="M151.327779,103.427353 C158.994446,96.6774599 162.827779,89.1393058 162.827779,80.8128908 C162.827779,72.4864757 158.994446,64.9483216 151.327779,58.1984286 C142.352276,65.2027336 137.864525,72.8680937 137.864525,81.1945088 C137.864525,89.5209238 142.352276,96.9318719 151.327779,103.427353 Z"
+                                          id="Oval-7-Copy-7" fill="url(#linearGradient-2)"
+                                          transform="translate(150.346152, 80.812891) rotate(-31.000000) translate(-150.346152, -80.812891) "></path>
+                                    <path d="M144.501238,143.077957 C152.167905,136.328064 156.001238,128.78991 156.001238,120.463495 C156.001238,112.137079 152.167905,104.598925 144.501238,97.8490324 C135.525735,104.853337 131.037984,112.518697 131.037984,120.845113 C131.037984,129.171528 135.525735,136.582476 144.501238,143.077957 Z"
+                                          id="Oval-7-Copy-8" fill="#CEE4D0"
+                                          transform="translate(143.519611, 120.463495) scale(-1, 1) rotate(70.000000) translate(-143.519611, -120.463495) "></path>
+                                    <path d="M184.520883,151.059714 C192.187549,144.309821 196.020883,136.771667 196.020883,128.445252 C196.020883,120.118837 192.989969,111.515835 186.928143,102.636247 C176.3478,111.770247 171.057628,120.500455 171.057628,128.82687 C171.057628,137.153285 175.54538,144.564233 184.520883,151.059714 Z"
+                                          id="Oval-7-Copy-9" fill="url(#linearGradient-3)"
+                                          transform="translate(183.539255, 126.847981) scale(-1, 1) rotate(-37.000000) translate(-183.539255, -126.847981) "></path>
+                                    <path d="M144.57667,188.681639 C151.390532,182.682573 154.797463,175.982929 154.797463,168.582706 C154.797463,161.182483 152.103694,153.53644 146.716157,145.644577 C137.312723,153.762552 132.611006,161.521652 132.611006,168.921874 C132.611006,176.322097 136.599561,182.908686 144.57667,188.681639 Z"
+                                          id="Oval-7-Copy-10" fill="url(#linearGradient-2)"
+                                          transform="translate(143.704234, 167.163108) rotate(-51.000000) translate(-143.704234, -167.163108) "></path>
+                                    <path d="M133.546079,215.47563 C139.296418,210.412912 142.171587,204.758964 142.171587,198.513784 C142.171587,192.268605 139.898269,185.815974 135.351631,179.155891 C127.415906,186.006794 123.448044,192.554835 123.448044,198.800015 C123.448044,205.045194 126.814056,210.603732 133.546079,215.47563 Z"
+                                          id="Oval-7-Copy-12" fill="#CEE4D0"
+                                          transform="translate(132.809816, 197.315760) rotate(-28.000000) translate(-132.809816, -197.315760) "></path>
+                                    <path d="M180.344821,207.71339 C187.781519,201.165966 191.499868,193.853926 191.499868,185.777269 C191.499868,177.700612 188.55987,169.355665 182.679873,160.742428 C172.416897,169.602446 167.285408,178.070783 167.285408,186.14744 C167.285408,194.224097 171.638546,201.412747 180.344821,207.71339 Z"
+                                          id="Oval-7-Copy-11" fill="url(#linearGradient-1)"
+                                          transform="translate(179.392638, 184.227909) rotate(60.000000) translate(-179.392638, -184.227909) "></path>
+                                    <path d="M75.6361733,270.323607 C85.4277956,261.702858 90.3236067,252.075368 90.3236067,241.441136 C90.3236067,230.806904 86.0944623,220.179414 77.6361733,209.558666 C64.8396137,220.504341 58.4413339,231.294295 58.4413339,241.928527 C58.4413339,252.562759 64.172947,262.027785 75.6361733,270.323607 Z"
+                                          id="Oval-7-Copy-6" fill="url(#linearGradient-3)"
+                                          transform="translate(74.382470, 239.941136) rotate(-90.000000) translate(-74.382470, -239.941136) "></path>
+                                    <path d="M154.492068,255.060211 C162.243464,248.23572 166.119163,240.614256 166.119163,232.19582 C166.119163,223.777383 162.771222,215.364284 156.075339,206.956521 C145.945127,215.621507 140.880021,224.163219 140.880021,232.581655 C140.880021,241.000092 145.41737,248.492944 154.492068,255.060211 Z"
+                                          id="Oval-7-Copy-13" fill="url(#linearGradient-2)"
+                                          transform="translate(153.499592, 231.008366) rotate(78.000000) translate(-153.499592, -231.008366) "></path>
+                                    <path d="M62.5165043,109.516504 C70.183171,101.756107 74.0165043,93.08944 74.0165043,83.5165043 C74.0165043,73.9435686 70.183171,65.276902 62.5165043,57.5165043 C54.8498376,65.276902 51.0165043,73.9435686 51.0165043,83.5165043 C51.0165043,93.08944 54.8498376,101.756107 62.5165043,109.516504 Z"
+                                          id="Oval-7-Copy" fill="url(#linearGradient-1)"
+                                          transform="translate(62.516504, 83.516504) rotate(45.000000) translate(-62.516504, -83.516504) "></path>
+                                    <path d="M79.513326,171.984986 C87.1799927,165.235093 91.013326,157.696939 91.013326,149.370524 C91.013326,141.044109 87.1799927,133.505955 79.513326,126.756062 C71.8466594,133.505955 68.013326,141.044109 68.013326,149.370524 C68.013326,157.696939 71.8466594,165.235093 79.513326,171.984986 Z"
+                                          id="Oval-7-Copy-3" fill="url(#linearGradient-2)"
+                                          transform="translate(79.513326, 149.370524) rotate(27.000000) translate(-79.513326, -149.370524) "></path>
+                                    <path d="M48.2401073,199.760266 C56.8716646,192.160863 61.1874433,183.673992 61.1874433,174.299653 C61.1874433,164.925315 56.8716646,156.438444 48.2401073,148.839041 C39.60855,156.438444 35.2927713,164.925315 35.2927713,174.299653 C35.2927713,183.673992 39.60855,192.160863 48.2401073,199.760266 Z"
+                                          id="Oval-7-Copy-4" fill="#CEE4D0"
+                                          transform="translate(48.240107, 174.299653) rotate(281.000000) translate(-48.240107, -174.299653) "></path>
+                                    <path d="M23.7141065,122.2974 C31.3807732,116.022002 35.2141065,109.013756 35.2141065,101.27266 C35.2141065,93.531565 31.3807732,86.5233184 23.7141065,80.2479208 C16.0474398,86.5233184 12.2141065,93.531565 12.2141065,101.27266 C12.2141065,109.013756 16.0474398,116.022002 23.7141065,122.2974 Z"
+                                          id="Oval-7-Copy-2" fill="url(#linearGradient-2)"
+                                          transform="translate(23.714106, 101.272660) rotate(-48.000000) translate(-23.714106, -101.272660) "></path>
+                                </g>
+                                <g id="Group-2" transform="translate(58.000000, 284.000000)">
+                                    <mask id="mask-5" fill="white">
+                                        <use xlink:href="#path-4"></use>
+                                    </mask>
+                                    <use id="Rectangle-4" fill="#EFF4F9" xlink:href="#path-4"></use>
+                                    <polygon id="Rectangle-4" fill="#EFB475" mask="url(#mask-5)"
+                                             points="113.657057 53.1799653 105.322834 74.2641475 7.15549735 74.2641475 -2.75 52"></polygon>
+                                    <polygon id="Rectangle-4-Copy" fill="url(#linearGradient-6)" mask="url(#mask-5)"
+                                             transform="translate(55.453528, 11.132074) scale(1, -1) translate(-55.453528, -11.132074) "
+                                             points="113.657057 1.17996529 105.322834 22.2641475 7.15549735 22.2641475 -2.75 0"></polygon>
+                                </g>
+                                <path d="M67,271 L159,271 C162.313708,271 165,273.686292 165,277 L165,286 C165,288.209139 163.209139,290 161,290 L65,290 C62.790861,290 61,288.209139 61,286 L61,277 C61,273.686292 63.6862915,271 67,271 Z"
+                                      id="Rectangle-5" fill="url(#linearGradient-7)"></path>
+                            </g>
+                        </g>
+                    </g>
+                </svg>
+            </div>
         </div>
+        <hr/>
     </div>
 </div>
