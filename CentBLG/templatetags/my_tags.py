@@ -26,8 +26,15 @@ def get_navbar_header(username):
     return locals()
 
 
-@register.inclusion_tag('components/self_change.html')
+@register.inclusion_tag('components/simple_table.html')
 def self_change_info(username):
+    user = UserInfo.objects.filter(username=username).first()
+
+    return locals()
+
+
+@register.inclusion_tag('components/change_box.html')
+def change_box(username):
     user = UserInfo.objects.filter(username=username).first()
 
     return locals()

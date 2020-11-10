@@ -114,14 +114,13 @@
             <br/>
             {% load my_tags %}
             {% self_change_info user.username %}
-            {#            <img src="/static/centBlog/images/bg_none.png" style="width: 100%">#}
         </div>
     </div>
 </div>
 
 
 <div class="container">
-
+    {% change_box user.username %}
 </div>
 
 <script src="/static/centBlog/js/sayhello.js"></script>
