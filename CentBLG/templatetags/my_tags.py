@@ -40,5 +40,12 @@ def change_box(username):
     return locals()
 
 
+@register.inclusion_tag('components/functional_table.html')
+def functional_table(username):
+    user = UserInfo.objects.filter(username=username).first()
+
+    return locals()
+
+
 def divider(module_name):
     return locals()

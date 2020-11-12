@@ -1412,35 +1412,9 @@
                 </div>
             </div>
 
-            <div class="col-md-6">
-                <div style=" background: url('../../static/centBlog/images/svgs/05-钟表.svg') no-repeat; background-size: cover; border-radius: 7px;">
-                    <div style="background: rgba(255,255,255,0.76);padding: 10px; box-shadow: 6px 8px 13px 0px #fadfdf">
-                        <div class="select_item">
-                            <h5>
-                                工作台 - Workbench<span class="lead small black">&emsp;Graphic/Voice/Text projects with intelligent API on Cent Prime</span></h5>
-                            <hr style="border:0;background-color:#f5aaaa;height:1px;"/>
-                            <button class="btn btn-default">图像生成1</button>&emsp;
-                            <button class="btn btn-default">图像生成2</button>&emsp;
-                            <button class="btn btn-default">图像生成3</button>&emsp;
-                            <button class="btn btn-default">图像生成4</button>&emsp;
-                            <button class="btn btn-default">图像生成5</button>
-                        </div>
-                        <div class="select_item">
-                            <button class="btn btn-default">语音降噪1</button>&emsp;
-                            <button class="btn btn-default">语音降噪2</button>&emsp;
-                            <button class="btn btn-default">语音降噪3</button>&emsp;
-                            <button class="btn btn-default">语音降噪4</button>&emsp;
-                            <button class="btn btn-default">语音降噪5</button>
-                        </div>
-                        <div class="select_item">
-                            <button class="btn btn-default">自然语言处理1</button>&emsp;
-                            <button class="btn btn-default">自然语言处理2</button>&emsp;
-                            <button class="btn btn-default">自然语言处理3</button>&emsp;
-                            <button class="btn btn-default">自然语言处理4</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {% load my_tags %}
+            {% functional_table user.username %}
+
             <div class="col-md-2">
                 <?xml version="1.0" encoding="UTF-8"?>
                 <svg height="256px" viewBox="0 0 194 356" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
