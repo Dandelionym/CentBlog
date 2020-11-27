@@ -4,6 +4,7 @@ from django.db.models.functions import TruncMonth
 
 from CentBLG import models
 from CentBLG.models import UserInfo
+from ..sqlhelpers import SqlHelper
 
 register = template.Library()
 
@@ -28,8 +29,17 @@ def get_navbar_header(username):
 
 @register.inclusion_tag('components/simple_table.html')
 def self_change_info(username):
+    sqlhelper = SqlHelper()
     user = UserInfo.objects.filter(username=username).first()
-
+    id_information = sqlhelper.get_one(
+        "select real_name, card_number, work_direction, connection_email, connection_phone, home_address from CentBLG_detail_information where user_id=2;", [])
+    real_name = id_information['real_name']
+    card_number = id_information['card_number']
+    work_direction = id_information['work_direction']
+    connection_email = id_information['connection_email']
+    connection_phone = id_information['connection_phone']
+    home_address = id_information['home_address']
+    sqlhelper.close()
     return locals()
 
 

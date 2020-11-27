@@ -359,10 +359,6 @@ def personal_info(request):
         blog = models.Blog.objects.filter(nid=user.blog_id).first()
         if blog:
             has_blog = True
-            sqlhelper = SqlHelper()
-            articel_list = sqlhelper.get_list("select title, create_time, `desc`, length(content) as length from CentBLG_article where user_id=%s order by create_time desc;",
-                                              [request.user.nid])
-            sqlhelper.close()
             return render(request, 'personal_info.html', locals())
         else:
             has_blog = False

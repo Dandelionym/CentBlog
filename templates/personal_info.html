@@ -9,7 +9,11 @@
     <link rel="stylesheet" href="/static/centBlog/css/personal_info.css">
     <script src="/static/centBlog/plugins/jquery-3.4.1.js"></script>
     <script src="/static/centBlog/plugins/bs/js/bootstrap.min.js"></script>
-
+    <style>
+        body::-webkit-scrollbar {
+            display: none !important;
+        }
+    </style>
 </head>
 <body>
 {% if not has_blog %}
@@ -96,9 +100,6 @@
                         <span style="color: #ff6100">Lv.{{ user.vip_level }}&emsp;驻站大师</span>
                     {% endif %}
                 </a>
-                {#                <a href="#" class="list-group-item"><span style="color: #2b669a"></span>#}
-                {##}
-                {#                </a>#}
                 <a href="#" class="list-group-item"><span style="color: #2b669a"></span>
                     <span class="small">距离升级还需要积分：</span>
                     <div class="progress">
