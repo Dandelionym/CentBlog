@@ -12,6 +12,11 @@
 <p class="lead small">Personal Information</p>
 <div class="row">
     <div class="col-md-9">
+        {% if not status %}
+            <script>
+                alert("请完善你的信息！")
+            </script>
+        {% endif %}
         <div>
             <dl class="dl-horizontal">
                 <dt>

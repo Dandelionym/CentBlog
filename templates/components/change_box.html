@@ -56,54 +56,74 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-                {#                <div>#}
-                {#                    <div>#}
-                {#                    <h4 class="text-left">#}
-                {#                        <svg style="vertical-align: -6px" t="1605008154299" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1397"#}
-                {#                             width="25" height="25">#}
-                {#                            <path d="M970.752 770.048l-362.496-606.208c-53.248-88.064-137.216-88.064-190.464 0l-362.496 606.208c-53.248 88.064-12.288 157.696 90.112 157.696h737.28c100.352 0 139.264-71.68 88.064-157.696z m-446.464 34.816c0 12.288-10.24 22.528-22.528 22.528s-22.528-10.24-22.528-22.528v-61.44c0-12.288 10.24-22.528 22.528-22.528s22.528 10.24 22.528 22.528v61.44z m0-163.84c0 12.288-10.24 22.528-22.528 22.528s-22.528-10.24-22.528-22.528v-307.2c0-12.288 10.24-22.528 22.528-22.528s22.528 10.24 22.528 22.528v307.2z"#}
-                {#                                  p-id="1398" fill="#ea8544"></path>#}
-                {#                        </svg>#}
-                {#                        请尽快完善个人信息#}
-                {#                    </h4>#}
-                {#                </div>#}
-                {#                    <div style="overflow: hidden; border-radius: 9px">#}
-                {#                    <div class="input-group">#}
-                {#                        <span class="input-group-addon" id="basic-addon1">姓名</span>#}
-                {#                        <input type="text" class="form-control" placeholder="请输入你的真实名字" aria-describedby="basic-addon1">#}
-                {#                    </div>#}
-                {#                    <div class="input-group">#}
-                {#                        <span class="input-group-addon" id="basic-addon1">卡号</span>#}
-                {#                        <input type="text" class="form-control" placeholder="请输入你的学号/职工号" aria-describedby="basic-addon1">#}
-                {#                    </div>#}
-                {#                    <div class="input-group">#}
-                {#                        <span class="input-group-addon" id="basic-addon1">专业</span>#}
-                {#                        <input type="text" class="form-control" placeholder="请输入你从事的职业或在读专业" aria-describedby="basic-addon1">#}
-                {#                    </div>#}
-                {#                    <div class="input-group">#}
-                {#                        <span class="input-group-addon" id="basic-addon1">手机</span>#}
-                {#                        <input type="text" class="form-control" placeholder="请输入11位的手机号（用于紧急通讯）" aria-describedby="basic-addon1">#}
-                {#                    </div>#}
-                {#                    <div class="input-group">#}
-                {#                        <span class="input-group-addon" id="basic-addon1">邮箱</span>#}
-                {#                        <input type="text" class="form-control" placeholder="请确保邮箱连接畅通" aria-describedby="basic-addon1">#}
-                {#                    </div>#}
-                {#                    <div class="input-group">#}
-                {#                        <span class="input-group-addon" id="basic-addon1">地址</span>#}
-                {#                        <input type="text" class="form-control" placeholder="省市县/区、单位、详细住址" aria-describedby="basic-addon1">#}
-                {#                    </div>#}
-                {#                </div>#}
-                {#                </div>#}
-                <div>
-                    <svg height="280px" viewBox="0 0 673 571" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                        <!-- Generator: Sketch 60.1 (88133) - https://sketch.com -->
-                        <title>场景-工作报告</title>
-                        <desc>Created with Sketch.</desc>
-                        <defs>
-                            <path d="M238.660714,0.233129032 C159.578571,0.374419355 90.1536429,35.6852258 43.9265357,107.977597 L43.9265357,107.977597 C9.21642857,162.256629 -5.17746429,225.776048 2.08489286,287.105468 L2.08489286,287.105468 C10.8676071,361.266403 51.3185357,432.224758 125.813679,479.768952 L125.813679,479.768952 C261.91275,566.629532 362.187964,445.370645 511.346786,419.878339 L511.346786,419.878339 C777.484714,374.394629 650.721107,175.670968 403.689,45.2258548 L403.689,45.2258548 C347.354464,15.4795323 291.39,0.312016129 239.53875,0.233129032 L239.53875,0.233129032 L238.660714,0.233129032 Z"
-                                  id="path-1"></path>
-                            <path d="M238.660714,0.233129032 C159.578571,0.374419355 90.1536429,35.6852258 43.9265357,107.977597 L43.9265357,107.977597 C9.21642857,162.256629 -5.17746429,225.776048 2.08489286,287.105468 L2.08489286,287.105468 C10.8676071,361.266403 51.3185357,432.224758 125.813679,479.768952 L125.813679,479.768952 C261.91275,566.629532 362.187964,445.370645 511.346786,419.878339 L511.346786,419.878339 C777.484714,374.394629 650.721107,175.670968 403.689,45.2258548 L403.689,45.2258548 C347.354464,15.4795323 291.39,0.312016129 239.53875,0.233129032 L239.53875,0.233129032 L238.660714,0.233129032 Z"
-                                  id="path-3"></path>
+                {% if not status %}
+                    <div>
+                        <div>
+                            <h4 class="text-left">
+                                <svg style="vertical-align: -6px" t="1605008154299" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                     p-id="1397"
+                                     width="25" height="25">
+                                    <path d="M970.752 770.048l-362.496-606.208c-53.248-88.064-137.216-88.064-190.464 0l-362.496 606.208c-53.248 88.064-12.288 157.696 90.112 157.696h737.28c100.352 0 139.264-71.68 88.064-157.696z m-446.464 34.816c0 12.288-10.24 22.528-22.528 22.528s-22.528-10.24-22.528-22.528v-61.44c0-12.288 10.24-22.528 22.528-22.528s22.528 10.24 22.528 22.528v61.44z m0-163.84c0 12.288-10.24 22.528-22.528 22.528s-22.528-10.24-22.528-22.528v-307.2c0-12.288 10.24-22.528 22.528-22.528s22.528 10.24 22.528 22.528v307.2z"
+                                          p-id="1398" fill="#ea8544"></path>
+                                </svg>
+                                请尽快完善个人信息&emsp;&emsp;
+                                <button id="info_submit" class="btn btn-success" type="submit" value="提交">已完成，提交</button>
+                            </h4>
+                        </div>
+                        <div style="overflow: hidden; border-radius: 9px">
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">姓名</span>
+                                <input id="rname" type="text" class="form-control" placeholder="请输入你的真实名字" aria-describedby="basic-addon1">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">卡号</span>
+                                <input id="rnumber" type="text" class="form-control" placeholder="请输入你的学号/职工号" aria-describedby="basic-addon1">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">专业</span>
+                                <input id="rwork" type="text" class="form-control" placeholder="请输入你从事的职业或在读专业" aria-describedby="basic-addon1">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">手机</span>
+                                <input id="rphone" type="text" class="form-control" placeholder="请输入11位的手机号（用于紧急通讯）" aria-describedby="basic-addon1">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">邮箱</span>
+                                <input id="rmail" type="text" class="form-control" placeholder="请确保邮箱连接畅通" aria-describedby="basic-addon1">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon" id="basic-addon1">地址</span>
+                                <input id="raddress" type="text" class="form-control" placeholder="省市县/区、单位、详细住址" aria-describedby="basic-addon1">
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                        $('#info_submit').click(function () {
+                            username = $('#rname').val()
+                            rnumber = $('#rnumber').val()
+                            rwork = $('#rwork').val()
+                            rphone = $('#rphone').val()
+                            rmail = $('#rmail').val()
+                            raddress = $('#raddress').val()
+
+                            if (username === '' || rnumber === '' || rwork === '' || rphone === '' || rmail === '' || raddress === '') {
+                                alert("所填信息不能为空值！ 检查一下再试试")
+                            } else {
+                                $.ajax({})
+                            }
+                        })
+                    </script>
+                {% else %}
+                    <div>
+                        <svg height="280px" viewBox="0 0 673 571" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <!-- Generator: Sketch 60.1 (88133) - https://sketch.com -->
+                            <title>场景-工作报告</title>
+                            <desc>Created with Sketch.</desc>
+                            <defs>
+                                <path d="M238.660714,0.233129032 C159.578571,0.374419355 90.1536429,35.6852258 43.9265357,107.977597 L43.9265357,107.977597 C9.21642857,162.256629 -5.17746429,225.776048 2.08489286,287.105468 L2.08489286,287.105468 C10.8676071,361.266403 51.3185357,432.224758 125.813679,479.768952 L125.813679,479.768952 C261.91275,566.629532 362.187964,445.370645 511.346786,419.878339 L511.346786,419.878339 C777.484714,374.394629 650.721107,175.670968 403.689,45.2258548 L403.689,45.2258548 C347.354464,15.4795323 291.39,0.312016129 239.53875,0.233129032 L239.53875,0.233129032 L238.660714,0.233129032 Z"
+                                      id="path-1"></path>
+                                <path d="M238.660714,0.233129032 C159.578571,0.374419355 90.1536429,35.6852258 43.9265357,107.977597 L43.9265357,107.977597 C9.21642857,162.256629 -5.17746429,225.776048 2.08489286,287.105468 L2.08489286,287.105468 C10.8676071,361.266403 51.3185357,432.224758 125.813679,479.768952 L125.813679,479.768952 C261.91275,566.629532 362.187964,445.370645 511.346786,419.878339 L511.346786,419.878339 C777.484714,374.394629 650.721107,175.670968 403.689,45.2258548 L403.689,45.2258548 C347.354464,15.4795323 291.39,0.312016129 239.53875,0.233129032 L239.53875,0.233129032 L238.660714,0.233129032 Z"
+                                      id="path-3"></path>
                             <polygon id="path-5" points="0.784125 0.464717949 8.4375 0.464717949 8.4375 45.1684615 0.784125 45.1684615"></polygon>
                             <polygon id="path-7" points="0.498375 0.464717949 8.15175 0.464717949 8.15175 45.1684615 0.498375 45.1684615"></polygon>
                             <polygon id="path-9" points="0.792 0.464717949 8.44425 0.464717949 8.44425 45.1684615 0.792 45.1684615"></polygon>
@@ -1410,6 +1430,7 @@
                         </g>
                     </svg>
                 </div>
+                {% endif %}
             </div>
 
             {% load my_tags %}

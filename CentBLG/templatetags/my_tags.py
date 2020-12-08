@@ -31,14 +31,21 @@ def get_navbar_header(username):
 def self_change_info(username):
     sqlhelper = SqlHelper()
     user = UserInfo.objects.filter(username=username).first()
-    id_information = sqlhelper.get_one(
-        "select real_name, card_number, work_direction, connection_email, connection_phone, home_address from CentBLG_detail_information where user_id=2;", [])
-    real_name = id_information['real_name']
-    card_number = id_information['card_number']
-    work_direction = id_information['work_direction']
-    connection_email = id_information['connection_email']
-    connection_phone = id_information['connection_phone']
-    home_address = id_information['home_address']
+    nid = user.nid
+    print(nid)
+    try:
+        id_information = sqlhelper.get_one(
+            "select real_name, card_number, work_direction, connection_email, connection_phone, home_address from CentBLG_detail_information where user_id=%s;", [nid, ])
+        real_name = id_information['real_name']
+        card_number = id_information['card_number']
+        work_direction = id_information['work_direction']
+        connection_email = id_information['connection_email']
+        connection_phone = id_information['connection_phone']
+        home_address = id_information['home_address']
+        status = True
+    except Exception as E:
+        print("No information load.")
+        return {'status': False}
     sqlhelper.close()
     return locals()
 
