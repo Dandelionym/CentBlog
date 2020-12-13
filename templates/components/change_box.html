@@ -95,6 +95,7 @@
                                 <span class="input-group-addon" id="basic-addon1">地址</span>
                                 <input id="raddress" type="text" class="form-control" placeholder="省市县/区、单位、详细住址" aria-describedby="basic-addon1">
                             </div>
+                            {% csrf_token %}
                         </div>
                     </div>
                     <script>
@@ -109,7 +110,26 @@
                             if (username === '' || rnumber === '' || rwork === '' || rphone === '' || rmail === '' || raddress === '') {
                                 alert("所填信息不能为空值！ 检查一下再试试")
                             } else {
-                                $.ajax({})
+                                $.ajax({
+                                    url: '/real_info_submit/',
+                                    type: 'POST',
+                                    data: {
+                                        "username": username,
+                                        "rnumber": rnumber,
+                                        "rwork": rwork,
+                                        "rphone": rphone,
+                                        "rmail": rmail,
+                                        "raddress": raddress,
+                                        csrfmiddlewaretoken: $("[name='csrfmiddlewaretoken']").val(),
+                                    },
+                                    success: function (args) {
+                                        if (args.status) {
+                                            location.href = '/personal_info/'
+                                        } else {
+                                            alert(args.msg)
+                                        }
+                                    }
+                                })
                             }
                         })
                     </script>

@@ -19,6 +19,8 @@ urlpatterns = [
     path('create_blog/', views.create_blog),
     path('public/', views.public),
 
+    path('real_info_submit/', views.real_info_submit),
+
     path('backend/', views.backend),
     path('get_readamt_data/', views.get_readamt_data),
     path('get_heatmap_data/', views.get_heatmap_data),

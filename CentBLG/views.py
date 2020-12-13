@@ -386,3 +386,29 @@ def create_blog(request):
 
 def public(request):
     return render(request, 'public.html', locals())
+
+
+def real_info_submit(request):
+    ret = {'status': True, 'msg': None}
+    if request.method == 'POST':
+        user_id = request.user.nid
+        username = request.POST.get("username")
+        rnumber = request.POST.get("rnumber")
+        rwork = request.POST.get("rwork")
+        rphone = request.POST.get("rphone")
+        rmail = request.POST.get("rmail")
+        raddress = request.POST.get("raddress")
+
+        sql = SqlHelper()
+        sql.creat("insert into CentBLG_detail_information(user_id, real_name, card_number, connection_phone, work_direction, connection_email, home_address)"
+                  "values(%s,%s,%s,%s,%s,%s,%s)", [
+                      user_id,
+                      username,
+                      rnumber,
+                      rphone,
+                      rwork,
+                      rmail,
+                      raddress
+                  ])
+        sql.close()
+    return JsonResponse(ret)
