@@ -1,8 +1,10 @@
+"""
+    UnitTest File of Django Project
+"""
 from django.test import TestCase
-from CentBLG.sqlhelpers import SqlHelper
-import random
-import hashlib
+from CentBLG.models import UserInfo
+from django.contrib.auth.models import User
 
-print(
-   random.random().__str__()[2:]
-)
+import datetime
+
+get_now = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')

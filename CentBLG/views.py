@@ -1,5 +1,6 @@
 from CentBLG.views_core.functional_view import *
 
+
 def login(request):
     """ 实现用户登录的功能， """
     ret = {'status': False, 'msg': None, 'user': None}

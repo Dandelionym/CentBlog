@@ -53,7 +53,8 @@ def self_change_info(username):
 @register.inclusion_tag('components/change_box.html')
 def change_box(username):
     user = UserInfo.objects.filter(username=username).first()
-
+    sql = SqlHelper()
+    status = sql.get_one("select * from CentBLG_detail_information where CentBLG_detail_information.user_id =%s", [user.nid, ])
     return locals()
 
 
