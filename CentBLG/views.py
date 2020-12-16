@@ -10,10 +10,10 @@ def login(request):
         valid_code = request.POST.get('valid_code')
 
         if valid_code.upper() == request.session.get('valid_code').upper():  # 验证码校验过程，通过Session筛选用户个人的验证码
-            user = auth.authenticate(username=user, password=password)  # User Model定义的时候设定了 __str__(): return username
+            user = auth.authenticate(username=user, password=password)       # User Model定义的时候设定了 __str__(): return username
             if user:
                 ret['status'] = True
-                auth.login(request, user)  # request.user == current logined object.
+                auth.login(request, user)                                    # request.user == current logined object.
                 ret['user'] = user.username
                 if credithelpers.login_time_check(request.user.pk):
                     models.UserInfo.objects.filter(pk=request.user.pk).update(ps_credit=F("ps_credit") + settings.CREDIT_ADDED_OF_LOGINED)
