@@ -85,13 +85,13 @@
 
 <div class="container-fluid" style="margin-top: 15px">
     <div class="row">
-        <div class="col-md-1">
+        <div class="col-md-1" >
             <div style="width:100%; background: rgba(255,0,0,0.06);display: flex; justify-content: space-around;
         flex-wrap: wrap;border-radius: 5px; border: 1px solid rgba(167,45,45,0.54); margin: 0; padding: 3px">
-            <button class="btn btn-danger" style="width: 100%"><i class="fa fa-fire"></i> 最新活跃</button>
-            <button class="btn btn-danger" style="margin-top: 3px; width: 100%"><i class="fa fa-volume-up"></i> 社区公告</button>
-            <button class="btn btn-danger" style="margin-top: 3px; width: 100%"><i class="fa fa-compass"></i> 自助服务</button>
-            <button class="btn btn-danger" style="margin-top: 3px; width: 100%"><i class="fa fa-bookmark"></i> 精华标签</button>
+                <button class="btn btn-danger" style="width: 100%"><i class="fa fa-fire"></i> 最新活跃</button>
+                <button class="btn btn-danger" style="margin-top: 3px; width: 100%"><i class="fa fa-volume-up"></i> 社区公告</button>
+                <button class="btn btn-danger" style="margin-top: 3px; width: 100%"><i class="fa fa-compass"></i> 自助服务</button>
+                <button class="btn btn-danger" style="margin-top: 3px; width: 100%"><i class="fa fa-bookmark"></i> 精华标签</button>
             </div>
             <hr>
             <div style="font-weight: 100; font-size: 1rem;padding-left: 10px">
@@ -106,9 +106,46 @@
             </div>
             <hr/>
         </div>
-        <div class="col-md-10" style="background: #a7abb0; height: 300px">
+        <div class="col-md-11" style="height: 300px; padding-right: 15px;">
+            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                <!-- Indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                </ol>
 
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox" style="height: 300px">
+                    <div class="item active">
+                        <img src="/static/centBlog/images/HUAWEI_MEDICAL.jpg" alt="...">
+                        <div class="carousel-caption">
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="/static/centBlog/images/HUAWEI_EDU.jpg" alt="...">
+                        <div class="carousel-caption">
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="/static/centBlog/images/HUAWEI_CAMPUS.jpg" alt="...">
+                        <div class="carousel-caption">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev" style="opacity: 0.1">
+                </a>
+                <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next" style="opacity: 0.1">
+                </a>
+            </div>
         </div>
+        <div class="col-md-1">
+        </div>
+    </div>
+    <div class="container">
+        <hr>
     </div>
 </div>
 
@@ -118,179 +155,181 @@
     $(".scroll").i5Scroll({
         cssSpeed: 10
     });
+
+    $('.carousel').carousel()
 </script>
 </body>
 </html>
 
 
 {% if 0 %}
-                <div class="container-fluid" style="background: rgba(115,236,255,0.09) !important; border-radius: 10px">
-                    <div class=""
-                         style="margin: 0 auto;padding-left: 30px; width: 70%;border-radius: 1px 1px 9px 9px !important;box-shadow: 5px 20px 30px -16px slategrey; border: 2px rgba(3,39,59,0) solid; border-top: 0; padding-top: 30px; background: white; margin-bottom: 50px; border-radius: 10px">
-                        <div class="" style="">
-                            <div class="row">
-                                <div class="col-md-9">
-                                    {% for article in article_list %}
-                                        <div class="article_item"
-                                             style="border: 1px rgba(222,222,222,0.29) solid; border-radius: 9px; padding: 10px; margin-bottom: 15px; font-weight: 400 !important;">
-                                            <h4>
-                                                <a class="hover_danger" href="/{{ article.user }}/articles/{{ article.nid }}">
-                                                    {{ article.title }}&emsp;&emsp;</a>
-                                            </h4>
-                                            <div class="row">
-                                                <a class="hover_danger" href="/{{ article.user }}/articles/{{ article.nid }}">
-                                                    <div class="col-md-12 blog_desc">&emsp;&emsp;{{ article.desc }}</div>
-                                                </a>
-                                                <div class="col-md-3">
-                                                </div>
-                                            </div>
-                                            <div style="margin-top: 10px">
-                                                <span><img alt="" src="/media/{{ article.user.avatar }}" width="23" height="23" style="border-radius: 9999px">&nbsp;</span>
-                                                <a class="hover_danger" role="button" href="/{{ article.user }}/"><span
-                                                        style="font-size: 18px; vertical-align: -3px">{{ article.user.username }}</span>&emsp;&emsp;&emsp;</a>
-                                                <span class="pull-right" style="color: silver; font-size: 15px; ">
+    <div class="container-fluid" style="background: rgba(115,236,255,0.09) !important; border-radius: 10px">
+        <div class=""
+             style="margin: 0 auto;padding-left: 30px; width: 70%;border-radius: 1px 1px 9px 9px !important;box-shadow: 5px 20px 30px -16px slategrey; border: 2px rgba(3,39,59,0) solid; border-top: 0; padding-top: 30px; background: white; margin-bottom: 50px; border-radius: 10px">
+            <div class="" style="">
+                <div class="row">
+                    <div class="col-md-9">
+                        {% for article in article_list %}
+                            <div class="article_item"
+                                 style="border: 1px rgba(222,222,222,0.29) solid; border-radius: 9px; padding: 10px; margin-bottom: 15px; font-weight: 400 !important;">
+                                <h4>
+                                    <a class="hover_danger" href="/{{ article.user }}/articles/{{ article.nid }}">
+                                        {{ article.title }}&emsp;&emsp;</a>
+                                </h4>
+                                <div class="row">
+                                    <a class="hover_danger" href="/{{ article.user }}/articles/{{ article.nid }}">
+                                        <div class="col-md-12 blog_desc">&emsp;&emsp;{{ article.desc }}</div>
+                                    </a>
+                                    <div class="col-md-3">
+                                    </div>
+                                </div>
+                                <div style="margin-top: 10px">
+                                    <span><img alt="" src="/media/{{ article.user.avatar }}" width="23" height="23" style="border-radius: 9999px">&nbsp;</span>
+                                    <a class="hover_danger" role="button" href="/{{ article.user }}/"><span
+                                            style="font-size: 18px; vertical-align: -3px">{{ article.user.username }}</span>&emsp;&emsp;&emsp;</a>
+                                    <span class="pull-right" style="color: silver; font-size: 15px; ">
                                                 <span style="font-size: 12px" class="article_icon fa fa-eye"></span>{{ article.views }}&emsp;&nbsp;
                                                 <span style="font-size: 12px" class="article_icon fa fa-star-o"></span>{{ article.up_count }}&emsp;&nbsp;
                                                 <span style="font-size: 12px" class="article_icon fa fa-commenting-o"></span>{{ article.comment_count }}
                                             </span>
-                                            </div>
-                                        </div>
-                                    {% endfor %}
                                 </div>
-                                <div class="col-md-3" style="padding-left: 0;">
-                                    <div class="side_bar">
-                                        <div class="side_bar_inner">
-                                            <div class="clearfix">
-                                                <h4 class="pull-left">
-                                                    <svg style="vertical-align: -9px" t="1604025834096" class="icon" viewBox="0 0 1024 1024" version="1.1"
-                                                         xmlns="http://www.w3.org/2000/svg"
-                                                         p-id="1211" width="30" height="30">
-                                                        <path d="M374.8 352.4m-106.1 0a106.1 106.1 0 1 0 212.2 0 106.1 106.1 0 1 0-212.2 0Z" fill="#1E88E5" p-id="1212"></path>
-                                                        <path d="M649.8 352.4m-106.1 0a106.1 106.1 0 1 0 212.2 0 106.1 106.1 0 1 0-212.2 0Z" fill="#64B5F6" p-id="1213"></path>
-                                                        <path d="M558.4 738.3H191.9c-15.8 0-28.7-12.8-28.7-28.7v-117c0-7.5 2.9-14.7 8.2-20 22.7-23 92-82.8 201-82.8 125.4 0 181.8 59.6 205.9 82.7 5.6 5.4 8.8 12.8 8.8 20.6v116.4c0 16-12.9 28.8-28.7 28.8z"
-                                                              fill="#1E88E5" p-id="1214"></path>
-                                                        <path d="M853.5 568.2c-26.4-25.4-83.3-78.3-201.3-78.3-22.2 0-42.8 2.5-61.6 6.6-10.8 2.4-15.6 15.2-8.6 23.8 12.7 15.8 21.6 31.1 27.7 41 4.1 6.7 6.4 16 6.4 25.6v117.2c0 18.9 15.3 34.2 34.2 34.2h173.1c24 0 43.5-19.5 43.5-43.5v-95.2c0-11.9-4.9-23.2-13.4-31.4z"
-                                                              fill="#64B5F6" p-id="1215"></path>
-                                                    </svg>
-                                                    云享专家
-                                                </h4>
-                                                <h4 class="pull-right text-danger small">更多 ></h4>
-                                            </div>
-                                            <div>
-                                                <div class="side_bar_header">
-                                                    <img alt="" src="/media/avatars/t1.png" style="width: 50px; height: 50px; border-radius: 999px">
-                                                </div>
-                                                <div class="item_info">
-                                                    <h4>Dandelion</h4>
-                                                    <div class="small">Here I am.</div>
-                                                    <ul class="text-left text-primary small" style="padding-bottom: 10px">
-                                                        <li class="small"><i class="fa fa-align-right"></i>&emsp;<a href="">前端网页开发进阶妙招</a></li>
-                                                        <li class="small"><i class="fa fa-align-right"></i>&emsp;<a href="">复杂网页的多内容聚合实现</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="side_bar_inner">
-                                            <div class="clearfix">
-                                                <h4 class="pull-left">
-                                                    <svg style="vertical-align: -9px;" t="1604025907141" class="icon" viewBox="0 0 1024 1024" version="1.1"
-                                                         xmlns="http://www.w3.org/2000/svg"
-                                                         p-id="1519" width="30" height="30">
-                                                        <path d="M779.6 354h-38.4v196c0 42-60.7 92.6-103.9 92.6H524.2c-9.3 0-18.2 3.5-24.9 9.8L451.2 701v127c0 29.2 34.1 41.2 49.7 23.6l127.5-124.1c6.2-5.6 14.4-8.8 23-8.8h128.7c40 0 72.4-30.3 72.4-67.8V422.4c0.2-37.7-32.5-68.4-72.9-68.4z"
-                                                              fill="#1E88E5" p-id="1520"></path>
-                                                        <path d="M632.7 237.5H271.9c-43 0-77.8 32.6-77.8 72.8v226.1c0 36.4 31.5 65.9 70.4 65.9h27.1c7.1 0 12.9 5.4 12.9 12v97.2c0 29.2 34.1 41.2 49.7 23.6L481.7 611c6.2-5.6 14.4-8.8 23-8.8h128.7c40 0 72.4-30.3 72.4-67.8V305.9c0-37.8-32.8-68.4-73.1-68.4z m-198 297.4H287.8c-11.1 0-20.3-9.1-20.3-20.3s9.1-20.3 20.3-20.3h146.9c11.1 0 20.3 9.1 20.3 20.3s-9.1 20.3-20.3 20.3z m182.4-96.3H282.7c-11.1 0-20.3-9.1-20.3-20.3s9.1-20.3 20.3-20.3h334.4c11.1 0 20.3 9.1 20.3 20.3s-9.1 20.3-20.3 20.3z m0-91.2H282.7c-11.1 0-20.3-9.1-20.3-20.3 0-11.1 9.1-20.3 20.3-20.3h334.4c11.1 0 20.3 9.1 20.3 20.3 0 11.2-9.1 20.3-20.3 20.3z"
-                                                              fill="#64B5F6" p-id="1521"></path>
-                                                    </svg>
-                                                    精华贴
-                                                </h4>
-                                            </div>
-                                            {#                            <hr/>#}
-                                            <div class="fantastic_art">
-                                                <ul>
-                                                    {% for foo in result %}
-                                                        <li><a class="small" style="font-weight: 400; color: #9d4b04" href="/{{ foo.username }}/articles/{{ foo.nid }}">
-                                                            <svg style="vertical-align: -7px" t="1604026525902" class="icon" viewBox="0 0 1024 1024" version="1.1"
-                                                                 xmlns="http://www.w3.org/2000/svg" p-id="2183" width="18" height="18">
-                                                                <path d="M784 216.6H389.4c-13.3 0-26.1 5.1-35.7 14.1l-35.3 33.1c-5.8 5.4-2.1 15.1 5.8 15.3l99.4 3.1c14.9 0.5 29.1 6.6 39.6 17.2 0 0 286 286.1 286.5 286.7h34.9c23.1 0 41.9-18.7 41.9-41.9V259.1c0-23.4-19-42.5-42.5-42.5z"
-                                                                      fill="#1E88E5" p-id="2184"></path>
-                                                                <path d="M707.1 586L453.4 332.3c-9.4-9.4-22-14.8-35.3-15.3l-203.5-6.4c-24.8-0.8-45.1 19.5-44.5 44.3l5.4 199.5c0.4 15 6.5 29.3 17.2 39.9l253.5 253.5c16.4 16.4 42.9 16.4 59.2 0l201.7-201.7c16.6-16.6 16.6-43.5 0-60.1z m-428-133.4c-18.4 0-33.3-14.9-33.3-33.3s14.9-33.3 33.3-33.3 33.3 14.9 33.3 33.3-14.9 33.3-33.3 33.3z"
-                                                                      fill="#64B5F6" p-id="2185"></path>
-                                                            </svg>
-                                                            &emsp;{{ foo.title }}</a></li>
-                                                    {% endfor %}
-                                                </ul>
-                                            </div>
-                                        </div>
-
-                                        <div class="side_bar_inner">
-                                            <div class="clearfix">
-                                                <h4 class="pull-left">
-                                                    <svg style="vertical-align: -9px;" t="1604026026802" class="icon" viewBox="0 0 1024 1024" version="1.1"
-                                                         xmlns="http://www.w3.org/2000/svg"
-                                                         p-id="1929" width="30" height="30">
-                                                        <path d="M583.4 662.7h177.9c6.7 0 10 8.1 5.3 12.8L588.7 853.4c-4.7 4.7-12.8 1.4-12.8-5.3V670.2c0-4.1 3.4-7.5 7.5-7.5z"
-                                                              fill="#64B5F6"
-                                                              p-id="1930"></path>
-                                                        <path d="M729.1 190H311.4c-22.7 0-41.2 18.4-41.2 41.2v595.1c0 22.7 18.4 41.2 41.2 41.2H501c12.2 0 22.2-9.9 22.2-22.2V661.6c0-29.2 23.6-52.8 52.8-52.8h176.2c10 0 18.2-8.1 18.2-18.2V231.2c-0.1-22.7-18.5-41.2-41.3-41.2z m-98.3 296.6H415.6c-11.2 0-20.4-9.2-20.4-20.4s9.2-20.4 20.4-20.4h215.2c11.2 0 20.4 9.2 20.4 20.4-0.1 11.2-9.2 20.4-20.4 20.4z m0-127.9H415.6c-11.2 0-20.4-9.2-20.4-20.4s9.2-20.4 20.4-20.4h215.2c11.2 0 20.4 9.2 20.4 20.4-0.1 11.2-9.2 20.4-20.4 20.4z"
-                                                              fill="#1E88E5" p-id="1931"></path>
-                                                    </svg>
-                                                    社区公告
-                                                </h4>
-                                            </div>
-                                            {#                            <hr/>#}
-                                            <div class="fantastic_art">
-                                                <ul>
-                                                    <li><a style="color: silver" href="">
-                                                        <svg style="vertical-align: -2px" t="1604027892891" class="icon" viewBox="0 0 1024 1024" version="1.1"
-                                                             xmlns="http://www.w3.org/2000/svg"
-                                                             p-id="1136" width="12" height="12">
-                                                            <path d="M284.594152 1023.966294a57.171451 57.171451 0 0 1-42.665262-97.276798L659.195155 511.983147 244.062153 97.276798A57.171451 57.171451 0 0 1 324.699499 16.639452l455.238348 455.238349a56.744799 56.744799 0 0 1 0 80.210693L324.699499 1007.326842a56.744799 56.744799 0 0 1-40.105347 16.639452z"
-                                                                  fill="#C6CACD" p-id="1137"></path>
-                                                        </svg>
-                                                        CentPrime启动全面安全检测</a></li>
-                                                    <li><a style="color: silver" href="">
-                                                        <svg style="vertical-align: -2px" t="1604027892891" class="icon" viewBox="0 0 1024 1024" version="1.1"
-                                                             xmlns="http://www.w3.org/2000/svg"
-                                                             p-id="1136" width="12" height="12">
-                                                            <path d="M284.594152 1023.966294a57.171451 57.171451 0 0 1-42.665262-97.276798L659.195155 511.983147 244.062153 97.276798A57.171451 57.171451 0 0 1 324.699499 16.639452l455.238348 455.238349a56.744799 56.744799 0 0 1 0 80.210693L324.699499 1007.326842a56.744799 56.744799 0 0 1-40.105347 16.639452z"
-                                                                  fill="#C6CACD" p-id="1137"></path>
-                                                        </svg>
-                                                        后台管理系统维护最新版本发布</a></li>
-                                                    <li><a style="color: silver" href="">
-                                                        <svg style="vertical-align: -2px" t="1604027892891" class="icon" viewBox="0 0 1024 1024" version="1.1"
-                                                             xmlns="http://www.w3.org/2000/svg"
-                                                             p-id="1136" width="12" height="12">
-                                                            <path d="M284.594152 1023.966294a57.171451 57.171451 0 0 1-42.665262-97.276798L659.195155 511.983147 244.062153 97.276798A57.171451 57.171451 0 0 1 324.699499 16.639452l455.238348 455.238349a56.744799 56.744799 0 0 1 0 80.210693L324.699499 1007.326842a56.744799 56.744799 0 0 1-40.105347 16.639452z"
-                                                                  fill="#C6CACD" p-id="1137"></path>
-                                                        </svg>
-                                                        关于用户的基本使用指引</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-
-                                        <div class="side_bar_inner">
-                                            <div class="clearfix">
-                                                <h4 class="pull-left">友情链接</h4>
-                                            </div>
-                                            {#                            <hr/>#}
-                                            <div class="fantastic_art">
-                                                <ul>
-                                                    <li><a href=""></a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="col-md-3" style="padding-left: 0;">
+                        <div class="side_bar">
+                            <div class="side_bar_inner">
+                                <div class="clearfix">
+                                    <h4 class="pull-left">
+                                        <svg style="vertical-align: -9px" t="1604025834096" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                                             xmlns="http://www.w3.org/2000/svg"
+                                             p-id="1211" width="30" height="30">
+                                            <path d="M374.8 352.4m-106.1 0a106.1 106.1 0 1 0 212.2 0 106.1 106.1 0 1 0-212.2 0Z" fill="#1E88E5" p-id="1212"></path>
+                                            <path d="M649.8 352.4m-106.1 0a106.1 106.1 0 1 0 212.2 0 106.1 106.1 0 1 0-212.2 0Z" fill="#64B5F6" p-id="1213"></path>
+                                            <path d="M558.4 738.3H191.9c-15.8 0-28.7-12.8-28.7-28.7v-117c0-7.5 2.9-14.7 8.2-20 22.7-23 92-82.8 201-82.8 125.4 0 181.8 59.6 205.9 82.7 5.6 5.4 8.8 12.8 8.8 20.6v116.4c0 16-12.9 28.8-28.7 28.8z"
+                                                  fill="#1E88E5" p-id="1214"></path>
+                                            <path d="M853.5 568.2c-26.4-25.4-83.3-78.3-201.3-78.3-22.2 0-42.8 2.5-61.6 6.6-10.8 2.4-15.6 15.2-8.6 23.8 12.7 15.8 21.6 31.1 27.7 41 4.1 6.7 6.4 16 6.4 25.6v117.2c0 18.9 15.3 34.2 34.2 34.2h173.1c24 0 43.5-19.5 43.5-43.5v-95.2c0-11.9-4.9-23.2-13.4-31.4z"
+                                                  fill="#64B5F6" p-id="1215"></path>
+                                        </svg>
+                                        云享专家
+                                    </h4>
+                                    <h4 class="pull-right text-danger small">更多 ></h4>
+                                </div>
+                                <div>
+                                    <div class="side_bar_header">
+                                        <img alt="" src="/media/avatars/t1.png" style="width: 50px; height: 50px; border-radius: 999px">
+                                    </div>
+                                    <div class="item_info">
+                                        <h4>Dandelion</h4>
+                                        <div class="small">Here I am.</div>
+                                        <ul class="text-left text-primary small" style="padding-bottom: 10px">
+                                            <li class="small"><i class="fa fa-align-right"></i>&emsp;<a href="">前端网页开发进阶妙招</a></li>
+                                            <li class="small"><i class="fa fa-align-right"></i>&emsp;<a href="">复杂网页的多内容聚合实现</a></li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="" style="margin-right: 30px">
-                            <div class="panel panel-warning">
-                                <div class="panel-body">
-                                    更多内容请转到 <a href="" style="font-weight: 400">博客云社区</a> 查看...
+
+                            <div class="side_bar_inner">
+                                <div class="clearfix">
+                                    <h4 class="pull-left">
+                                        <svg style="vertical-align: -9px;" t="1604025907141" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                                             xmlns="http://www.w3.org/2000/svg"
+                                             p-id="1519" width="30" height="30">
+                                            <path d="M779.6 354h-38.4v196c0 42-60.7 92.6-103.9 92.6H524.2c-9.3 0-18.2 3.5-24.9 9.8L451.2 701v127c0 29.2 34.1 41.2 49.7 23.6l127.5-124.1c6.2-5.6 14.4-8.8 23-8.8h128.7c40 0 72.4-30.3 72.4-67.8V422.4c0.2-37.7-32.5-68.4-72.9-68.4z"
+                                                  fill="#1E88E5" p-id="1520"></path>
+                                            <path d="M632.7 237.5H271.9c-43 0-77.8 32.6-77.8 72.8v226.1c0 36.4 31.5 65.9 70.4 65.9h27.1c7.1 0 12.9 5.4 12.9 12v97.2c0 29.2 34.1 41.2 49.7 23.6L481.7 611c6.2-5.6 14.4-8.8 23-8.8h128.7c40 0 72.4-30.3 72.4-67.8V305.9c0-37.8-32.8-68.4-73.1-68.4z m-198 297.4H287.8c-11.1 0-20.3-9.1-20.3-20.3s9.1-20.3 20.3-20.3h146.9c11.1 0 20.3 9.1 20.3 20.3s-9.1 20.3-20.3 20.3z m182.4-96.3H282.7c-11.1 0-20.3-9.1-20.3-20.3s9.1-20.3 20.3-20.3h334.4c11.1 0 20.3 9.1 20.3 20.3s-9.1 20.3-20.3 20.3z m0-91.2H282.7c-11.1 0-20.3-9.1-20.3-20.3 0-11.1 9.1-20.3 20.3-20.3h334.4c11.1 0 20.3 9.1 20.3 20.3 0 11.2-9.1 20.3-20.3 20.3z"
+                                                  fill="#64B5F6" p-id="1521"></path>
+                                        </svg>
+                                        精华贴
+                                    </h4>
+                                </div>
+                                {#                            <hr/>#}
+                                <div class="fantastic_art">
+                                    <ul>
+                                        {% for foo in result %}
+                                            <li><a class="small" style="font-weight: 400; color: #9d4b04" href="/{{ foo.username }}/articles/{{ foo.nid }}">
+                                                <svg style="vertical-align: -7px" t="1604026525902" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                                                     xmlns="http://www.w3.org/2000/svg" p-id="2183" width="18" height="18">
+                                                    <path d="M784 216.6H389.4c-13.3 0-26.1 5.1-35.7 14.1l-35.3 33.1c-5.8 5.4-2.1 15.1 5.8 15.3l99.4 3.1c14.9 0.5 29.1 6.6 39.6 17.2 0 0 286 286.1 286.5 286.7h34.9c23.1 0 41.9-18.7 41.9-41.9V259.1c0-23.4-19-42.5-42.5-42.5z"
+                                                          fill="#1E88E5" p-id="2184"></path>
+                                                    <path d="M707.1 586L453.4 332.3c-9.4-9.4-22-14.8-35.3-15.3l-203.5-6.4c-24.8-0.8-45.1 19.5-44.5 44.3l5.4 199.5c0.4 15 6.5 29.3 17.2 39.9l253.5 253.5c16.4 16.4 42.9 16.4 59.2 0l201.7-201.7c16.6-16.6 16.6-43.5 0-60.1z m-428-133.4c-18.4 0-33.3-14.9-33.3-33.3s14.9-33.3 33.3-33.3 33.3 14.9 33.3 33.3-14.9 33.3-33.3 33.3z"
+                                                          fill="#64B5F6" p-id="2185"></path>
+                                                </svg>
+                                                &emsp;{{ foo.title }}</a></li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="side_bar_inner">
+                                <div class="clearfix">
+                                    <h4 class="pull-left">
+                                        <svg style="vertical-align: -9px;" t="1604026026802" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                                             xmlns="http://www.w3.org/2000/svg"
+                                             p-id="1929" width="30" height="30">
+                                            <path d="M583.4 662.7h177.9c6.7 0 10 8.1 5.3 12.8L588.7 853.4c-4.7 4.7-12.8 1.4-12.8-5.3V670.2c0-4.1 3.4-7.5 7.5-7.5z"
+                                                  fill="#64B5F6"
+                                                  p-id="1930"></path>
+                                            <path d="M729.1 190H311.4c-22.7 0-41.2 18.4-41.2 41.2v595.1c0 22.7 18.4 41.2 41.2 41.2H501c12.2 0 22.2-9.9 22.2-22.2V661.6c0-29.2 23.6-52.8 52.8-52.8h176.2c10 0 18.2-8.1 18.2-18.2V231.2c-0.1-22.7-18.5-41.2-41.3-41.2z m-98.3 296.6H415.6c-11.2 0-20.4-9.2-20.4-20.4s9.2-20.4 20.4-20.4h215.2c11.2 0 20.4 9.2 20.4 20.4-0.1 11.2-9.2 20.4-20.4 20.4z m0-127.9H415.6c-11.2 0-20.4-9.2-20.4-20.4s9.2-20.4 20.4-20.4h215.2c11.2 0 20.4 9.2 20.4 20.4-0.1 11.2-9.2 20.4-20.4 20.4z"
+                                                  fill="#1E88E5" p-id="1931"></path>
+                                        </svg>
+                                        社区公告
+                                    </h4>
+                                </div>
+                                {#                            <hr/>#}
+                                <div class="fantastic_art">
+                                    <ul>
+                                        <li><a style="color: silver" href="">
+                                            <svg style="vertical-align: -2px" t="1604027892891" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                                                 xmlns="http://www.w3.org/2000/svg"
+                                                 p-id="1136" width="12" height="12">
+                                                <path d="M284.594152 1023.966294a57.171451 57.171451 0 0 1-42.665262-97.276798L659.195155 511.983147 244.062153 97.276798A57.171451 57.171451 0 0 1 324.699499 16.639452l455.238348 455.238349a56.744799 56.744799 0 0 1 0 80.210693L324.699499 1007.326842a56.744799 56.744799 0 0 1-40.105347 16.639452z"
+                                                      fill="#C6CACD" p-id="1137"></path>
+                                            </svg>
+                                            CentPrime启动全面安全检测</a></li>
+                                        <li><a style="color: silver" href="">
+                                            <svg style="vertical-align: -2px" t="1604027892891" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                                                 xmlns="http://www.w3.org/2000/svg"
+                                                 p-id="1136" width="12" height="12">
+                                                <path d="M284.594152 1023.966294a57.171451 57.171451 0 0 1-42.665262-97.276798L659.195155 511.983147 244.062153 97.276798A57.171451 57.171451 0 0 1 324.699499 16.639452l455.238348 455.238349a56.744799 56.744799 0 0 1 0 80.210693L324.699499 1007.326842a56.744799 56.744799 0 0 1-40.105347 16.639452z"
+                                                      fill="#C6CACD" p-id="1137"></path>
+                                            </svg>
+                                            后台管理系统维护最新版本发布</a></li>
+                                        <li><a style="color: silver" href="">
+                                            <svg style="vertical-align: -2px" t="1604027892891" class="icon" viewBox="0 0 1024 1024" version="1.1"
+                                                 xmlns="http://www.w3.org/2000/svg"
+                                                 p-id="1136" width="12" height="12">
+                                                <path d="M284.594152 1023.966294a57.171451 57.171451 0 0 1-42.665262-97.276798L659.195155 511.983147 244.062153 97.276798A57.171451 57.171451 0 0 1 324.699499 16.639452l455.238348 455.238349a56.744799 56.744799 0 0 1 0 80.210693L324.699499 1007.326842a56.744799 56.744799 0 0 1-40.105347 16.639452z"
+                                                      fill="#C6CACD" p-id="1137"></path>
+                                            </svg>
+                                            关于用户的基本使用指引</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="side_bar_inner">
+                                <div class="clearfix">
+                                    <h4 class="pull-left">友情链接</h4>
+                                </div>
+                                {#                            <hr/>#}
+                                <div class="fantastic_art">
+                                    <ul>
+                                        <li><a href=""></a></li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            {% endif %}
+            </div>
+            <div class="" style="margin-right: 30px">
+                <div class="panel panel-warning">
+                    <div class="panel-body">
+                        更多内容请转到 <a href="" style="font-weight: 400">博客云社区</a> 查看...
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}
