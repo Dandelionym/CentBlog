@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>CentPrime | 全球最大的全平台知识分享区</title>
+    <title>CentPrime | 全平台知识分享系统</title>
     <link rel="stylesheet" href="/static/centBlog/plugins/bs/css/bootstrap.min.css">
     <link rel="stylesheet" href="/static/centBlog/plugins/fa/css/font-awesome.min.css">
     <link rel="stylesheet" href="/static/centBlog/css/color.css">
@@ -65,6 +65,15 @@
         .head_link_img:hover {
             text-decoration: none;
         }
+        .black_impt{
+            color: black !important;
+            transition: .5s;
+        }
+
+        .black_impt:hover{
+            border-bottom: 3px red !important;
+            transition: .5s;
+        }
     </style>
 </head>
 <body>
@@ -79,7 +88,7 @@
                     Cent<img class="logo_image" src="/static/centBlog/logo-c.png" alt="">Prime
                 </div>
                 <div class="welcome_info">
-                    The World's <strong>Largest</strong> Knowledge Sharing Platform
+                    The <strong>Largest</strong> <strong style="color: #3fffc8">Data Science</strong> Platform of Cent Worker
                 </div>
                 <div class="welcome_info">
                     Welcome! <span>{{ user }}</span>
@@ -98,16 +107,16 @@
                 <img style="width: 30px; height: 30px; margin-right: 5px" src='/static/centBlog/logo-c.png'>
                 <span style="font-size: 18px; font-weight: 700; vertical-align: -5px">Cent Prime</span>
             </div>
-            <div class="pull-right">
-                <span class="head_bar_nav">云上集团</span>
-                <span class="head_bar_nav">买家中心</span>
-                <span class="head_bar_nav">控制台</span>
-                <span class="head_bar_nav">微服务大厅</span>&emsp;&emsp;
+            <div class="pull-right" >
+                <a href="#" class="black_impt"><span class="head_bar_nav">云上空间</span></a>
+                <a href="#" class="black_impt"><span class="head_bar_nav">学生中心</span></a>
+                <a href="#" class="black_impt"><span class="head_bar_nav">控制台</span></a>
+                <a href="#" class="black_impt"><span class="head_bar_nav">微服务大厅</span></a>
             </div>
         </div>
         <div class="row">
             <div class="col-md-3">
-                <span style="margin-right: 20px; font-size: 24px; font-weight: 700; vertical-align: -15px">云市场</span>
+                <span style="margin-right: 20px; font-size: 24px; font-weight: 700; vertical-align: -15px">云服务</span>
                 <img style="width: 150px; margin-top: 20px" src='/static/centBlog/images/jingpinhuiju.png'>
             </div>
             <div class="col-md-6 clearfix" style="padding-top: 20px">
@@ -133,7 +142,7 @@
             <div class="col-md-3" style="background: rgba(192,192,192,0.11); height: 40px; line-height: 40px; font-weight: 600">全部商品</div>
             <div class="col-md-8">
                 <span style="padding: 5px; font-weight: 400; line-height: 40px; margin-left: 30px; font-size: 15px">软硬件设备</span>
-                <span style="padding: 5px; font-weight: 400; line-height: 40px; margin-left: 30px; border-right: 2px rgba(192,192,192,0.18) solid; padding-right: 30px; font-size: 15px">严选商城</span>
+                <span style="padding: 5px; font-weight: 400; line-height: 40px; margin-left: 30px; border-right: 2px rgba(192,192,192,0.18) solid; padding-right: 30px; font-size: 15px">实验室风采</span>
                 <span style="padding: 5px; font-weight: 200; line-height: 40px; margin-left: 20px; font-size: 13px">自然语言处理</span>
                 <span style="padding: 5px; font-weight: 200; line-height: 40px; margin-left: 20px; font-size: 13px">机器视觉</span>
                 <span style="padding: 5px; font-weight: 200; line-height: 40px; margin-left: 20px; font-size: 13px">机器视觉</span>
@@ -150,18 +159,18 @@
             <div class="col-md-3" style="height: 385px;padding-top: 5px; background: white;margin: 0; border-radius: 0 0 4px 4px">
                 <ul class="head_ul_list">
                     <li>
-                        <h5>基础软件&emsp;<svg style="vertical-align: -4px" t="1602114410909" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                        <h5>基础设施&emsp;<svg style="vertical-align: -4px" t="1602114410909" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
                                            p-id="2813" width="18" height="18">
                             <path d="M320 885.333333c-8.533333 0-17.066667-4.266667-23.466667-10.666666-12.8-12.8-10.666667-34.133333 2.133334-44.8L654.933333 512 298.666667 194.133333c-12.8-10.666667-14.933333-32-2.133334-44.8 10.666667-12.8 32-14.933333 44.8-2.133333l384 341.333333c6.4 6.4 10.666667 14.933333 10.666667 23.466667 0 8.533333-4.266667 17.066667-10.666667 23.466667l-384 341.333333c-6.4 6.4-12.8 8.533333-21.333333 8.533333z"
                                   p-id="2814" style="-webkit-user-select: auto;" fill="#dbdbdb"></path>
                         </svg>
                         </h5>
-                        <span class="item_font_style">玩转商城</span>&emsp;
+                        <span class="item_font_style">软硬件办公</span>&emsp;
                         <span class="item_font_style">数据库与缓存</span>&emsp;
                         <span class="item_font_style">运行环境</span>&emsp;
                     </li>
                     <li>
-                        <h5>企业应用&emsp;<svg style="vertical-align: -4px" t="1602114410909" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                        <h5>智慧应用&emsp;<svg style="vertical-align: -4px" t="1602114410909" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
                                            p-id="2813" width="18" height="18">
                             <path d="M320 885.333333c-8.533333 0-17.066667-4.266667-23.466667-10.666666-12.8-12.8-10.666667-34.133333 2.133334-44.8L654.933333 512 298.666667 194.133333c-12.8-10.666667-14.933333-32-2.133334-44.8 10.666667-12.8 32-14.933333 44.8-2.133333l384 341.333333c6.4 6.4 10.666667 14.933333 10.666667 23.466667 0 8.533333-4.266667 17.066667-10.666667 23.466667l-384 341.333333c-6.4 6.4-12.8 8.533333-21.333333 8.533333z"
                                   p-id="2814" style="-webkit-user-select: auto;" fill="#dbdbdb"></path>
@@ -169,10 +178,10 @@
                         </h5>
                         <span class="item_font_style">协同办公</span>&emsp;
                         <span class="item_font_style">财务管理</span>&emsp;
-                        <span class="item_font_style">存储与备份</span>&emsp;
+                        <span class="item_font_style">智能提醒备份</span>&emsp;
                     </li>
                     <li>
-                        <h5>安全市场&emsp;<svg style="vertical-align: -4px" t="1602114410909" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
+                        <h5>安全壁垒&emsp;<svg style="vertical-align: -4px" t="1602114410909" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
                                            p-id="2813" width="18" height="18">
                             <path d="M320 885.333333c-8.533333 0-17.066667-4.266667-23.466667-10.666666-12.8-12.8-10.666667-34.133333 2.133334-44.8L654.933333 512 298.666667 194.133333c-12.8-10.666667-14.933333-32-2.133334-44.8 10.666667-12.8 32-14.933333 44.8-2.133333l384 341.333333c6.4 6.4 10.666667 14.933333 10.666667 23.466667 0 8.533333-4.266667 17.066667-10.666667 23.466667l-384 341.333333c-6.4 6.4-12.8 8.533333-21.333333 8.533333z"
                                   p-id="2814" style="-webkit-user-select: auto;" fill="#dbdbdb"></path>
@@ -180,7 +189,7 @@
                         </h5>
                         <span class="item_font_style">问题缺陷与跟踪</span>&emsp;
                         <span class="item_font_style">数据安全</span>&emsp;
-                        <span class="item_font_style">网络安全</span>&emsp;
+                        <span class="item_font_style">网络防护墙</span>&emsp;
                     </li>
                     <li>
                         <h5>行业解决方案&emsp;<svg style="vertical-align: -4px" t="1602114410909" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
@@ -189,9 +198,9 @@
                                   p-id="2814" style="-webkit-user-select: auto;" fill="#dbdbdb"></path>
                         </svg>
                         </h5>
-                        <span class="item_font_style">教育</span>&emsp;
-                        <span class="item_font_style">媒体视频</span>&emsp;
-                        <span class="item_font_style">智慧环保</span>&emsp;
+                        <span class="item_font_style">教育媒体支持</span>&emsp;
+                        <span class="item_font_style">智慧交通</span>&emsp;
+                        <span class="item_font_style">智慧医疗</span>&emsp;
                     </li>
                     <li>
                         <h5>专业服务&emsp;<svg style="vertical-align: -4px" t="1602114410909" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
@@ -211,8 +220,9 @@
                                   p-id="2814" style="-webkit-user-select: auto;" fill="#dbdbdb"></path>
                         </svg>
                         </h5>
-                        <span class="item_font_style">图像生成</span>&emsp;
-                        <span class="item_font_style">图像风格迁移</span>&emsp;
+                        <span class="item_font_style">图像领域</span>&emsp;
+                        <span class="item_font_style">语音领域</span>&emsp;
+                        <span class="item_font_style">自然语言处理</span>&emsp;
                         <span class="item_font_style">云环境缓存</span>&emsp;
                     </li>
                 </ul>
@@ -222,9 +232,9 @@
                     <div role="link" class="head_link_img" href="#">
                         <div class="item_slide" style="width: 100%; height: 275px; background:url('/static/centBlog/images/mofangyun.jpg') no-repeat; background-size: cover">
                             <div style="padding-top: 50px; padding-left: 50px">
-                                <h2 style="font-weight: 200">企业级云解决方案</h2>
-                                <p>独家首发，三重好礼，提供高维度的解决方案</p>
-                                <p><span style="color:#cd2222; font-weight:800;font-size: 18px">￥280</span>/月</p>
+                                <h2 style="font-weight: 200">云南省高校重点实验室</h2>
+                                <p>覆盖数据科学、计算机与生命科学等多个领域</p>
+                                <p><span style="color:#cd2222; font-weight:800;font-size: 18px">专家团支持</span> 争做高效科研辅助平台</p>
                                 <button class="btn btn-danger" value="立即购买">立即购买</button>
                             </div>
                         </div>
@@ -233,19 +243,19 @@
                         <div class="item_slide"
                              style="width: 100%; height: 275px; background:url('/static/centBlog/images/yingjianshangcheng.jpg') no-repeat; background-size: cover">
                             <div style="padding-top: 50px; padding-left: 50px">
-                                <h2 style="font-weight: 200">性能级分布式云存储</h2>
-                                <p>全方位支持SQL、NoSQL，使用更上手</p>
-                                <p><span style="color:#cd2222; font-weight:800;font-size: 18px">￥1249</span>/月</p>
-                                <button class="btn btn-danger" value="立即购买">立即购买</button>
+                                <h2 style="font-weight: 200">立足于高校，全力支撑科研</h2>
+                                <p>支持多领域交叉互补，覆盖域广、性能优</p>
+                                <p><span style="color:#cd2222; font-weight:800;font-size: 18px">长期招收硕士、博士研究生</span></p>
+                                <button class="btn btn-danger" value="立即购买">查看更多</button>
                             </div>
                         </div>
                     </div>
                     <div role="link" class="head_link_img" href="#" style="display: none">
                         <div class="item_slide" style="width: 100%; height: 275px; background:url('/static/centBlog/images/yunpan.png') no-repeat; background-size: cover">
                             <div style="padding-top: 50px; padding-left: 50px">
-                                <h2 style="font-weight: 200">NVIDIA联合图像生成工程</h2>
+                                <h2 style="font-weight: 200">盘点：NVIDIA图像生成工程</h2>
                                 <p>风格迁移、特征增减、资源互补</p>
-                                <p><span style="color:#cd2222; font-weight:800;font-size: 18px">￥2280</span>/月</p>
+                                <p><span style="color:#cd2222; font-weight:800;font-size: 18px">建设中</span></p>
                                 <button class="btn btn-danger" value="立即购买">资源申请</button>
                             </div>
                         </div>
@@ -254,8 +264,8 @@
                         <div class="item_slide" style="width: 100%; height: 275px; background:url('/static/centBlog/images/jianzhan.png') no-repeat; background-size: cover">
                             <div style="padding-top: 50px; padding-left: 50px">
                                 <h2 style="font-weight: 200">云博客空间</h2>
-                                <p>提供完整的社区资源及个人独创空间</p>
-                                <p><span style="color:#cd2222; font-weight:800;font-size: 18px">限时免费</span></p>
+                                <p>提供完整的社区资源及个人独创空间、高效率交流平台</p>
+                                <p><span style="color:#cd2222; font-weight:800;font-size: 18px">永久免费</span></p>
                                 <button class="btn btn-danger" value="立即购买">立即申请</button>
                             </div>
                         </div>
@@ -264,8 +274,8 @@
                         <div class="item_slide" style="width: 100%; height: 275px; background:url('/static/centBlog/images/boke2.png') no-repeat; background-size: cover">
                             <div style="padding-top: 50px; padding-left: 50px">
                                 <h2 style="font-weight: 200">"灵鹿计划"推举</h2>
-                                <p>伽马云空间实验室持续推举青年人才进入知名企业</p>
-                                <p><span style="color:#cd2222; font-weight:800;font-size: 18px">仅限前100名</span></p>
+                                <p>数据科学实验室持续推举青年人才成长</p>
+                                <p><span style="color:#cd2222; font-weight:800;font-size: 18px">助力科研，服务社会</span></p>
                                 <button class="btn btn-danger" value="立即购买">了解更多</button>
                             </div>
                         </div>
@@ -275,25 +285,25 @@
                     <span style="width: 100%;margin: 5px; margin-left: 0; background:grey;">
                         <div style="width: 100%;height: 95px;padding: 20px; background: url('/static/centBlog/images/doufukuai1.jpg')">
                             <h4 style="font-weight: 500; margin-bottom: 5px">云服务专区</h4>
-                            <p style="font-size: 13px">企业级应用平台</p>
+                            <p style="font-size: 13px">转为科研打造</p>
                         </div>
                     </span>
                     <span style="width: 100%;margin: 5px; background:grey;">
                         <div style="width: 100%;height: 95px;padding: 20px; background: url('/static/centBlog/images/doufukuai2.jpg')">
-                            <h4 style="font-weight: 500; margin-bottom: 5px">云环境直播间</h4>
+                            <h4 style="font-weight: 500; margin-bottom: 5px">云环境会议室</h4>
                             <p style="font-size: 13px">专家团队汇聚，展望未来</p>
                         </div>
                     </span>
                     <span style="width: 100%;margin: 5px; background:grey;">
                         <div style="width: 100%;height: 95px;padding: 20px; background: url('/static/centBlog/images/doufukuai3.jpg')">
-                            <h4 style="font-weight: 500; margin-bottom: 5px">企业初创中心</h4>
-                            <p style="font-size: 13px">一站式企业服务</p>
+                            <h4 style="font-weight: 500; margin-bottom: 5px">高校初创中心</h4>
+                            <p style="font-size: 13px">一站式数据科学计算服务</p>
                         </div>
                     </span>
                     <span style="width: 100%;margin: 5px; margin-right: 0; background:grey;">
                         <div style="width: 100%;height: 95px;padding: 20px; background: url('/static/centBlog/images/doufukuai4.jpg')">
                             <h4 style="font-weight: 500; margin-bottom: 5px">案例服务</h4>
-                            <p style="font-size: 13px">企业级架构指南</p>
+                            <p style="font-size: 13px">分布式架构指南</p>
                         </div>
                     </span>
                 </div>
@@ -307,9 +317,9 @@
             <div class="flex_align_center">
                 <div class="center-block navbar_head_id">
                     <button box_id="1" class="btn btn-danger header_btn">博客广场</button>
-                    <button box_id="2" class="btn btn-danger header_btn">世界要闻</button>
-                    <button box_id="3" class="btn btn-danger header_btn">量子实验室</button>
-                    <button box_id="4" class="btn btn-danger header_btn">伽马云空间</button>
+                    <button box_id="2" class="btn btn-danger header_btn">前沿领域要闻</button>
+                    <button box_id="3" class="btn btn-danger header_btn">重点实验室</button>
+                    <button box_id="4" class="btn btn-danger header_btn">云空间存储</button>
                     <button box_id="5" class="btn btn-danger header_btn">项目中心</button>
                     <button box_id="6" class="btn btn-danger header_btn">关于我们</button>
                 </div>
@@ -518,10 +528,18 @@
                 Cent云社区持续面向广大用户提供免费可靠的知识交流服务，力争做良好的、稳定的多用途博客站点。
             </p>
             <p><a class="btn btn-primary btn-lg" href="#" role="button">进入云社区</a></p>
+
+
+            <!-- TODO 这里需要添加一个认证的判断，如果是非本实验室的，就不能查看到 -->
+
+
         </div>
     </div>
 </div>
 
+
+
+{% if 1 %}
 <div class="container-fluid" style="background: rgba(115,236,255,0.09) !important; border-radius: 10px">
     <div class=""
          style="margin: 0 auto;padding-left: 30px; width: 70%;border-radius: 1px 1px 9px 9px !important;box-shadow: 5px 20px 30px -16px slategrey; border: 2px rgba(3,39,59,0) solid; border-top: 0; padding-top: 30px; background: white; margin-bottom: 50px; border-radius: 10px">
@@ -619,58 +637,58 @@
                             </div>
                         </div>
 
-                        <div class="side_bar_inner">
-                            <div class="clearfix">
-                                <h4 class="pull-left">
-                                    <svg style="vertical-align: -9px;" t="1604026026802" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
-                                         p-id="1929" width="30" height="30">
-                                        <path d="M583.4 662.7h177.9c6.7 0 10 8.1 5.3 12.8L588.7 853.4c-4.7 4.7-12.8 1.4-12.8-5.3V670.2c0-4.1 3.4-7.5 7.5-7.5z" fill="#64B5F6"
-                                              p-id="1930"></path>
-                                        <path d="M729.1 190H311.4c-22.7 0-41.2 18.4-41.2 41.2v595.1c0 22.7 18.4 41.2 41.2 41.2H501c12.2 0 22.2-9.9 22.2-22.2V661.6c0-29.2 23.6-52.8 52.8-52.8h176.2c10 0 18.2-8.1 18.2-18.2V231.2c-0.1-22.7-18.5-41.2-41.3-41.2z m-98.3 296.6H415.6c-11.2 0-20.4-9.2-20.4-20.4s9.2-20.4 20.4-20.4h215.2c11.2 0 20.4 9.2 20.4 20.4-0.1 11.2-9.2 20.4-20.4 20.4z m0-127.9H415.6c-11.2 0-20.4-9.2-20.4-20.4s9.2-20.4 20.4-20.4h215.2c11.2 0 20.4 9.2 20.4 20.4-0.1 11.2-9.2 20.4-20.4 20.4z"
-                                              fill="#1E88E5" p-id="1931"></path>
-                                    </svg>
-                                    社区公告
-                                </h4>
-                            </div>
+{#                        <div class="side_bar_inner">#}
+{#                            <div class="clearfix">#}
+{#                                <h4 class="pull-left">#}
+{#                                    <svg style="vertical-align: -9px;" t="1604026026802" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"#}
+{#                                         p-id="1929" width="30" height="30">#}
+{#                                        <path d="M583.4 662.7h177.9c6.7 0 10 8.1 5.3 12.8L588.7 853.4c-4.7 4.7-12.8 1.4-12.8-5.3V670.2c0-4.1 3.4-7.5 7.5-7.5z" fill="#64B5F6"#}
+{#                                              p-id="1930"></path>#}
+{#                                        <path d="M729.1 190H311.4c-22.7 0-41.2 18.4-41.2 41.2v595.1c0 22.7 18.4 41.2 41.2 41.2H501c12.2 0 22.2-9.9 22.2-22.2V661.6c0-29.2 23.6-52.8 52.8-52.8h176.2c10 0 18.2-8.1 18.2-18.2V231.2c-0.1-22.7-18.5-41.2-41.3-41.2z m-98.3 296.6H415.6c-11.2 0-20.4-9.2-20.4-20.4s9.2-20.4 20.4-20.4h215.2c11.2 0 20.4 9.2 20.4 20.4-0.1 11.2-9.2 20.4-20.4 20.4z m0-127.9H415.6c-11.2 0-20.4-9.2-20.4-20.4s9.2-20.4 20.4-20.4h215.2c11.2 0 20.4 9.2 20.4 20.4-0.1 11.2-9.2 20.4-20.4 20.4z"#}
+{#                                              fill="#1E88E5" p-id="1931"></path>#}
+{#                                    </svg>#}
+{#                                    社区公告#}
+{#                                </h4>#}
+{#                            </div>#}
                             {#                            <hr/>#}
-                            <div class="fantastic_art">
-                                <ul>
-                                    <li><a style="color: silver" href="">
-                                        <svg style="vertical-align: -2px" t="1604027892891" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
-                                             p-id="1136" width="12" height="12">
-                                            <path d="M284.594152 1023.966294a57.171451 57.171451 0 0 1-42.665262-97.276798L659.195155 511.983147 244.062153 97.276798A57.171451 57.171451 0 0 1 324.699499 16.639452l455.238348 455.238349a56.744799 56.744799 0 0 1 0 80.210693L324.699499 1007.326842a56.744799 56.744799 0 0 1-40.105347 16.639452z"
-                                                  fill="#C6CACD" p-id="1137"></path>
-                                        </svg>
-                                        CentPrime启动全面安全检测</a></li>
-                                    <li><a style="color: silver" href="">
-                                        <svg style="vertical-align: -2px" t="1604027892891" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
-                                             p-id="1136" width="12" height="12">
-                                            <path d="M284.594152 1023.966294a57.171451 57.171451 0 0 1-42.665262-97.276798L659.195155 511.983147 244.062153 97.276798A57.171451 57.171451 0 0 1 324.699499 16.639452l455.238348 455.238349a56.744799 56.744799 0 0 1 0 80.210693L324.699499 1007.326842a56.744799 56.744799 0 0 1-40.105347 16.639452z"
-                                                  fill="#C6CACD" p-id="1137"></path>
-                                        </svg>
-                                        后台管理系统维护最新版本发布</a></li>
-                                    <li><a style="color: silver" href="">
-                                        <svg style="vertical-align: -2px" t="1604027892891" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"
-                                             p-id="1136" width="12" height="12">
-                                            <path d="M284.594152 1023.966294a57.171451 57.171451 0 0 1-42.665262-97.276798L659.195155 511.983147 244.062153 97.276798A57.171451 57.171451 0 0 1 324.699499 16.639452l455.238348 455.238349a56.744799 56.744799 0 0 1 0 80.210693L324.699499 1007.326842a56.744799 56.744799 0 0 1-40.105347 16.639452z"
-                                                  fill="#C6CACD" p-id="1137"></path>
-                                        </svg>
-                                        关于用户的基本使用指引</a></li>
-                                </ul>
-                            </div>
-                        </div>
+{#                            <div class="fantastic_art">#}
+{#                                <ul>#}
+{#                                    <li><a style="color: silver" href="">#}
+{#                                        <svg style="vertical-align: -2px" t="1604027892891" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"#}
+{#                                             p-id="1136" width="12" height="12">#}
+{#                                            <path d="M284.594152 1023.966294a57.171451 57.171451 0 0 1-42.665262-97.276798L659.195155 511.983147 244.062153 97.276798A57.171451 57.171451 0 0 1 324.699499 16.639452l455.238348 455.238349a56.744799 56.744799 0 0 1 0 80.210693L324.699499 1007.326842a56.744799 56.744799 0 0 1-40.105347 16.639452z"#}
+{#                                                  fill="#C6CACD" p-id="1137"></path>#}
+{#                                        </svg>#}
+{#                                        CentPrime启动全面安全检测</a></li>#}
+{#                                    <li><a style="color: silver" href="">#}
+{#                                        <svg style="vertical-align: -2px" t="1604027892891" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"#}
+{#                                             p-id="1136" width="12" height="12">#}
+{#                                            <path d="M284.594152 1023.966294a57.171451 57.171451 0 0 1-42.665262-97.276798L659.195155 511.983147 244.062153 97.276798A57.171451 57.171451 0 0 1 324.699499 16.639452l455.238348 455.238349a56.744799 56.744799 0 0 1 0 80.210693L324.699499 1007.326842a56.744799 56.744799 0 0 1-40.105347 16.639452z"#}
+{#                                                  fill="#C6CACD" p-id="1137"></path>#}
+{#                                        </svg>#}
+{#                                        后台管理系统维护最新版本发布</a></li>#}
+{#                                    <li><a style="color: silver" href="">#}
+{#                                        <svg style="vertical-align: -2px" t="1604027892891" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"#}
+{#                                             p-id="1136" width="12" height="12">#}
+{#                                            <path d="M284.594152 1023.966294a57.171451 57.171451 0 0 1-42.665262-97.276798L659.195155 511.983147 244.062153 97.276798A57.171451 57.171451 0 0 1 324.699499 16.639452l455.238348 455.238349a56.744799 56.744799 0 0 1 0 80.210693L324.699499 1007.326842a56.744799 56.744799 0 0 1-40.105347 16.639452z"#}
+{#                                                  fill="#C6CACD" p-id="1137"></path>#}
+{#                                        </svg>#}
+{#                                        关于用户的基本使用指引</a></li>#}
+{#                                </ul>#}
+{#                            </div>#}
+{#                        </div>#}
 
-                        <div class="side_bar_inner">
-                            <div class="clearfix">
-                                <h4 class="pull-left">友情链接</h4>
-                            </div>
-                            {#                            <hr/>#}
-                            <div class="fantastic_art">
-                                <ul>
-                                    <li><a href=""></a></li>
-                                </ul>
-                            </div>
-                        </div>
+{#                        <div class="side_bar_inner">#}
+{#                            <div class="clearfix">#}
+{#                                <h4 class="pull-left">友情链接</h4>#}
+{#                            </div>#}
+{#                            <div class="fantastic_art">#}
+{#                                <ul>#}
+{#                                    <li><a href=""></a></li>#}
+{#                                </ul>#}
+{#                            </div>#}
+{#                        </div>#}
+
                     </div>
                 </div>
             </div>
@@ -684,6 +702,8 @@
         </div>
     </div>
 </div>
+{% endif %}
+
 
 <div class="container-fluid" style="height:300px; background: rgb(0,0,0);padding-top: 50px; padding-bottom: 50px">
     <div class="container">
@@ -725,10 +745,10 @@
 </div>
 
 
-<script>
-    alert("亲爱的朋友，感谢你使用Cent Prime产品（实验版）！ 目前，我们正在努力开发并完善这套系统，这导致你只能够体验此系统不到10%的功能，" +
-        "不过我们的工程师已经在努力开发测试当中，将会尽快部署上线，我们期待你的关注与支持！祝你享用愉快！\n如有意见建议也可以通过个人后台管理模块中提交，我们表示非常感谢！")
-</script>
+{#<script>#}
+{#    alert("亲爱的朋友，感谢你使用Cent Prime产品（实验版）！ 目前，我们正在努力开发并完善这套系统，这导致你只能够体验此系统不到10%的功能，" +#}
+{#        "不过我们的工程师已经在努力开发测试当中，将会尽快部署上线，我们期待你的关注与支持！祝你享用愉快！\n如有意见建议也可以通过个人后台管理模块中提交，我们表示非常感谢！")#}
+{#</script>#}
 
 <script>
     $('.header_btn').hover(
@@ -754,7 +774,6 @@
     )
 </script>
 <script>
-    //
     let text = $('.info_text');
     let pause = 360;
     $('.center_box').hover(

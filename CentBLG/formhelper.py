@@ -29,7 +29,7 @@ class UserForm(forms.Form):
 	                        error_messages={'required': "输入的手机号不能为空！"},
 	                        widget=widgets.TextInput(
 		                        attrs={'class': 'form-control expend-width'}),
-	                        label='手机')
+	                        label='手机 ( 可选 ) ')
 
 	def clean_user(self):
 		user = self.cleaned_data.get('user')

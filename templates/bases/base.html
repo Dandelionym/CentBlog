@@ -31,6 +31,11 @@
             font-size: 1.5rem;
             font-family: 'Sailec Light', sans-serif !important;
         }
+
+        body::-webkit-scrollbar{
+            display: none;
+        }
+
         .bordered {
             border: #dddddd 1px solid;
             border-radius: 0 !important;
@@ -73,22 +78,18 @@
 {% get_navbar_header user.username %}
 
 
-<div class="container-fluid">
-    <div class="container">
-        <div class="row">
-            {% block content %}
+{% block content %}
 
-            {% endblock %}
-        </div>
-    </div>
-</div>
+{% endblock %}
 
-<div class="container-fluid footer_bottom" style="">
-    <div class="row">
-        <hr/>
-        <span class="white"></span>
-    </div>
-</div>
+
+{##}
+{#<div class="container-fluid footer_bottom" style="">#}
+{#    <div class="row">#}
+{#        <hr/>#}
+{#        <span class="white"></span>#}
+{#    </div>#}
+{#</div>#}
 
 
 </body>

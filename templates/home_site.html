@@ -1,25 +1,87 @@
 {% extends 'bases/base.html' %}
 
 {% block content %}
-    <div class="aritcle_list" style="border: 1px rgba(95,107,112,0.13) solid; padding:20px;margin-top: 30px">
-        {% for article in article_list %}
-            <div class="article_item clearfix">
-                <h4><a href="/{{ article.user.username }}/articles/{{ article.nid }}" style="text-decoration: none">{{ article.title }}</a></h4>
-                <a href="/{{ article.user.username }}/articles/{{ article.nid }}" style="text-decoration: none; color: black">
-                    <div class="article_desc">
-                        {{ article.desc }}
-                    </div>
-                </a>
-                <a href="/{{ article.user.username }}/articles/{{ article.nid }}" style="text-decoration: none; color: black">
-                    <div class="small atricle_bottom_bar pull-right">
-                        <span>Posted &emsp;{{ article.create_time | date:"Y-m-d  H:i:s" }}</span>&emsp;&emsp;
-                        <span class="glyphicon glyphicon-comment"></span>评论（{{ article.comment_count }}）&emsp;&emsp;
-                        <span class="glyphicon glyphicon-thumbs-up"></span>点赞（{{ article.up_count }}）&emsp;&emsp;
-                    </div>
-                </a>
-            </div>
-            {#            <hr>#}
-        {% endfor %}
-    </div>
 
+    <style>
+        .head_bg {
+            background: url('/static/centBlog/images/bg_2342.png') no-repeat;
+            height: 400px;
+            background-size: cover;
+        }
+
+        .year_ {
+            margin: 5px;
+            font-weight: 600;
+            color: cornflowerblue;
+            font-size: 2.2rem;
+        }
+
+        .share_ {
+            margin: 5px;
+            font-weight: 600;
+            color: #db3075;
+            font-size: 2.2rem;
+        }
+
+        .article_ {
+            margin: 5px;
+            font-weight: 600;
+            color: #25db7d;
+            font-size: 2.2rem;
+        }
+    </style>
+
+
+
+
+        <div class=" head_bg" style="width: 100%">
+            <div class="col-md-1"></div>
+            <div class="col-md-8" style="margin-top: 80px; color: white">
+                <h1 style="font-weight: 100 !important; margin-bottom: 40px">{{ username }} </h1>
+                <div>
+                    <p>
+                        于<span class="year_">{{ 2020 }}</span>年加入 Cent Prime 社区并给予了社区一定程度的贡献，累计分享文献 <span class="share_">{{ 234 }}</span> 篇，累计发布文章：<span class="article_">{{ 3367 }}</span> 篇
+                    </p>
+                </div>
+                <div style="margin-top: 20px">
+                    <h4>研究方向/关注的话题：</h4>
+                    <div style="padding: 20px; font-size: 1.4rem">
+                        <button class="btn btn-primary" style="background: #062762;">机器学习</button>&emsp;
+                        <button class="btn btn-primary" style="background: #062762;">人工智能</button>&emsp;
+                        <button class="btn btn-primary" style="background: #062762;">数据挖掘与智能计算</button>&emsp;
+                        <button class="btn btn-primary" style="background: #062762;">谱图理论</button>&emsp;
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2" style="color: white; padding-top: 30px">
+                {% if user.username != username %}
+                <button class="btn btn-default" style="opacity: .5; position: relative; bottom: 0;"> <i class="fa fa-eye"></i> 添加关注</button>&emsp;
+                <button class="btn btn-default" style="opacity: .5; position: relative; bottom: 0;"> <i class="fa fa-mail-forward"></i> 联系</button>
+                {% endif %}
+            </div>
+        </div>
+    <div class="container">
+        <div class="container">
+
+        </div>
+        <div class="aritcle_list" style="border: 1px rgba(95,107,112,0.13) solid; padding:20px;margin-top: 30px">
+            {% for article in article_list %}
+                <div class="article_item clearfix">
+                    <h4><a href="/{{ article.user.username }}/articles/{{ article.nid }}" style="text-decoration: none">{{ article.title }}</a></h4>
+                    <a href="/{{ article.user.username }}/articles/{{ article.nid }}" style="text-decoration: none; color: black">
+                        <div class="article_desc">
+                            {{ article.desc }}
+                        </div>
+                    </a>
+                    <a href="/{{ article.user.username }}/articles/{{ article.nid }}" style="text-decoration: none; color: black">
+                        <div class="small atricle_bottom_bar pull-right">
+                            <span>Posted &emsp;{{ article.create_time | date:"Y-m-d  H:i:s" }}</span>&emsp;&emsp;
+                            <span class="glyphicon glyphicon-comment"></span>评论（{{ article.comment_count }}）&emsp;&emsp;
+                            <span class="glyphicon glyphicon-thumbs-up"></span>点赞（{{ article.up_count }}）&emsp;&emsp;
+                        </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}
