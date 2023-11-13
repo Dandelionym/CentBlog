@@ -36,7 +36,7 @@
     "grunt-contrib-coffee": "0.x",
     "grunt-contrib-compress": "0.x",
     "grunt-contrib-copy": "0.x",
-    "grunt-contrib-jasmine": "0.x",
+    "grunt-contrib-jasmine": "4.x",
     "grunt-contrib-sass": "0.x",
     "grunt-contrib-uglify": "0.x",
     "grunt-contrib-watch": "0.x",
